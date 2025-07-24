@@ -1,0 +1,102 @@
+/** @format  */
+/* Import Lato font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+.heroSection {
+  background-color: #7C118B; /* Updated purple background */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 90px;
+  padding-top: 89px;
+  height: 647px;
+  color: white;
+  position: relative;
+}
+
+.content {
+  max-width: 50%;
+  z-index: 2;
+  padding-bottom: 91px;
+}
+
+.content h1 {
+  width: 789px;
+  /* height: 336px; */
+  opacity: 1;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  font-size: 70px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  padding-top: 25px;
+  margin: 0px;
+  padding-bottom: 10px;
+}
+
+.highlight {
+  color: #F89A1C;
+  font-family: 'Lato', sans-serif;
+  font-weight: 900;
+  font-size: 70px;
+  /* line-height: 100%; */
+  letter-spacing: 0%;
+  vertical-align: middle;
+}
+
+.content p {
+  font-family: 'Lato', sans-serif;
+  font-weight: 250;
+  font-style: Regular;
+  font-size: 24px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  width: 769px;
+  height: 87px;
+  margin-bottom: 10px;
+}
+
+.cta {
+  padding: 0px 30px;
+  background-color: #F89A1C;
+  color: #2B2B2B;
+  height: 62px;
+  width: 218px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 18px;
+  text-align: center;
+  vertical-align: middle;
+  margin-top: 15px;
+}
+
+.cta:hover {
+  background-color: #C97A15;
+}
+
+.imageContainer {
+  z-index: 1;
+}
+
+.imageContainer img {
+  width: 540px;
+  height: 650px;
+  object-fit: cover;
+  padding-right: 2px;
+}
+
+/* Optional: dark overlay if needed */
+/* background-image: url('../assets/purple.png'); */
+/* background: rgba(49, 0, 98, 0.5); */
+
+.heroSection::before {
+  content: '';
+  display: none; /* or remove this block entirely */
+}
+

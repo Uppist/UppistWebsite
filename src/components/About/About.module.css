@@ -1,0 +1,45 @@
+/** @format */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+/* Main container for About page */
+.about {
+  padding: 40px;
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  color: #2b2b2b;
+  max-width: 800px; /* Limit content width for readability */
+  margin: 0 auto; /* Center the content */
+}
+
+/* Page heading */
+.about h1 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* Introductory paragraph */
+.intro {
+  font-size: 18px;
+  color: #667085;
+  margin-bottom: 40px;
+}
+
+/* Section container */
+.section {
+  margin-bottom: 30px;
+}
+
+/* Section heading */
+.section h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+/* Section paragraph */
+.section p {
+  font-size: 16px;
+  color: #667085;
+  line-height: 1.6;
+}

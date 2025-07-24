@@ -10,7 +10,7 @@
   position: relative;
   height: 90px;
   background-color: #fff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08); /* 👈 subtle navbar shadow added */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
 }
 
 .logo {
@@ -67,8 +67,9 @@
 }
 
 .dropdownIcon {
-  font-size: 12px;
+  font-size: 10px; /* Reduced size to better fit text width */
   color: #667085;
+  margin-top: 2px; /* Slight adjustment for vertical alignment */
 }
 
 .dropdownMenu {
@@ -81,6 +82,16 @@
   z-index: 1000;
   min-width: 240px;
   padding: 8px 0;
+  opacity: 0; /* Start hidden for animation */
+  transform: translateY(-10px); /* Start slightly above */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition */
+  pointer-events: none; /* Prevent interaction when hidden */
+}
+
+.dropdownMenu.open {
+  opacity: 1; /* Fully visible when open */
+  transform: translateY(0); /* Slide to normal position */
+  pointer-events: auto; /* Allow interaction when visible */
 }
 
 .dropdownItem {
