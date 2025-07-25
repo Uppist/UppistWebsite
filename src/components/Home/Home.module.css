@@ -1,17 +1,18 @@
-/** @format  */
+/** @format */
 /* Import Lato font from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
 .heroSection {
-  background-color: #7C118B; /* Updated purple background */
+  background-color: #690E76;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-left: 90px;
-  padding-top: 89px;
+  padding-top: 185px;
   height: 647px;
   color: white;
   position: relative;
+  /* background-image: url('../assets/people.png'); */ /* Removed since ::before handles it */
 }
 
 .content {
@@ -22,7 +23,6 @@
 
 .content h1 {
   width: 789px;
-  /* height: 336px; */
   opacity: 1;
   font-family: 'Lato', sans-serif;
   font-weight: 500;
@@ -40,7 +40,6 @@
   font-family: 'Lato', sans-serif;
   font-weight: 900;
   font-size: 70px;
-  /* line-height: 100%; */
   letter-spacing: 0%;
   vertical-align: middle;
 }
@@ -50,7 +49,7 @@
   font-weight: 250;
   font-style: Regular;
   font-size: 24px;
-  line-height: 100%;
+  line-height: 116%;
   letter-spacing: 0%;
   vertical-align: middle;
   width: 769px;
@@ -91,12 +90,158 @@
   padding-right: 2px;
 }
 
-/* Optional: dark overlay if needed */
-/* background-image: url('../assets/purple.png'); */
-/* background: rgba(49, 0, 98, 0.5); */
-
+/* Blurred background image using ::before */
 .heroSection::before {
   content: '';
-  display: none; /* or remove this block entirely */
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url('./Home-assets/people.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: blur(6px);
+  opacity: 0.3;
+  z-index: 0;
 }
 
+/* New people section styles */
+.people {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px 100px;
+  height: 500px;
+  background-color: #fff;
+  position: relative;
+}
+
+.peopleImage img {
+  width: 540px;
+  height: 420px;
+  object-fit: cover;
+}
+
+.peopleContent {
+  max-width: 50%;
+  padding-left: 30px;
+}
+
+.peopleTitle {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+  margin: 0 0 20px 0;
+  background: linear-gradient(180deg, #D81B60 0%, #6B046D 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.peopleText {
+  width: 625px;
+  height: 161px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  margin-bottom: 20px;
+  color: #667085;
+}
+
+.peopleCta {
+  padding: 10px 30px;
+  background-color: #F89A1C;
+  color: #2B2B2B;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.peopleCta:hover {
+  background-color: #C97A15;
+}
+
+/* Mission section styles */
+.mission {
+  background-color: #7C118B;
+  padding: 50px 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('./Home-assets/hands.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  height: 600px;
+}
+
+.mission::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(124, 17, 139, 0.7);
+  z-index: 0;
+}
+
+.missionContent {
+  background-color: #FFFFFF;
+  width: 1236px;
+  height: 450px;
+  display: flex;
+  justify-content: space-between;
+  gap: 63px;
+  padding: 20px;
+  z-index: 1;
+}
+
+.missionColumn {
+  /* max-width: 45%; */
+  width: 530px;
+  height: 200px;
+  padding-top: 50px;
+  border-radius: 8px;
+}
+
+.missionIcon {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 10px;
+}
+
+.missionTitle {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  margin: 0 0 15px 0;
+  background: linear-gradient(180deg, #D81B60 0%, #6B046D 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.missionText {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  color: #667085;
+  margin: 0;
+}

@@ -7,11 +7,16 @@
   align-items: center;
   padding-left: 25px;
   padding-right: 25px;
-  position: relative;
+  position: fixed; /* Makes the header stick to the top */
+  top: 0; /* Aligns it to the top of the viewport */
+  left: 0;
+  right: 0;
+  z-index: 1000; /* Ensures it stays above other elements */
   height: 90px;
   background-color: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
 }
+
 
 .logo {
   display: flex;
