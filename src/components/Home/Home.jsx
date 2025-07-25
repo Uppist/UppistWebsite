@@ -46,8 +46,8 @@ const Home = () => {
             <img src={tick1} alt="Mission tick" className={styles.missionIcon} />
             <h2 className={styles.missionTitle}>Our Mission</h2>
             <p className={styles.missionText}>
-              To elevate the human potential through first-class professional services and technology. <br />
-              We aim to empower people and businesses to do more, achieve more, and grow beyond limits. <br />
+              To elevate the human potential through first-class professional services and technology. <br /> <br />
+              We aim to empower people and businesses to do more, achieve more, and grow beyond limits. <br /> <br />
               By combining expert professional services with innovative technology, we help unlock new opportunities and transform everyday digital challenges into success.
             </p>
           </div>
