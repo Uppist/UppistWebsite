@@ -1,5 +1,5 @@
 /** @format */
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import About from './components/About/About';
@@ -10,7 +10,7 @@ import styles from './App.module.css';
  */
 function App() {
   return (
-    <Router basename="/UppistWebsite"> {/* Add basename to match the subdirectory */}
+    <Router> {/* No basename needed with HashRouter */}
       <div className={styles.app}>
         <Header />
         <main>
