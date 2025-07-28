@@ -10,7 +10,7 @@ import styles from './App.module.css';
  */
 function App() {
   return (
-    <Router>
+    <Router basename="/UppistWebsite"> {/* Add basename to match the subdirectory */}
       <div className={styles.app}>
         <Header />
         <main>

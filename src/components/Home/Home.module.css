@@ -2,6 +2,11 @@
 /* Import Lato font from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
+/* Global smooth scrolling */
+.html {
+  scroll-behavior: smooth;
+}
+
 .heroSection {
   background-color: #690E76;
   display: flex;
@@ -253,4 +258,398 @@
   height: 112px;
   width: 500px;
   padding-bottom: 30px;
+}
+
+/* Services Section */
+.services {
+  padding: 60px 100px;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.serviceBody {
+  padding-left: 190px;
+  padding-right: 160px;
+}
+
+.servicesTitle {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+  text-align: center;
+  margin-bottom: 20px;
+  background: linear-gradient(180deg, #D81B60 0%, #6B046D 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-top: 50px;
+}
+
+.servicesText {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 0%;
+  color: #667085;
+  margin: 0 auto 40px;
+  max-width: 1076px;
+  text-align: center;
+}
+
+.servicesContainer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 0;
+  padding: 0 100px;
+}
+
+.servicesContainer2 {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 0;
+}
+
+.servicesImage {
+  width: 561px;
+  height: 420px;
+  flex: 1;
+  z-index: 1; /* Ensure it's below the card */
+  position: relative; /* Add this if not present */
+  padding-top: 70px;
+}
+
+.serviceBox {
+  padding-top: 95px;
+  padding-right: 80px;
+  z-index: 10; /* Higher than the image */
+  position: relative; /* Add this */
+}
+
+.serviceBox2 {
+  padding-top: 95px;
+  z-index: 10; /* Higher than the image */
+  position: relative; /* Add this */
+}
+
+.servicesCard {
+  background-color: #fff;
+  width: 500px;
+  height: 220px;
+  padding: 35px 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+  flex: 1;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative; /* Add this */
+  z-index: 11; /* Ensures it appears above */
+}
+
+.servicesCard2 {
+  background-color: #fff;
+  width: 500px;
+  height: 220px;
+  padding: 35px 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+  flex: 1;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative; /* Add this */
+  z-index: 11; /* Ensures it appears above */
+}
+
+.servicesCardIcon {
+  width: 40px;
+  align-self: left;
+}
+
+.servicesCardTitle {
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  font-style: SemiBold;
+  font-size: 24px;
+  line-height: 100%;
+  color: #2B2B2B;
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.servicesCardText {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 110%;
+  color: #667085;
+  text-align: left;
+  max-width: 443px;
+}
+
+.servicesCardButton {
+  background-color: #FFFFFF;
+  border: 2px solid #F89A1C;
+  color: #667085;
+  transition: background 0.3s ease-in-out;
+  padding: 10px 20px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  text-align: center;
+  cursor: pointer;
+  align-self: center;
+  margin-top: 20px;
+  margin-right: 355px;
+}
+
+.servicesCardButton:hover {
+  background-color: #F89A1C;
+  color: #FFFFFF;
+}
+
+/* Choose Us section styles */
+
+.choose {
+  background-color: #FFECE7;
+  text-align: center;
+  position: relative;
+  width: 1200px;
+  height: 780px;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.chooseTitle {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+  text-align: left;
+  margin-bottom: 20px;
+  background: linear-gradient(180deg, #D81B60 0%, #6B046D 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-top: 45px;
+}
+
+.chooseContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 40px;
+  gap: 40px;
+}
+
+.chooseContent {
+  max-width: 50%;
+  text-align: left;
+}
+
+.chooseText {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 0%;
+  color: #667085;
+  margin-bottom: 20px;
+  text-align: justify;
+  height: 448px;
+  width: 626px;
+}
+
+.chooseButton {
+  /* padding: 10px 30px; */
+  background-color: #F89A1C;
+  color: #2B2B2B;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  text-align: center;
+  vertical-align: middle;
+  width: 280px;
+  height: 54px;
+  margin-top: 20px;
+}
+
+.chooseButton:hover {
+  background-color: #C97A15;
+}
+
+.chooseImage {
+  width: 680px;
+  height: 778px;
+  object-fit: cover;
+  padding-left: 55px;
+}
+
+/* Clients section styles */
+.clients {
+  padding: 60px 100px;
+  background-color: #ffffff;
+  text-align: center;
+  position: relative;
+}
+
+.clientsTitle {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+  text-align: center;
+  margin-bottom: 40px;
+  background: linear-gradient(180deg, #D81B60 0%, #6B046D 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.clientsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.clientImage {
+  width: 220px;
+  height: 160px;
+  object-fit: contain;
+  /* filter: grayscale(100%); */
+  transition: filter 0.3s ease;
+}
+
+.clientImage:hover {
+  filter: grayscale(0%);
+}
+
+/* Testimonials section styles */
+.testimonials {
+  padding: 80px 100px;
+  background-color: #ffffff;
+  text-align: center;
+  display: flex;
+  align-items: flex-start;
+  gap: 40px; /* Space between image and carousel */
+  padding-bottom: 150px;
+}
+
+.testimonialsTitle {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+  text-align: center;
+  margin-bottom: 40px;
+  background: linear-gradient(180deg, #D81B60 0%, #6B046D 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+  z-index: 1; /* Ensure title is above other elements */
+}
+
+.testimonialsCarousel {
+  position: relative;
+  overflow: hidden;
+  flex: 1; /* Allows carousel to take remaining space */
+}
+
+.carouselTrack {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.testimonialCard {
+  min-width: 500px;
+  height: 300px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: -2px 4px 6px rgba(0, 0, 0, 0.08); /* Left and bottom shadow */
+  margin-right: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.testimonialContent {
+  text-align: left;
+  width: 100%;
+}
+
+.stars {
+  margin-bottom: 10px;
+}
+
+.starIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.testimonialQuote {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #667085;
+  margin-bottom: 10px;
+}
+
+.testimonialAuthor {
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #2B2B2B;
+}
+
+.testimonialImageStandalone {
+  width: 405px;
+  height: 502px;
+  object-fit: cover;
+  flex-shrink: 0; /* Prevents image from shrinking */
+}
+
+.carouselButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none; /* Removed gradient border */
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  z-index: 10;
+  transition: background 0.3s ease;
+}
+
+.carouselButton:hover {
+  background: rgba(0, 0, 0, 0.1); /* Dark fade on hover */
+}
+
+.arrowIcon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.carouselButton:first-child {
+  left: 20px;
+}
+
+.carouselButton:last-child {
+  right: 20px;
 }
