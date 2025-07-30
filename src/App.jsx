@@ -4,6 +4,7 @@ import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import About from './components/About/About';
 import styles from './App.module.css';
+import Footer from './components/Footer/Footer';
 
 /**
  * Main App component with routing for Home and About pages.
@@ -20,6 +21,7 @@ function App() {
             {/* Add more routes for Services, Blogs, etc., as needed */}
           </Routes>
         </main>
+        <Footer />
       </div>
     </Router>
   );
