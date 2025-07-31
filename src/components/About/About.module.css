@@ -1,45 +1,174 @@
 /** @format */
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
-/* Main container for About page */
 .about {
-  padding: 40px;
+  padding: 130px 100px;
+  background-color: #ffffff;
   text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.aboutTitle {
   font-family: 'Lato', sans-serif;
-  color: #2b2b2b;
-  max-width: 800px; /* Limit content width for readability */
-  margin: 0 auto; /* Center the content */
-}
-
-/* Page heading */
-.about h1 {
-  font-size: 36px;
   font-weight: 700;
-  margin-bottom: 20px;
-}
-
-/* Introductory paragraph */
-.intro {
-  font-size: 18px;
-  color: #667085;
+  font-size: 48px;
+  text-align: center;
   margin-bottom: 40px;
+  background: linear-gradient(180deg, #D81B60 0%, #6B046D 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-bottom: 0px;
 }
 
-/* Section container */
-.section {
-  margin-bottom: 30px;
+.aboutContainer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+  text-align: left;
 }
 
-/* Section heading */
-.section h2 {
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 16px;
+.aboutImage {
+  width: 560px;
+  height: 470px;
+  object-fit: cover;
+  border-radius: 8px;
+  padding-top: 25px;
 }
 
-/* Section paragraph */
-.section p {
-  font-size: 16px;
+.aboutText {
+  flex: 1;
+  max-width: 600px;
+}
+
+.aboutDescription {
   color: #667085;
-  line-height: 1.6;
+  margin-bottom: 30px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 24px;
+  vertical-align: middle;
+}
+
+.missionItem {
+  display: flex;
+  align-items: center;
+}
+
+.missionContent {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 24px;
+  vertical-align: middle;
+  text-align: left;
+  color: #667085;
+}
+
+.tickIcon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.missionText {
+  color: #667085;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 24px;
+  vertical-align: middle;
+  margin-bottom: 10px;
+}
+
+/* Mission section styles */
+
+.mission2 {
+  background-color: #7C118B;
+  padding: 55px 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../Home/Home-assets/hand.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  height: 520px;
+}
+
+.mission2::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(124, 17, 139, 0.7);
+  z-index: 0;
+}
+
+.missionContent2 {
+  background-color: #FFFFFF;
+  width: 1236px;
+  height: 470px;
+  display: flex;
+  justify-content: space-between;
+  gap: 23px;
+  padding: 20px;
+  z-index: 1;
+  padding-right: 2px;
+  padding-left: 2px;
+  padding-top: 0px;
+}
+
+.missionColumn2 {
+  max-width: 45%;
+  padding: 20px;
+  border-radius: 8px;
+  padding-left: 50px;
+  padding-right: 30px;
+  padding-top: 30px;
+  padding-bottom: 40px;
+}
+
+.missionIcon2 {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 18px;
+  padding-top: 20px;
+}
+
+.missionTitle2 {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  margin: 0 0 15px 0;
+  background: linear-gradient(180deg, #D81B60 0%, #6B046D 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.missionText2 {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 23px;
+  line-height: 28px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  color: #667085;
+  margin: 0;
+  height: 112px;
+  width: 500px;
+  padding-bottom: 30px;
+}
+
+.mission3 {
+  padding-bottom: 120px;
 }
