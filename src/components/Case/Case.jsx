@@ -5,6 +5,11 @@ import styles from './Case.module.css';
 // Sample images and icon
 import companyImage1 from './Case-assets/company1.png'; // Image for Cobalt Industries
 import companyImage2 from './Case-assets/company2.png'; // Image for Roothe-Kharis
+import companyImage3 from './Case-assets/company3.png'; // Image for First and Last Wellness
+import companyImage4 from './Case-assets/company4.png'; // Image for October Orange Initiative
+import companyImage5 from './Case-assets/company5.png'; // Image for The BroomApp
+import companyImage6 from './Case-assets/company6.png'; // Image for Squaredlab Advisory Services
+import companyImage7 from './Case-assets/company7.png'; // Image for IRETIHUB AFRICA
 import yellowIcon from './Case-assets/yellowIcon.svg'; // Yellow icon
 
 const CaseCard = ({ title, description, onSeeMore, isExpanded, image, expandedContent }) => {
@@ -96,6 +101,81 @@ const Case = () => {
           }
           isExpanded={expandedCard?.title === "Roothe-Kharis and Partners"}
           expandedContent={expandedCard?.title === "Roothe-Kharis and Partners" ? expandedCard : null}
+        />
+        <CaseCard
+          title="First and Last Wellness"
+          description="First & Last Wellness is committed to empowering businesses with better productivity. They equip organizations with best practices that promote employee welfare in order to contribute to productivity."
+          image={companyImage3}
+          onSeeMore={() =>
+            handleSeeMore(
+              "First and Last Wellness",
+              "Positioned First and Last Wellness as a trustworthy brand with a vibrant identity and website.",
+              "They needed a brand identity and a website to clearly communicate their concerns, showcase expertise, and attract potential clients.",
+              "Uppist developed a clean, vibrant visual identity, as well as a responsive website that helps to position First and Last Wellness as a trustworthy brand."
+            )
+          }
+          isExpanded={expandedCard?.title === "First and Last Wellness"}
+          expandedContent={expandedCard?.title === "First and Last Wellness" ? expandedCard : null}
+        />
+        <CaseCard
+          title="October Orange Initiative"
+          description="October Orange Initiative is a nonprofit focused on making significant contributions to communities with daunting challenges through T. E. A. C. H. (Technology, Education, Art, Charitable Trust, and Healthcare)"
+          image={companyImage4}
+          onSeeMore={() =>
+            handleSeeMore(
+              "October Orange Initiative",
+              "Positioned First and Last Wellness as a trustworthy brand with a vibrant identity and website.",
+              "OOI had their goals and vision set, but they needed a website help tell their story as well as accept donation payments from donors.",
+              "Uppist developed a specialized website and custom-built software tools designed specifically to accept, monitor and report payments from donors."
+            )
+          }
+          isExpanded={expandedCard?.title === "October Orange Initiative"}
+          expandedContent={expandedCard?.title === "October Orange Initiative" ? expandedCard : null}
+        />
+        <CaseCard
+          title="The BroomApp"
+          description="The Broom App is an innovative platform connecting homeowners and businesses in need of cleaning services with trusted, thoroughly vetted providers and cleaning professionals in Lagos."
+          image={companyImage5}
+          onSeeMore={() =>
+            handleSeeMore(
+              "The BroomApp",
+              "Launched The Broom App with a complete digital solution.",
+              "The Broom App needed a complete digital launch, from brand design to app development.",
+              "Uppist helped The Broom App develop its brand identity, website and mobile app. We also implemented a digital marketing strategy to enable a seamless connection with their target audience."
+            )
+          }
+          isExpanded={expandedCard?.title === "The BroomApp"}
+          expandedContent={expandedCard?.title === "The BroomApp" ? expandedCard : null}
+        />
+        <CaseCard
+          title="Squaredlab Advisory Services"
+          description="SASL helps startups, SMEs, and established companies unlock peak performance by weaving best practices into company culture with a foundation for sustainable growth."
+          image={companyImage6}
+          onSeeMore={() =>
+            handleSeeMore(
+              "Squaredlab Advisory Services",
+              "Established a trustworthy digital presence for SASL.",
+              "They needed a website and social media management to establish a trust-worthy digital presence.",
+              "Uppist developed a clean, mobile-friendly website that portrays the brand beautifully and began managing their social media accounts."
+            )
+          }
+          isExpanded={expandedCard?.title === "Squaredlab Advisory Services"}
+          expandedContent={expandedCard?.title === "Squaredlab Advisory Services" ? expandedCard : null}
+        />
+        <CaseCard
+          title="IRETIHUB AFRICA"
+          description="Ireti Hub provides creative space for urban youth in Nigeria with the skills, training, and mentorship they need to excel in their career."
+          image={companyImage7}
+          onSeeMore={() =>
+            handleSeeMore(
+              "IRETIHUB AFRICA",
+              "Created a compelling website for IretiHub Africa.",
+              "IretiHub Africa needed a website that reflects its vision to be a creative hub where youth in urban areas have access to health and entrepreneurship resources.",
+              "Uppist developed a modern, responsive website that captures their vision and tells their story in a compelling manner."
+            )
+          }
+          isExpanded={expandedCard?.title === "IRETIHUB AFRICA"}
+          expandedContent={expandedCard?.title === "IRETIHUB AFRICA" ? expandedCard : null}
         />
       </div>
     </section>
