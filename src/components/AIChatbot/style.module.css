@@ -165,7 +165,7 @@
   flex-direction: column;
   background-color: hsla(0, 0%, 97%, 1);
   width: 30%;
-  height: 590px;
+  height: 500px;
 }
 .logos {
   display: flex;
@@ -272,6 +272,7 @@
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   padding: 0px 0px 0px 24px;
+  justify-content: space-between;
 }
 
 .send div {
@@ -300,6 +301,10 @@
 .send div textarea::placeholder {
   display: flex;
   align-items: center;
+}
+
+.send div textarea:focus {
+  outline: none;
 }
 
 .send div textarea::-webkit-scrollbar {
@@ -409,7 +414,7 @@
     width: 85%;
     right: inherit;
     bottom: inherit;
-    height: auto;
+    height: 400px;
   }
 
   .texts {
