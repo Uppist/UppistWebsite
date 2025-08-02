@@ -1,0 +1,27 @@
+/** @format */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+.technology {
+  padding: 80px 100px;
+  background-color: #ffffff;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Lato', sans-serif;
+}
+
+.technologyTitle {
+  font-weight: 700;
+  font-size: 48px;
+  margin-bottom: 20px;
+  background: linear-gradient(180deg, #D81B60 0%, #6B046D 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-align: center;
+}
+
+.technologyContent {
+  font-size: 18px;
+  color: #333;
+  text-align: center;
+}

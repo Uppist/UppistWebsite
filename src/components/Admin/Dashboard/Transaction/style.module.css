@@ -1,0 +1,376 @@
+/** @format */
+
+.transaction {
+  position: absolute;
+  left: 274px;
+  width: -webkit-fill-available;
+  top: 65px;
+  background-color: hsla(0, 0%, 96%, 1);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.log {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 24px;
+  font-weight: 600;
+  color: hsla(0, 0%, 17%, 0.8);
+  font-family: "Inter";
+}
+
+.div {
+  display: flex;
+  gap: 24px;
+}
+
+.time {
+  padding: 8px 12px;
+  border-radius: 8px;
+  background-color: white;
+  border: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: hsla(0, 0%, 17%, 0.8);
+  font-family: "Inter";
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+.csv {
+  background-color: hsla(293, 78%, 31%, 1);
+  border: 0;
+  padding: 8px 12px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Inter";
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.table {
+  border: 1px solid hsla(218, 17%, 91%, 1);
+}
+
+.tableRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.name {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  border-bottom: 3px solid hsla(218, 20%, 98%, 1);
+  align-items: center;
+  font-family: "Inter";
+  position: relative;
+}
+.svg {
+  color: transparent;
+  /* background-color: hsla(218, 20%, 98%, 1); */
+}
+.name img {
+  justify-self: center;
+}
+
+.name > span {
+  overflow-wrap: anywhere;
+  padding: 12px 24px;
+  width: -webkit-fill-available;
+  font-size: 14px;
+  font-weight: 400;
+  color: hsla(0, 0%, 17%, 0.8);
+}
+
+.name > img {
+  cursor: pointer;
+}
+.tableHeader {
+  background-color: white;
+}
+.headerText > span {
+  background-color: hsla(210, 20%, 99%, 1) !important;
+  padding: 12px 24px;
+  width: -webkit-fill-available;
+  font-size: 12px;
+  font-weight: 500;
+  color: hsla(0, 0%, 17%, 0.8);
+}
+
+.svg {
+  align-items: end !important;
+
+  color: transparent !important;
+  background-color: hsla(218, 20%, 98%, 1);
+}
+
+.logs {
+  height: 500px;
+  scroll-behavior: smooth;
+  overflow-y: auto;
+}
+
+.logs::-webkit-scrollbar {
+  display: none;
+}
+
+.tableRow span,
+.tableRow img {
+  padding: 16px 24px;
+  font-size: 14px;
+  font-weight: 400;
+  color: hsla(217, 24%, 27%, 1);
+}
+
+.dropdown {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  right: 85px;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.dropdownTime {
+  position: absolute;
+  top: -56%;
+  left: 50%;
+  right: 190px;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.1);
+  transition: opacity 1.3s;
+}
+
+.copy {
+  position: absolute;
+  /* top: 120%; Appears just below the icon */
+  right: 0;
+  background-color: white;
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.copy span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+  font-family: "Inter";
+  cursor: pointer;
+}
+
+/*Buttons*/
+
+.pageButtons {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.back,
+.next,
+.pageButton {
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid hsla(220, 17%, 93%, 1);
+  color: hsla(0, 0%, 17%, 0.8);
+  background-color: white;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: "Inter";
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.pageButton:hover {
+  background-color: hsla(293, 78%, 31%, 1);
+  color: white;
+}
+
+/* .next {
+} */
+
+.mobiletransaction {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .tableHeader {
+    display: none;
+  }
+
+  .time {
+    position: relative;
+  }
+
+  .mobiletransaction {
+    display: block;
+    position: absolute;
+    width: -webkit-fill-available;
+    top: 80px;
+    background-color: hsla(0, 0%, 96%, 1);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .mobiletransaction > span {
+    font-size: 22px;
+    font-weight: 600;
+    color: hsla(0, 0%, 17%, 0.8);
+    font-family: "Inter";
+    margin-top: 30px;
+  }
+
+  .log {
+    flex-direction: column;
+    align-items: baseline;
+    gap: 24px;
+  }
+
+  .dropdownTime {
+    top: -30%;
+    right: 285px;
+    left: 0;
+  }
+
+  .table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    border: 0;
+    height: 450px;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+  }
+
+  .table::-webkit-scrollbar {
+    display: none;
+  }
+
+  .container {
+    padding: 24px 0;
+    background-color: white;
+    border: 1px solid hsla(180, 11%, 89%, 1);
+    width: 84%;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    position: relative;
+  }
+
+  .seeMore {
+    border: 0;
+    background-color: transparent;
+    border-top: 1px solid hsla(180, 11%, 89%, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 0 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: hsla(293, 78%, 31%, 1);
+    font-family: "Inter";
+  }
+
+  .seeLess {
+    margin-top: 315px;
+    border: 0;
+    background-color: transparent;
+    border-top: 1px solid hsla(180, 11%, 89%, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 0 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: hsla(293, 78%, 31%, 1);
+    font-family: "Inter";
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+  }
+
+  .header div label,
+  .more label {
+    font-size: 12px;
+    font-weight: 500;
+    color: hsla(0, 0%, 17%, 0.65);
+    font-family: "Inter";
+  }
+
+  .header img {
+    position: relative;
+  }
+
+  .header div span,
+  .more span {
+    font-size: 12px;
+    font-weight: 500;
+    color: hsla(0, 0%, 17%, 0.8);
+    font-family: "Inter";
+  }
+
+  .dropdown {
+    top: 15%;
+    right: 20px;
+  }
+
+  .moreInfo {
+    position: absolute;
+    margin-top: 35px;
+    width: -webkit-fill-available;
+  }
+
+  .more {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid hsla(180, 11%, 89%, 1);
+    padding: 16px;
+  }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1200px) {
+}

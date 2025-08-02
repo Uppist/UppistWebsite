@@ -10,6 +10,7 @@ function Header() {
   const navigate = useNavigate();
   const [activeItem, setActiveItem] = useState('home');
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [serviceItemClicked, setServiceItemClicked] = useState(false);
   const dropdownRef = useRef(null);
   const servicesRef = useRef(null);
 
@@ -24,9 +25,10 @@ function Header() {
 
   useEffect(() => {
     const currentNavItem = navItems.find(
-      (item) => item.path === location.pathname
+      (item) => item.path === location.pathname || (item.id === 'services' && location.pathname.startsWith('/services'))
     );
     setActiveItem(currentNavItem ? currentNavItem.id : 'home');
+    setServiceItemClicked(location.pathname.startsWith('/services'));
   }, [location.pathname]);
 
   useEffect(() => {
@@ -50,18 +52,42 @@ function Header() {
 
   const handleItemClick = (id, path) => {
     setActiveItem(id);
+
     if (id === 'services') {
-      setIsServicesOpen((prev) => !prev); // Toggle dropdown only
+      setIsServicesOpen((prev) => {
+        const nextState = !prev;
+
+        setTimeout(() => {
+          const dropdown = dropdownRef.current;
+          if (dropdown && nextState) {
+            dropdown.classList.add(styles.clickAnim);
+            setTimeout(() => dropdown.classList.remove(styles.clickAnim), 300);
+          }
+        }, 50);
+
+        return nextState;
+      });
+
+      // Don't show yellow line yet until submenu is clicked
+      setServiceItemClicked(false);
     } else {
-      navigate(path); // Navigate for other items
+      navigate(path);
       setIsServicesOpen(false);
+      setServiceItemClicked(false);
     }
   };
 
-  const handleDropdownItemClick = (path) => {
-    navigate(path); // Navigate to the specific service path
-    setIsServicesOpen(false); // Close dropdown
-    setActiveItem('services'); // Keep Services active
+  const handleServiceClick = (event, path) => {
+    event.stopPropagation();
+    const dropdown = dropdownRef.current;
+    if (dropdown) {
+      dropdown.classList.add(styles.clickAnim);
+      setTimeout(() => dropdown.classList.remove(styles.clickAnim), 300);
+    }
+    setIsServicesOpen(false);
+    navigate(path);
+    setActiveItem('services');
+    setServiceItemClicked(true); // ✅ Show underline only after submenu is clicked
   };
 
   return (
@@ -85,7 +111,12 @@ function Header() {
                 <FaChevronDown className={styles.dropdownIcon} />
               )}
             </div>
-            {activeItem === id && (
+            {id === 'services' && activeItem === 'services' && serviceItemClicked && (
+              <span className={styles.underline}>
+                <FaMinus />
+              </span>
+            )}
+            {id !== 'services' && activeItem === id && (
               <span className={styles.underline}>
                 <FaMinus />
               </span>
@@ -97,13 +128,13 @@ function Header() {
               >
                 <div
                   className={styles.dropdownItem}
-                  onClick={() => handleDropdownItemClick('/services/creative')}
+                  onClick={(event) => handleServiceClick(event, '/services/creative')}
                 >
                   Creative & Digital Marketing
                 </div>
                 <div
                   className={styles.dropdownItem}
-                  onClick={() => handleDropdownItemClick('/services/technology')}
+                  onClick={(event) => handleServiceClick(event, '/services/technology')}
                 >
                   Technology Solutions
                 </div>

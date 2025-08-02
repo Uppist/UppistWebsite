@@ -1,0 +1,92 @@
+/** @format */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+.creative {
+  padding: 130px 100px;
+  background-color: #ffffff;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.creativeTitle {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+  text-align: center;
+  margin-bottom: 40px;
+  background: linear-gradient(180deg, #D81B60 0%, #6B046D 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-bottom: 0px;
+}
+
+.creativeContainer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+  text-align: left;
+}
+
+.creativeImage {
+  width: 560px;
+  height: 470px;
+  object-fit: cover;
+  border-radius: 8px;
+  padding-top: 25px;
+}
+
+.creativeText {
+  flex: 1;
+  max-width: 600px;
+}
+
+.creativeDescription {
+  color: #667085;
+  margin-bottom: 30px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 24px;
+  vertical-align: middle;
+  /* width: width: 625;
+height: 112;
+top: 97px;
+left: 715px;
+angle: 0 deg;
+opacity: 1;; */
+}
+
+.creativeItem {
+  display: flex;
+  align-items: center;
+}
+
+.creativeContent {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 24px;
+  vertical-align: middle;
+  text-align: left;
+  color: #667085;
+}
+
+.tickIcon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.creativeTextItem {
+  color: #667085;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 24px;
+  vertical-align: middle;
+  margin-bottom: 10px;
+}

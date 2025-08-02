@@ -1,0 +1,206 @@
+/** @format */
+
+.mobileDashboard {
+  display: none;
+}
+.nav {
+  position: absolute;
+  left: 314px;
+  width: -webkit-fill-available;
+  padding: 16px 24px;
+  font-size: 24px;
+  font-weight: 600;
+  color: hsla(0, 0%, 17%, 0.8);
+  background-color: white;
+  font-family: "Inter";
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.sidebar {
+  width: 272px;
+  padding: 25px 0;
+  height: 982px;
+  background-color: white;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+  border: 1px solid hsla(218, 17%, 91%, 1);
+}
+
+.sidebar > img {
+  padding: 8px 24px;
+}
+
+.div {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.div hr {
+  width: -webkit-fill-available;
+  border: 1px solid hsla(218, 20%, 95%, 1);
+}
+
+.notactive {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Inter";
+  color: hsla(0, 0%, 17%, 0.8);
+}
+
+.notactive span {
+  cursor: pointer;
+}
+
+.icon {
+  fill: currentColor;
+}
+
+.active {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Inter";
+  color: hsla(293, 78%, 31%, 1);
+  cursor: pointer;
+  border-left: 5px solid hsla(34, 94%, 54%, 1);
+}
+
+.content {
+  position: absolute;
+  left: 274px;
+  width: -webkit-fill-available;
+  top: 65px;
+  background-color: hsla(0, 0%, 96%, 1);
+  padding: 32px 24px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 49px;
+}
+
+.content > span {
+  font-size: 24px;
+  font-weight: 600;
+  color: hsla(0, 0%, 17%, 0.8);
+}
+
+.revenue {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  background-color: hsla(293, 78%, 31%, 1);
+  padding: 16px 24px;
+  border-radius: 8px;
+  width: 50%;
+  color: white;
+  font-family: "Inter";
+}
+
+.revenue span {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.revenue label {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.programmeRevenue {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 24px 0;
+  gap: 40px;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+  background-color: white;
+  padding: 24px;
+  border-radius: 8px;
+}
+
+.text span {
+  font-size: 16px;
+  font-weight: 500;
+  color: hsla(0, 0%, 17%, 0.8);
+  font-family: "Inter";
+}
+
+.text div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.text div span {
+  font-size: 24px;
+  font-weight: 600;
+  color: hsla(0, 0%, 17%, 0.8);
+  font-family: "Inter";
+}
+
+.text div button {
+  border: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  color: hsla(293, 78%, 31%, 1);
+  background-color: transparent;
+  font-family: "Inter";
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+  .dashboard {
+    display: none;
+  }
+
+  .mobileDashboard {
+    display: block;
+  }
+
+  /*Content.jsx*/
+
+  .content {
+    left: 0;
+    padding: 50px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .content > span {
+    display: block;
+    font-size: 22px;
+    font-weight: 600;
+    font-family: "Inter";
+    color: hsla(0, 0%, 17%, 0.8);
+  }
+  .programmeRevenue {
+    grid-template-columns: 1fr;
+  }
+
+  .revenue {
+    width: 85%;
+  }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1200px) {
+}

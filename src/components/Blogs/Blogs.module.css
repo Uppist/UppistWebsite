@@ -1,0 +1,130 @@
+/** @format */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+.blogs {
+  padding: 80px 100px;
+  background-color: #ffffff;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Lato', sans-serif;
+}
+
+.blogsTitle {
+  font-weight: 700;
+  font-size: 48px;
+  margin-bottom: 40px;
+  background: linear-gradient(180deg, #D81B60 0%, #6B046D 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-align: center; /* Center the Blogs title */
+}
+
+.blogsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 70px; /* Match Case card gap */
+}
+
+.blogCardLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.blogCard {
+  width: 822px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 0 auto 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease;
+  display: flex;
+  position: relative; /* For absolute positioning of red icon */
+}
+
+.blogCard:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Match Case hover effect */
+}
+
+.blogImage {
+  width: 319px;
+  height: 197px;
+  object-fit: cover;
+  margin-right: 20px;
+  border-radius: 4px;
+}
+
+.blogContent {
+  text-align: left;
+  flex: 1;
+  position: relative;
+}
+
+.redIcon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s ease;
+}
+
+.blogCard:hover .redIcon {
+  transform: scale(1.1); /* Slight scale on hover */
+}
+
+.blogDate {
+  font-size: 14px;
+  color: #667085;
+  margin-bottom: 5px;
+}
+
+.recentPosts {
+  font-size: 16px;
+  color: #2B2B2B;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.blogTitle {
+  margin: 0 0 15px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #2B2B2B;
+}
+
+.blogExcerpt {
+  font-size: 16px;
+  color: #666666;
+  line-height: 1.6;
+}
+
+.blogDetail {
+  padding: 80px 100px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.backButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.backIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.blogDetailTitle {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.blogDetailContent {
+  font-size: 18px;
+  color: #333;
+}
