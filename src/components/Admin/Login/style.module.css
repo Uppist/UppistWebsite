@@ -1,4 +1,5 @@
 /** @format */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
 .login {
   display: flex;
@@ -16,8 +17,8 @@
 .container label {
   font-size: 30px;
   font-weight: 600;
-  font-family: var(--font-inter);
-  color: var(--color-orange);
+  font-family: "Inter";
+  color: #7C118B;
 }
 
 .form {
@@ -36,7 +37,7 @@
 
 .form div span {
   font-size: 14px;
-  font-family: var(--font-inter);
+  font-family: 'Inter';
   color: var(--color-text);
   font-weight: 500;
 }
@@ -44,7 +45,7 @@
 .form div input {
   border: 1px solid hsla(0, 0%, 75%, 1) !important;
   font-size: 16px !important;
-  font-family: var(--font-inter) !important;
+  font-family: 'Inter' !important;
   font-weight: 500 !important;
   padding: 12px 24px !important;
   border-radius: 8px !important;
@@ -61,7 +62,7 @@
   font-weight: 600;
   background-color: hsla(293, 78%, 31%, 1);
   color: white;
-  font-family: var(--font-inter);
+  font-family: 'Inter';
   border-radius: 8px;
   border: 0;
   cursor: pointer;

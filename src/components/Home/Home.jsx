@@ -128,7 +128,7 @@ const Home = () => {
           <img src={girl} alt="Professional lady" className={styles.chooseImage} />
         </div>
       </section>
-            <section className={styles.clients}>
+      <section className={styles.clients}>
         <h2 className={styles.clientsTitle}>Our Clients</h2>
         <div className={styles.clientsContainer}>
           <img src={client1} alt="Client 1" className={styles.clientImage} />

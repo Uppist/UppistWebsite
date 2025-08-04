@@ -87,7 +87,7 @@ function Header() {
     setIsServicesOpen(false);
     navigate(path);
     setActiveItem('services');
-    setServiceItemClicked(true); // ✅ Show underline only after submenu is clicked
+    setServiceItemClicked(true); // Show underline only after submenu is clicked
   };
 
   return (

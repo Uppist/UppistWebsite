@@ -1,4 +1,5 @@
 /** @format */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
 .logo {
   position: fixed;
@@ -9,6 +10,7 @@
   flex-direction: column;
   gap: 20px;
   align-items: center;
+  z-index: 3;
 }
 
 .logo img {
@@ -50,7 +52,7 @@
 }
 .welcome {
   position: fixed;
-  bottom: 20px;
+  bottom: 7px;
   right: 20px;
   display: flex;
   flex-direction: column;
@@ -58,13 +60,13 @@
   /* padding: 25px 40px; */
   border-radius: 10px;
   align-items: center;
-  gap: 28px;
+  gap: 21px;
 }
 
 .header {
   background: url("../../assets/chatbotImage.png") no-repeat center center;
   background-size: cover;
-  padding: 25px 40px;
+  padding: 7px 40px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
@@ -73,6 +75,7 @@
   width: 335px;
   font-size: 30px;
   font-weight: 700;
+  font-family: "Inter";
   color: hsla(0, 0%, 93%, 1);
 }
 
@@ -114,6 +117,7 @@
   height: 16px;
   font-size: 16px;
   font-weight: 500;
+  font-family: 'Inter';
 }
 
 .content {
@@ -141,6 +145,7 @@
   width: 226px;
   font-size: 12px;
   font-weight: 500;
+  font-family: 'Inter';
   color: hsla(210, 5%, 45%, 1);
 }
 
@@ -258,6 +263,7 @@
   /* width: fit-content; */
   color: white;
   font-weight: 500;
+  font-family: "Inter";
   padding: 16px 24px;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
@@ -282,6 +288,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  width: 230px;
 }
 
 .send div textarea {
@@ -351,6 +358,7 @@
 
 .botText p {
   margin: 0;
+  font-family: "Inter";
 }
 
 .typing span {
@@ -459,6 +467,7 @@
 
   .input input {
     font-size: 14px;
+    font-family: 'Inter';
   }
 
   .input span {
