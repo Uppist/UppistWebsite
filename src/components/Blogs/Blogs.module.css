@@ -32,13 +32,14 @@
 }
 
 .blogCard {
-  width: 822px;
+  width: 1022px;
+  height: 240px;
   background-color: #ffffff;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   padding: 20px;
   margin: 0 auto 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.2s ease;
   display: flex;
   position: relative; /* For absolute positioning of red icon */
@@ -49,8 +50,8 @@
 }
 
 .blogImage {
-  width: 319px;
-  height: 197px;
+  width: 400px;
+  height: 250px;
   object-fit: cover;
   margin-right: 20px;
   border-radius: 4px;
@@ -77,28 +78,40 @@
 
 .blogDate {
   font-size: 14px;
-  color: #667085;
+  color: #6941C6;
   margin-bottom: 5px;
 }
 
 .recentPosts {
-  font-size: 16px;
-  color: #2B2B2B;
-  font-weight: 600;
+  font-family: 'Lato';
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 30px;
   margin-bottom: 10px;
+  background: linear-gradient(180deg, #D81B60 0%, #6B046D 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-top: 9px;
 }
 
 .blogTitle {
-  margin: 0 0 15px;
+  margin: 5px 0 5px;
   font-size: 24px;
   font-weight: 600;
   color: #2B2B2B;
 }
 
 .blogExcerpt {
+  margin-top: 10px;
   font-size: 16px;
   color: #666666;
-  line-height: 1.6;
+  line-height: 20px;
+  color: #667085;
+  font-family: 'Lato';
+  font-weight: 400;
+  text-align: justify;
+  width: 500px;
 }
 
 .blogDetail {

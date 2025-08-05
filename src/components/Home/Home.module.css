@@ -317,30 +317,41 @@
 }
 
 .servicesImage {
+  margin-right: 447px;
   width: 561px;
   height: 420px;
   flex: 1;
-  z-index: 1; /* Ensure it's below the card */
-  position: relative; /* Add this if not present */
+  z-index: 1;
+  position: absolute;
+  padding-top: 70px;
+}
+
+.servicesImage2 {
+  margin-left: 415px;
+  width: 561px;
+  height: 420px;
+  flex: 1;
+  z-index: 1;
+  position: absolute;
   padding-top: 70px;
 }
 
 .serviceBox {
   padding-top: 95px;
   padding-right: 80px;
-  z-index: 10; /* Higher than the image */
   position: relative; /* Add this */
 }
 
 .serviceBox2 {
   padding-top: 95px;
-  z-index: 10; /* Higher than the image */
   position: relative; /* Add this */
 }
 
 .servicesCard {
   background-color: #fff;
-  width: 500px;
+  margin-left: 550px;
+  width: 470px;
+  margin-top: 80px;
   height: 220px;
   padding: 35px 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
@@ -349,13 +360,15 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: relative; /* Add this */
-  z-index: 11; /* Ensures it appears above */
+  position: relative;
+  z-index: 11;
 }
 
 .servicesCard2 {
   background-color: #fff;
-  width: 500px;
+  margin-right: 515px;
+  width: 470px;
+  margin-top: 80px;
   height: 220px;
   padding: 35px 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
@@ -364,8 +377,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: relative; /* Add this */
-  z-index: 11; /* Ensures it appears above */
+  position: relative;
+  z-index: 11;
 }
 
 .servicesCardIcon {
@@ -407,7 +420,7 @@
   cursor: pointer;
   align-self: center;
   margin-top: 20px;
-  margin-right: 355px;
+  margin-right: 325px;
 }
 
 .servicesCardButton:hover {

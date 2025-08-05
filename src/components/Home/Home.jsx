@@ -103,7 +103,7 @@ const Home = () => {
                 <button className={styles.servicesCardButton}>Learn More →</button>
               </div>
             </div>
-            <img src={man1} alt="Professional man" className={styles.servicesImage} />
+            <img src={man1} alt="Professional man" className={styles.servicesImage2} />
           </div>
         </div>
       </section>

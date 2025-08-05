@@ -12,7 +12,7 @@ import girl from '../../Home/Home-assets/girl.png';
 const Creative = () => {
   return (
     <>
-      {/* Creative & Digital Marketing Section */}
+      {/* Creative & Digital Marketing Section */} 
       <section className={styles.creative}>
         <h1 className={styles.creativeTitle}>Creative & Digital Marketing</h1>
         <div className={styles.creativeContainer}>

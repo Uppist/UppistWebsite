@@ -2,11 +2,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
 .technology {
-  padding: 80px 100px;
+  padding: 100px 100px;
+  padding-bottom: 5px;
   background-color: #ffffff;
   max-width: 1200px;
   margin: 0 auto;
   font-family: 'Lato', sans-serif;
+  display: flex;
+  justify-content: center;
+}
+
+.contentContainer {
+  padding: 50px 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .technologyTitle {
@@ -17,11 +27,343 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-align: center;
+  text-align: left;
+  width: 625px;
 }
 
 .technologyContent {
-  font-size: 18px;
-  color: #333;
+  color: #667085;
+  text-align: left;
+  width: 575px;
+  height: 80px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 24px;
+  vertical-align: middle;
+}
+
+.technologyImage {
+  width: 668px;
+  height: 425px;
+  padding-top: 25px;
+}
+
+/* Choose Us section styles */
+
+.choose {
+  background-color: #FFECE7;
   text-align: center;
+  position: relative;
+  width: 1200px;
+  height: 780px;
+  padding-left: 100px;
+  padding-right: 100px;
+  margin-bottom: 100px;
+}
+
+.chooseTitle {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+  text-align: left;
+  margin-bottom: 20px;
+  background: linear-gradient(180deg, #D81B60 0%, #6B046D 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-top: 45px;
+}
+
+.chooseContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 40px;
+  gap: 40px;
+}
+
+.chooseContent {
+  max-width: 50%;
+  text-align: left;
+}
+
+.chooseText {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 0%;
+  color: #667085;
+  margin-bottom: 20px;
+  text-align: justify;
+  height: 448px;
+  width: 626px;
+}
+
+.chooseButton {
+  /* padding: 10px 30px; */
+  background-color: #F89A1C;
+  color: #2B2B2B;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  text-align: center;
+  vertical-align: middle;
+  width: 280px;
+  height: 54px;
+  margin-top: 20px;
+}
+
+.chooseButton:hover {
+  background-color: #C97A15;
+}
+
+.chooseImage {
+  width: 680px;
+  height: 778px;
+  object-fit: cover;
+  padding-left: 55px;
+}
+
+/* Core Offerings Section */
+
+.coreTitle {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+  text-align: center;
+  margin-bottom: 35px;
+  background: linear-gradient(180deg, #D81B60 0%, #6B046D 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.coreOfferings {
+  padding: 40px 50px;
+  padding-bottom: 85px;
+  padding-left: inherit;
+  background-color: #ffffff;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.coreContainer {
+  display: flex;
+  padding: 10px 20px;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+  text-align: left;
+  position: relative;
+}
+
+.offerImage {
+  width: 661px;
+  height: 425px;
+  position: absolute;
+  z-index: 1; /* Ensures it's behind the card */
+}
+
+.coreText {
+  margin-left: 450px;
+  margin-right: 10px !important;
+  flex: 1;
+  margin-top: 200px !important;
+  width: 800px;
+  height: 220px;
+  background-color: #ffffff;
+  padding: 30px;
+  box-shadow: 4px 8px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 2;
+  border-radius: 10px;
+}
+
+.brandDesign {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.yellowIcon {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 10px;
+}
+
+.brandDesignTitle {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: #2b2b2b;
+  margin: 0;
+}
+
+.brandDescription {
+  color: #667085;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  text-align: left;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.offerList {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 10px;
+}
+
+.offerList span {
+  align-items: center;
+  font-weight: 400;
+  font-family: 'Lato', sans-serif;
+  font-size: 18px;
+  color: #667085;
+}
+
+.dotIcon {
+  width: 10px;
+  height: 10px;
+  margin-right: 10px;
+}
+
+.ctaButton {
+  background-color: #FFFFFF;
+  border: 2px solid #F89A1C;
+  color: #667085;
+  transition: background 0.3s ease-in-out;
+  padding: 10px 20px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+  align-self: center;
+  margin-right: 355px;
+}
+
+.ctaButton:hover {
+  background-color: #F89A1C;
+  color: #FFFFFF;
+}
+
+/* Brand Marketing Section */
+
+.brandMarketing {
+  padding: 40px 50px;
+  padding-bottom: 85px;
+  padding-left: inherit;
+  background-color: #ffffff;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.brandContainer {
+  display: flex;
+  padding: 10px 20px;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+  text-align: left;
+  position: relative;
+}
+
+.brandImage {
+  left: 600px;
+  width: 660px;
+  height: 415px;
+  position: absolute;
+  z-index: 1; /* Ensures it's behind the card */
+}
+
+.luroundImage {
+  left: 600px;
+  width: 660px;
+  height: 415px;
+  position: absolute;
+  z-index: 1; /* Ensures it's behind the card */
+}
+
+
+.brandText {
+  /* margin-left: 380px; */
+  margin-right: 320px !important;
+  /* width: 300px; */
+  flex: 1;
+  margin-top: 203px !important;
+  height: 225px;
+  background-color: #ffffff;
+  padding: 30px;
+  box-shadow: -4px 8px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 2;
+  border-radius: 10px;
+}
+
+.brandDesign {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.yellowIcon {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 10px;
+}
+
+.brandDesignTitle {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: #2b2b2b;
+  margin: 0;
+}
+
+.design {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: #667085;
+}
+
+.brandDescription {
+  color: #667085;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  text-align: left;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.offerList {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 10px;
+}
+
+.offerList span {
+  align-items: center;
+  font-weight: 400;
+  font-family: 'Lato', sans-serif;
+  font-size: 18px;
+  color: #667085;
+}
+
+.dotIcon {
+  width: 10px;
+  height: 10px;
+  margin-right: 10px;
 }

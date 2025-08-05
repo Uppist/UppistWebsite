@@ -5,16 +5,17 @@ import styles from './Blogs.module.css';
 import blogData from './blog-data.json';
 import backIcon from './Blogs-assets/back.svg'; // Placeholder
 import redIcon from './Blogs-assets/redIcon.svg'; // Red arrow icon
+import image1 from './Blogs-assets/blog1.png';
 
 const BlogCard = ({ id, title, date, excerpt, image }) => {
   return (
     <Link to={`/blogs/${id}`} className={styles.blogCardLink}>
       <div className={styles.blogCard}>
-        <img src={`/Blogs/Blogs-assets/${image}`} alt={title} className={styles.blogImage} />
+        <img src={image1} alt={title} className={styles.blogImage} />
         <div className={styles.blogContent}>
           <img src={redIcon} alt="Red Arrow" className={styles.redIcon} />
-          <p className={styles.blogDate}>{date}</p>
           <p className={styles.recentPosts}>Recent Posts</p>
+          <p className={styles.blogDate}>{date}</p>
           <h2 className={styles.blogTitle}>{title}</h2>
           <p className={styles.blogExcerpt}>{excerpt}</p>
         </div>
