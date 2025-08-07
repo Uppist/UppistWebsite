@@ -65,10 +65,10 @@ const Testimonials = () => {
 
   return (
     <>
-      <h2 className={styles.testimonialsTitle}>Testimonials</h2>
       <section className={styles.testimonials}>
         <img src={lady1} alt="Testimonial scene" className={styles.testimonialImageStandalone} />
         <div className={styles.testimonialsCarousel}>
+          <h2 className={styles.testimonialsTitle}>Testimonials</h2>
           <button className={styles.carouselButton} onClick={handlePrev}>
             <img src={leftarrow} alt="Previous" className={styles.arrowIcon} />
           </button>
