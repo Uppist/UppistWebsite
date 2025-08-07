@@ -69,16 +69,16 @@ const Footer = () => {
       <div className={styles.socialSection}>
         <h3 className={styles.sectionConnect}>Connect with us</h3>
         <div className={styles.socialIcons}>
-          <a href="https://www.google.com/" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.facebook.com/share/1CKYwPdxKs/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
             <img src={facebookIcon} alt="Facebook" className={styles.socialIcon} />
           </a>
-          <a href="https://www.google.com/" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.instagram.com/uppisthq?igsh=MWtlanFkYjhkajI1Ng==" target="_blank" rel="noopener noreferrer">
             <img src={igIcon} alt="Instagram" className={styles.socialIcon} />
           </a>
-          <a href="https://www.google.com/" target="_blank" rel="noopener noreferrer">
+          <a href="https://x.com/uppisthq?s=21" target="_blank" rel="noopener noreferrer">
             <img src={xIcon} alt="X" className={styles.socialIcon} />
           </a>
-          <a href="https://www.google.com/t" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.linkedin.com/company/uppisthq/people/?viewAsMember=true" target="_blank" rel="noopener noreferrer">
             <img src={linkedinIcon} alt="LinkedIn" className={styles.socialIcon} />
           </a>
         </div>

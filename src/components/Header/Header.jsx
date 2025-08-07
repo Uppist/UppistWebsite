@@ -27,7 +27,12 @@ function Header() {
     const currentNavItem = navItems.find(
       (item) => item.path === location.pathname || (item.id === 'services' && location.pathname.startsWith('/services'))
     );
-    setActiveItem(currentNavItem ? currentNavItem.id : 'home');
+    // If on a blog detail page (/blogs/:id), set activeItem to 'blogs'
+    if (location.pathname.startsWith('/blogs')) {
+      setActiveItem('blogs');
+    } else {
+      setActiveItem(currentNavItem ? currentNavItem.id : 'home');
+    }
     setServiceItemClicked(location.pathname.startsWith('/services'));
   }, [location.pathname]);
 
@@ -112,11 +117,31 @@ function Header() {
               )}
             </div>
             {id === 'services' && activeItem === 'services' && serviceItemClicked && (
+              <span className={styles.underlineServices}>
+                <FaMinus />
+              </span>
+            )}
+            {id === 'about' && activeItem === 'about' && (
+              <span className={styles.underlineAboutUs}>
+                <FaMinus />
+              </span>
+            )}
+            {id === 'case-studies' && activeItem === 'case-studies' && (
+              <span className={styles.underlineCaseStudies}>
+                <FaMinus />
+              </span>
+            )}
+            {id === 'contact' && activeItem === 'contact' && (
+              <span className={styles.underlineContactUs}>
+                <FaMinus />
+              </span>
+            )}
+            {id === 'blogs' && activeItem === 'blogs' && (
               <span className={styles.underline}>
                 <FaMinus />
               </span>
             )}
-            {id !== 'services' && activeItem === id && (
+            {id === 'home' && activeItem === 'home' && (
               <span className={styles.underline}>
                 <FaMinus />
               </span>
@@ -143,9 +168,11 @@ function Header() {
           </div>
         ))}
       </div>
-      <a href="#consultation" className={styles.consultationButton}>
+      <button
+        className={styles.consultationButton}
+        onClick={() => window.open('https://calendly.com/uppist/15min', '_blank')}>
         BOOK A FREE CONSULTATION
-      </a>
+      </button>
     </nav>
   );
 }

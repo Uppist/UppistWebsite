@@ -60,14 +60,74 @@
   color: #2b2b2b;
 }
 
+/* General underline style (for all items except Services, About Us, Case Studies, Contact Us) */
 .underline {
   display: block;
   color: #f89a1c;
-  font-size: 20px;
-  line-height: 0;
-  transform: scaleX(2.8);
+  transform: scaleX(3.5);
   transform-origin: center;
   height: 8px;
+  text-align: center;
+  justify-content: center;
+}
+
+/* Specific underline style for Services */
+.underlineServices {
+  padding-left: 2.3px;
+  display: flex;
+  padding-right: 4.5px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  color: #f89a1c;
+  transform: scaleX(5.2); 
+  transform-origin: center; 
+  height: 8px;
+  padding-top: 3px;
+}
+/* 
+.underlineServices svg {
+  margin: 0 auto; Centers the FaMinus icon if it's the only child
+} */
+
+/* Specific underline style for About Us - Empty for custom styling */
+.underlineAboutUs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  color: #f89a1c;
+  transform: scaleX(5); 
+  transform-origin: center; 
+  height: 8px;
+  padding-top: 3px;
+}
+
+/* Specific underline style for Case Studies - Empty for custom styling */
+.underlineCaseStudies {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  color: #f89a1c;
+  transform: scaleX(6.7); 
+  transform-origin: center; 
+  height: 8px;
+  padding-top: 3px;
+}
+
+/* Specific underline style for Contact Us - Empty for custom styling */
+.underlineContactUs {
+  padding-left: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  color: #f89a1c;
+  transform: scaleX(5.9); 
+  transform-origin: center; 
+  height: 8px;
+  padding-top: 3px;
 }
 
 .dropdownIcon {
@@ -158,6 +218,7 @@
   align-items: center;
   justify-content: center;
   margin-right: 40px;
+  cursor: pointer;
 }
 
 .consultationButton:hover {

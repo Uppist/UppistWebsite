@@ -123,7 +123,11 @@ const Home = () => {
               <br /><br />
               We don’t just build for today; we help you build what’s next.
             </p>
-            <button className={styles.chooseButton}>BOOK A FREE CONSULTATION</button>
+            <button
+              className={styles.chooseButton}
+              onClick={() => window.open('https://calendly.com/uppist/15min', '_blank')}>
+              BOOK A FREE CONSULTATION
+            </button>
           </div>
           <img src={girl} alt="Professional lady" className={styles.chooseImage} />
         </div>
