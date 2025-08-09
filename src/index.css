@@ -87,3 +87,11 @@ button:focus-visible {
    *::-webkit-scrollbar {
      display: none; /* Chrome, Safari, and other WebKit browsers */
    }
+
+   /* Optional stronger safeguard */
+/* index.css or global.css */
+html, body {
+  overflow-x: hidden;
+  width: 100%; /* prevent accidental overflow */
+}
+

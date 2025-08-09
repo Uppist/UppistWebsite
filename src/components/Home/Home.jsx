@@ -1,17 +1,17 @@
 /** @format */
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './Home.module.css';
 import man from '../../assets/man.png';
-import people from './Home-assets/people2.png'
+import people from './Home-assets/people2.png';
 import tick1 from './Home-assets/tick1.svg';
 import tick2 from './Home-assets/tick2.svg';
-// import hand from './Home-assets/hand.jpg';
 import woman from './Home-assets/woman.png';
 import icon4 from './Home-assets/icon4.svg';
 import man1 from './Home-assets/man1.png';
 import girl from './Home-assets/girl.png';
 import client1 from './Home-assets/client1.png';
-import client2 from './Home-assets/client2.png'; 
+import client2 from './Home-assets/client2.png';
 import client3 from './Home-assets/client3.png';
 import client4 from './Home-assets/client4.png';
 import client5 from './Home-assets/client5.png';
@@ -20,6 +20,13 @@ import client7 from './Home-assets/client7.png';
 import Testimonials from './Testimonials.jsx';
 
 const Home = () => {
+  const navigate = useNavigate();
+
+  // Scroll to top whenever Home mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
   return (
     <>
       <section className={styles.heroSection}>
@@ -33,12 +40,15 @@ const Home = () => {
             Our expert services in digital marketing, brand identity design and technology development help 
             position you as an authority in your industry, attract the right audience, and generate high-quality leads.
           </p>
-          <button className={styles.cta}>Let’s Get Started →</button>
+          <button className={styles.cta} onClick={() => navigate('/contact')}>
+            Let’s Get Started →
+          </button>
         </div>
         <div className={styles.imageContainer}>
           <img src={man} alt="Smiling man" />
         </div>
       </section>
+
       <section className={styles.people}>
         <div className={styles.peopleImage}>
           <img src={people} alt="Team collaboration" />
@@ -49,9 +59,10 @@ const Home = () => {
             Uppist is a forward-thinking firm committed to helping brands succeed in today's digital-first world. <br /> <br />
             Through our offerings in creative and digital marketing, as well as technology development, we enable businesses in Nigeria and beyond unlock new
           </p> <br />
-          <button className={styles.peopleCta}>Learn More →</button>
+          <button className={styles.peopleCta} onClick={() => navigate('/about')}>Learn More →</button>
         </div>
       </section>
+
       <section className={styles.mission}>
         <div className={styles.missionContent}>
           <div className={styles.missionColumn}>
@@ -72,6 +83,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+
       <section className={styles.services}>
         <h2 className={styles.servicesTitle}>Our Services</h2>
         <p className={styles.servicesText}>
@@ -88,7 +100,7 @@ const Home = () => {
                 <p className={styles.servicesCardText}>
                   Customer needs are evolving. Helping businesses keep up with change is at the heart of what we do.
                 </p>
-                <button className={styles.servicesCardButton}>Learn More →</button>
+                <button className={styles.servicesCardButton} onClick={() => navigate('/services/creative')}>Learn More →</button>
               </div>
             </div>
           </div>
@@ -100,13 +112,14 @@ const Home = () => {
                 <p className={styles.servicesCardText}>
                   Beyond marketing, we deliver custom technology solutions that help businesses become more efficient, scalable, and innovative.
                 </p>
-                <button className={styles.servicesCardButton}>Learn More →</button>
+                <button className={styles.servicesCardButton} onClick={() => navigate('/services/technology')}>Learn More →</button>
               </div>
             </div>
             <img src={man1} alt="Professional man" className={styles.servicesImage2} />
           </div>
         </div>
       </section>
+
       <section className={styles.choose}>
         <div className={styles.chooseContainer}>
           <div className={styles.chooseContent}>
@@ -132,6 +145,7 @@ const Home = () => {
           <img src={girl} alt="Professional lady" className={styles.chooseImage} />
         </div>
       </section>
+
       <section className={styles.clients}>
         <h2 className={styles.clientsTitle}>Our Clients</h2>
         <div className={styles.clientsContainer}>

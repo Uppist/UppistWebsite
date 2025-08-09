@@ -5,17 +5,21 @@ import styles from './Blogs.module.css';
 import blogData from './blog-data.json';
 // import backIcon from '../../../public/Blogs-assets/back.svg';
 import redIcon from './Blogs-assets/redIcon.svg'; // Red arrow icon
-import blog1Cover from '../Blogs/Blogs-assets/blog1-cover.png';
-import blog2Cover from '../Blogs/Blogs-assets/blog2-cover.png';
-import blog3Cover from '../Blogs/Blogs-assets/blog3-cover.png';
-import blog4Cover from '../Blogs/Blogs-assets/blog4-cover.png';
+import blog1Cover from '../Blogs/Blogs-assets/blog1-cover.jpg';
+import blog2Cover from '../Blogs/Blogs-assets/blog2-cover.jpg';
+import blog3Cover from '../Blogs/Blogs-assets/blog3-cover.jpg';
+import blog4Cover from '../Blogs/Blogs-assets/blog4-cover.jpg';
+import blog5Cover from '../Blogs/Blogs-assets/blog5-cover.jpg'; // Import blog5 cover image
+import blog6Cover from '../Blogs/Blogs-assets/blog6-cover.jpg'; // Import blog6 cover image
 
 const BlogCard = ({ id, title, date, excerpt, coverImage }) => {
   const coverImageMap = {
-    'blog1-cover.png': blog1Cover,
-    'blog2-cover.png': blog2Cover,
-    'blog3-cover.png': blog3Cover,
-    'blog4-cover.png': blog4Cover,
+    'blog1-cover.jpg': blog1Cover,
+    'blog2-cover.jpg': blog2Cover,
+    'blog3-cover.jpg': blog3Cover,
+    'blog4-cover.jpg': blog4Cover,
+    'blog5-cover.jpg': blog5Cover, // Add blog5 cover image
+    'blog6-cover.jpg': blog6Cover, // Add blog6 cover image
   };
 
   return (
@@ -49,7 +53,25 @@ const Blogs = () => {
         {blogData.map((blog) => (
           <Link to={`/blogs/${blog.id}`} key={blog.id} className={styles.blogCardLink}>
             <div className={styles.blogCardAllPosts}>
-              <img src={blog.coverImage === 'blog1-cover.png' ? blog1Cover : blog.coverImage === 'blog2-cover.png' ? blog2Cover : blog.coverImage === 'blog3-cover.png' ? blog3Cover : blog4Cover} alt={blog.title} className={styles.blogImageAllPosts} />
+              <img
+                src={
+                  blog.coverImage === 'blog1-cover.jpg'
+                    ? blog1Cover
+                    : blog.coverImage === 'blog2-cover.jpg'
+                    ? blog2Cover
+                    : blog.coverImage === 'blog3-cover.jpg'
+                    ? blog3Cover
+                    : blog.coverImage === 'blog4-cover.jpg'
+                    ? blog4Cover
+                    : blog.coverImage === 'blog5-cover.jpg'
+                    ? blog5Cover
+                    : blog.coverImage === 'blog6-cover.jpg'
+                    ? blog6Cover
+                    : null
+                }
+                alt={blog.title}
+                className={styles.blogImageAllPosts}
+              />
               <div className={styles.blogContent}>
                 <img src={redIcon} alt="Red Arrow" className={styles.redIconAllposts} />
                 <p className={styles.blogDateAllPosts}>{blog.date}</p>
@@ -58,15 +80,18 @@ const Blogs = () => {
               </div>
             </div>
           </Link>
-        )).slice(0, Math.ceil(blogData.length / 3) * 3).reduce((rows, item, index) => {
-          if (index % 3 === 0) rows.push([]);
-          rows[rows.length - 1].push(item);
-          return rows;
-        }, []).map((row, rowIndex) => (
-          <div key={rowIndex} className={styles.allPostsRow}>
-            {row}
-          </div>
-        ))}
+        ))
+          .slice(0, Math.ceil(blogData.length / 3) * 3)
+          .reduce((rows, item, index) => {
+            if (index % 3 === 0) rows.push([]);
+            rows[rows.length - 1].push(item);
+            return rows;
+          }, [])
+          .map((row, rowIndex) => (
+            <div key={rowIndex} className={styles.allPostsRow}>
+              {row}
+            </div>
+          ))}
       </div>
     </section>
   );

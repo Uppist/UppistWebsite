@@ -6,10 +6,10 @@ import styles from './Blogs.module.css';
 import blogData from './blog-data.json';
 import backIcon from './Blogs-assets/back.svg';
 import redIcon from './Blogs-assets/redIcon.svg'; // Red arrow icon
-import blog1Cover from '../Blogs/Blogs-assets/blog1-cover.png';
-import blog2Cover from '../Blogs/Blogs-assets/blog2-cover.png';
-import blog3Cover from '../Blogs/Blogs-assets/blog3-cover.png';
-import blog4Cover from '../Blogs/Blogs-assets/blog4-cover.png';
+import blog1Cover from '../Blogs/Blogs-assets/blog1-cover.jpg';
+import blog2Cover from '../Blogs/Blogs-assets/blog2-cover.jpg';
+import blog3Cover from '../Blogs/Blogs-assets/blog3-cover.jpg';
+import blog4Cover from '../Blogs/Blogs-assets/blog4-cover.jpg';
 
 const importImage = (imageName) => {
   try {
@@ -65,6 +65,10 @@ const BlogDetail = () => {
     li: ({ node, ...props }) => <li className={styles.blogDetailText} {...props} />,
     // Apply styling to subheadings
     h2: ({ node, ...props }) => <h2 className={styles.blogDetailSubheading} {...props} />,
+    // Custom component for hyperlinks to remove underline and prevent red visited state
+    a: ({ node, href, ...props }) => (
+      <a href={href} target="_blank" rel="noopener noreferrer" className={styles.blogDetailLink} {...props} />
+    ),
   };
 
   return (
@@ -87,7 +91,7 @@ const BlogDetail = () => {
         {recentPosts.map((blog) => (
           <Link to={`/blogs/${blog.id}`} key={blog.id} className={styles.blogCardLink}>
             <div className={styles.blogCardAllPosts}>
-              <img src={blog.coverImage === 'blog1-cover.png' ? blog1Cover : blog.coverImage === 'blog2-cover.png' ? blog2Cover : blog.coverImage === 'blog3-cover.png' ? blog3Cover : blog4Cover} alt={blog.title} className={styles.blogImageAllPosts} />
+              <img src={blog.coverImage === 'blog1-cover.jpg' ? blog1Cover : blog.coverImage === 'blog2-cover.jpg' ? blog2Cover : blog.coverImage === 'blog3-cover.jpg' ? blog3Cover : blog4Cover} alt={blog.title} className={styles.blogImageAllPosts} />
               <div className={styles.blogContent}>
                 <img src={redIcon} alt="Red Arrow" className={styles.redIconAllposts} />
                 <p className={styles.blogDateAllPosts}>{blog.date}</p>
