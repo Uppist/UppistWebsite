@@ -8,91 +8,118 @@ import rightarrow from './Home-assets/rightarrow.svg';
 
 const Testimonials = () => {
   const carouselRef = useRef(null);
+  const currentIndexRef = useRef(0);
 
   const handlePrev = () => {
-    let currentIndex = parseInt(carouselRef.current.style.transform.replace(/translateX\(-(\d+)px\)/, '$1') || 0) / (500 + 40);
     const totalItems = carouselRef.current.children.length;
-    currentIndex = (currentIndex - 1 + totalItems) % totalItems;
-    carouselRef.current.style.transform = `translateX(-${currentIndex * (500 + 40)}px)`;
+    currentIndexRef.current =
+      (currentIndexRef.current - 1 + totalItems) % totalItems;
+    carouselRef.current.style.transform = `translateX(-${
+      currentIndexRef.current * 100
+    }%)`;
   };
 
   const handleNext = () => {
-    let currentIndex = parseInt(carouselRef.current.style.transform.replace(/translateX\(-(\d+)px\)/, '$1') || 0) / (500 + 40);
     const totalItems = carouselRef.current.children.length;
-    currentIndex = (currentIndex + 1) % totalItems;
-    carouselRef.current.style.transform = `translateX(-${currentIndex * (500 + 40)}px)`;
+    currentIndexRef.current = (currentIndexRef.current + 1) % totalItems;
+    carouselRef.current.style.transform = `translateX(-${
+      currentIndexRef.current * 100
+    }%)`;
   };
 
   useEffect(() => {
-    let currentIndex = 0;
-    const carousel = carouselRef.current;
-    const items = carousel.children;
-    const totalItems = items.length;
-    const itemWidth = items[0].offsetWidth + 40; // Width + gap
-
     const autoScroll = () => {
-      currentIndex = (currentIndex + 1) % totalItems;
-      carousel.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+      const totalItems = carouselRef.current.children.length;
+      currentIndexRef.current =
+        (currentIndexRef.current + 1) % totalItems;
+      carouselRef.current.style.transform = `translateX(-${
+        currentIndexRef.current * 100
+      }%)`;
     };
-
-    const interval = setInterval(autoScroll, 5000); // Auto-scroll every 5 seconds
-
-    return () => clearInterval(interval); // Cleanup on unmount
+    const interval = setInterval(autoScroll, 5000);
+    return () => clearInterval(interval);
   }, []);
 
   const testimonials = [
     {
-      quote: "Uppist transformed our online presence with their creative marketing strategies. Highly recommend!",
-      author: "Jane Doe, CEO of InnovateX",
+      quote:
+        "Our company's rebranding was a game-changer, thanks to this amazing design agency. The logo they created perfectly captures our vision, and the branding materials were stunning!",
+      name: 'Mavis Izegbune',
+      position: 'Founder, First and Last Wellness',
     },
     {
-      quote: "The technology solutions they provided scaled our business efficiently. Amazing team!",
-      author: "John Smith, CTO of TechGrow",
+      quote:
+        "Their team took our social media presence to the next level! The creative content and strategic management helped us connect with our audience in ways we never imagined.",
+      name: 'Olufeyisayo Soewu',
+      position: 'C.E.O, Squaredlab Advisory Services',
     },
     {
-      quote: "Their digital marketing expertise helped us double our engagement in just three months!",
-      author: "Emily Johnson, Marketing Director at BrightFuture",
+      quote:
+        "From our new logo to the overall branding, their work exceeded our expectations. The designs are sleek, modern, and truly represent who we are as a company.",
+      name: 'Chinedu Okafor',
+      position: 'C.E.O, The BroomApp',
     },
     {
-      quote: "A perfect blend of creativity and tech—our brand now stands out like never before.",
-      author: "Michael Brown, Founder of VisionaryCo",
-    },
-    {
-      quote: "Uppist guided us through digital transformation with ease. Truly professional!",
-      author: "Sarah Lee, Operations Manager at ScaleUp",
+      quote:
+        "I was impressed with how they designed our company profile. It’s now professional, engaging, and communicates our brand identity effectively. Highly recommend their services!",
+      name: 'Adaobi Eze',
+      position: 'Operations Director, BrightPath Enterprises',
     },
   ];
 
   return (
-    <>
-      <section className={styles.testimonials}>
-        <img src={lady1} alt="Testimonial scene" className={styles.testimonialImageStandalone} />
-        <div className={styles.testimonialsCarousel}>
-          <h2 className={styles.testimonialsTitle}>Testimonials</h2>
-          <button className={styles.carouselButton} onClick={handlePrev}>
-            <img src={leftarrow} alt="Previous" className={styles.arrowIcon} />
-          </button>
+    <section className={styles.testimonials}>
+      <img
+        src={lady1}
+        alt="Testimonial scene"
+        className={styles.testimonialImageStandalone}
+      />
+      <div className={styles.testimonialsCarousel}>
+        <h2 className={styles.testimonialsTitle}>Testimonials</h2>
+
+        {/* Arrows */}
+        <button
+          className={`${styles.carouselButton} ${styles.leftArrow}`}
+          onClick={handlePrev}
+        >
+          <img src={leftarrow} alt="Previous" className={styles.arrowIcon} />
+        </button>
+
+        <button
+          className={`${styles.carouselButton} ${styles.rightArrow}`}
+          onClick={handleNext}
+        >
+          <img src={rightarrow} alt="Next" className={styles.arrowIcon} />
+        </button>
+
+        {/* Carousel */}
+        <div className={styles.carouselWrapper}>
           <div className={styles.carouselTrack} ref={carouselRef}>
             {testimonials.map((testimonial, index) => (
               <div key={index} className={styles.testimonialCard}>
-                <div className={styles.testimonialContent}>
-                  <div className={styles.stars}>
-                    {Array(5).fill().map((_, i) => (
-                      <img key={i} src={star} alt="Star" className={styles.starIcon} />
+                <div className={styles.stars}>
+                  {Array(5)
+                    .fill()
+                    .map((_, i) => (
+                      <img
+                        key={i}
+                        src={star}
+                        alt="Star"
+                        className={styles.starIcon}
+                      />
                     ))}
-                  </div>
-                  <p className={styles.testimonialQuote}>{testimonial.quote}</p>
-                  <p className={styles.testimonialAuthor}>{testimonial.author}</p>
                 </div>
+                <p className={styles.testimonialQuote}>{testimonial.quote}</p>
+                <p className={styles.testimonialAuthor}>{testimonial.name}</p>
+                <p className={styles.testimonialPosition}>
+                  {testimonial.position}
+                </p>
               </div>
             ))}
           </div>
-          <button className={styles.carouselButton} onClick={handleNext}>
-            <img src={rightarrow} alt="Next" className={styles.arrowIcon} />
-          </button>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 
