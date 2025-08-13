@@ -1,18 +1,21 @@
 /** @format */
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // ✅ Import navigation hook
 import styles from './Creative.module.css';
 import people2 from './Creative-assets/people2.png';
 import tickIcon from './Creative-assets/tickIcon2.svg';
 import offerImage from './Creative-assets/offer.png';
 import yellowIcon from './Creative-assets/yellowIcon.svg';
-import dotIcon from './Creative-assets/dot.svg'; // Yellow dot footnote
+import dotIcon from './Creative-assets/dot.svg';
 import brandImage from './Creative-assets/brandImage.png';
 import girl from '../../Home/Home-assets/girl.png';
 
 const Creative = () => {
+  const navigate = useNavigate(); // ✅ Initialize navigate
+
   return (
     <>
-      {/* Creative & Digital Marketing Section */} 
+      {/* Creative & Digital Marketing Section */}
       <section className={styles.creative}>
         <h1 className={styles.creativeTitle}>Creative & Digital Marketing</h1>
         <div className={styles.creativeContainer}>
@@ -23,7 +26,6 @@ const Creative = () => {
               results-driven digital marketing and technology firm in Nigeria, we help businesses:
             </p>
             <div className={styles.creativeBox}>
-              {/* List of services */}
               <div className={styles.creativeItem}>
                 <img src={tickIcon} alt="Tick Icon" className={styles.tickIcon} />
                 <p className={styles.creativeTextItem}>
@@ -75,7 +77,6 @@ const Creative = () => {
             </p>
             <h3 className={styles.design}>We design:</h3>
 
-            {/* Dot bullet points */}
             <div className={styles.offerList}>
               <img src={dotIcon} alt="Footnote" className={styles.dotIcon} />
               <span>Logo packages (logo, font styling, colours etc)</span>
@@ -98,7 +99,12 @@ const Creative = () => {
             </div>
 
             {/* Call to action */}
-            <button className={styles.ctaButton}>Let’s Get Started →</button>
+            <button
+              className={styles.ctaButton}
+              onClick={() => navigate('/contact')} // ✅ Fixed
+            >
+              Let’s Get Started →
+            </button>
           </div>
         </div>
       </section>
@@ -120,7 +126,6 @@ const Creative = () => {
             </p>
             <h3 className={styles.design}>Services include:</h3>
 
-            {/* Dot bullet points */}
             <div className={styles.offerList}>
               <img src={dotIcon} alt="Footnote" className={styles.dotIcon} />
               <span>Social media management</span>
@@ -143,7 +148,12 @@ const Creative = () => {
             </div>
 
             {/* Call to action */}
-            <button className={styles.ctaButton}>Let’s Get Started →</button>
+            <button
+              className={styles.ctaButton}
+              onClick={() => navigate('/contact')} // ✅ Fixed
+            >
+              Let’s Get Started →
+            </button>
           </div>
         </div>
       </section>
