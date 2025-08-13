@@ -1,44 +1,47 @@
 /** @format */
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import styles from './Blogs.module.css';
 import blogData from './blog-data.json';
 import backIcon from './Blogs-assets/back.svg';
-import redIcon from './Blogs-assets/redIcon.svg'; // Red arrow icon
-import blog1Cover from '../Blogs/Blogs-assets/blog1-cover.jpg';
-import blog2Cover from '../Blogs/Blogs-assets/blog2-cover.jpg';
-import blog3Cover from '../Blogs/Blogs-assets/blog3-cover.jpg';
-import blog4Cover from '../Blogs/Blogs-assets/blog4-cover.jpg';
+import redIcon from './Blogs-assets/redIcon.svg';
 
-const importImage = (imageName) => {
-  try {
-    return import(/* @vite-ignore */ `./Blogs-assets/${imageName}`);
-  } catch (e) {
-    console.error(`Failed to import image: ${imageName}`, e);
-    return null;
-  }
+// Import ALL images so Vite includes them in build
+import blog1Detail from './Blogs-assets/blog1-detail.jpg';
+import blog2Detail from './Blogs-assets/blog2-detail.jpg';
+import blog3Detail from './Blogs-assets/blog3-detail.jpg';
+import blog4Detail from './Blogs-assets/blog4-detail.jpg';
+
+import blog1Cover from './Blogs-assets/blog1-cover.jpg';
+import blog2Cover from './Blogs-assets/blog2-cover.jpg';
+import blog3Cover from './Blogs-assets/blog3-cover.jpg';
+import blog4Cover from './Blogs-assets/blog4-cover.jpg';
+
+// Map file names from JSON → imported images
+const detailImageMap = {
+  'blog1-detail.jpg': blog1Detail,
+  'blog2-detail.jpg': blog2Detail,
+  'blog3-detail.jpg': blog3Detail,
+  'blog4-detail.jpg': blog4Detail,
+};
+
+const coverImageMap = {
+  'blog1-cover.jpg': blog1Cover,
+  'blog2-cover.jpg': blog2Cover,
+  'blog3-cover.jpg': blog3Cover,
+  'blog4-cover.jpg': blog4Cover,
 };
 
 const BlogDetail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const [detailImage, setDetailImage] = useState(null);
+
+  const blog = blogData.find((b) => b.id === parseInt(id));
 
   useEffect(() => {
-    const loadImage = async () => {
-      const blog = blogData.find((blog) => blog.id === parseInt(id));
-      if (blog) {
-        const imageModule = await importImage(blog.image);
-        setDetailImage(imageModule ? imageModule.default : null);
-      }
-    };
-    loadImage();
-    // Scroll to top on mount or id change
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 0); // Scroll to top when page loads
   }, [id]);
-
-  const blog = blogData.find((blog) => blog.id === parseInt(id));
 
   if (!blog) {
     return (
@@ -51,21 +54,16 @@ const BlogDetail = () => {
     );
   }
 
-  // Get the three most recent posts (highest IDs)
+  // Get the three most recent posts excluding the current one
   const recentPosts = [...blogData]
     .sort((a, b) => b.id - a.id)
     .filter((b) => b.id !== parseInt(id))
     .slice(0, 3);
 
   const markdownComponents = {
-    // Apply the blogDetailContent class to the root wrapper (e.g., div)
-    div: ({ node, ...props }) => <div className={styles.blogDetailContent} {...props} />,
-    // Apply styling to paragraphs and list items
     p: ({ node, ...props }) => <p className={styles.blogDetailText} {...props} />,
     li: ({ node, ...props }) => <li className={styles.blogDetailText} {...props} />,
-    // Apply styling to subheadings
     h2: ({ node, ...props }) => <h2 className={styles.blogDetailSubheading} {...props} />,
-    // Custom component for hyperlinks to remove underline and prevent red visited state
     a: ({ node, href, ...props }) => (
       <a href={href} target="_blank" rel="noopener noreferrer" className={styles.blogDetailLink} {...props} />
     ),
@@ -78,9 +76,9 @@ const BlogDetail = () => {
       </button>
       <h1 className={styles.blogDetailTitle}>{blog.title}</h1>
       <p className={styles.blogDetailDate}>{blog.date}</p>
-      {detailImage && (
+      {blog.image && (
         <img
-          src={detailImage}
+          src={detailImageMap[blog.image]} // ✅ Load from static map
           alt={blog.title}
           className={styles.blogDetailImage}
         />
@@ -88,26 +86,22 @@ const BlogDetail = () => {
       <ReactMarkdown components={markdownComponents}>{blog.content}</ReactMarkdown>
       <h1 className={styles.blogsTitleMorePost}>Read more posts</h1>
       <div className={styles.allPostsContainer}>
-        {recentPosts.map((blog) => (
-          <Link to={`/blogs/${blog.id}`} key={blog.id} className={styles.blogCardLink}>
+        {recentPosts.map((recent) => (
+          <Link to={`/blogs/${recent.id}`} key={recent.id} className={styles.blogCardLink}>
             <div className={styles.blogCardAllPosts}>
-              <img src={blog.coverImage === 'blog1-cover.jpg' ? blog1Cover : blog.coverImage === 'blog2-cover.jpg' ? blog2Cover : blog.coverImage === 'blog3-cover.jpg' ? blog3Cover : blog4Cover} alt={blog.title} className={styles.blogImageAllPosts} />
+              <img
+                src={coverImageMap[recent.coverImage]}
+                alt={recent.title}
+                className={styles.blogImageAllPosts}
+              />
               <div className={styles.blogContent}>
                 <img src={redIcon} alt="Red Arrow" className={styles.redIconAllposts} />
-                <p className={styles.blogDateAllPosts}>{blog.date}</p>
-                <h2 className={styles.titleAllPosts}>{blog.title}</h2>
-                <p className={styles.blogExcerptAllPosts}>{blog.excerpt}</p>
+                <p className={styles.blogDateAllPosts}>{recent.date}</p>
+                <h2 className={styles.titleAllPosts}>{recent.title}</h2>
+                <p className={styles.blogExcerptAllPosts}>{recent.excerpt}</p>
               </div>
             </div>
           </Link>
-        )).slice(0, Math.ceil(recentPosts.length / 3) * 3).reduce((rows, item, index) => {
-          if (index % 3 === 0) rows.push([]);
-          rows[rows.length - 1].push(item);
-          return rows;
-        }, []).map((row, rowIndex) => (
-          <div key={rowIndex} className={styles.allPostsRow}>
-            {row}
-          </div>
         ))}
       </div>
     </section>
