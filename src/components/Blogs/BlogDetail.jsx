@@ -7,41 +7,70 @@ import blogData from './blog-data.json';
 import backIcon from './Blogs-assets/back.svg';
 import redIcon from './Blogs-assets/redIcon.svg';
 
-// Import ALL images so Vite includes them in build
+// Detail images
 import blog1Detail from './Blogs-assets/blog1-detail.jpg';
 import blog2Detail from './Blogs-assets/blog2-detail.jpg';
 import blog3Detail from './Blogs-assets/blog3-detail.jpg';
 import blog4Detail from './Blogs-assets/blog4-detail.jpg';
+import blog5Detail from './Blogs-assets/blog5-detail.jpg';
+import blog6Detail from './Blogs-assets/blog6-detail.jpg';
+import blog7Detail from './Blogs-assets/blog7-detail.jpg';
 
+// Cover images
 import blog1Cover from './Blogs-assets/blog1-cover.jpg';
 import blog2Cover from './Blogs-assets/blog2-cover.jpg';
 import blog3Cover from './Blogs-assets/blog3-cover.jpg';
 import blog4Cover from './Blogs-assets/blog4-cover.jpg';
+import blog5Cover from './Blogs-assets/blog5-cover.jpg';
+import blog6Cover from './Blogs-assets/blog6-cover.jpg';
+import blog7Cover from './Blogs-assets/blog7-cover.jpg';
 
-// Map file names from JSON → imported images
+// ---- helpers ----
+const MONTHS = [
+  'January','February','March','April','May','June',
+  'July','August','September','October','November','December'
+];
+const parseDMY = (dmy) => {
+  if (!dmy) return new Date(0);
+  const parts = dmy.trim().split(/\s+/);
+  if (parts.length !== 3) return new Date(0);
+  const [dd, monthName, yyyy] = parts;
+  const m = MONTHS.indexOf(monthName);
+  const day = parseInt(dd, 10);
+  const year = parseInt(yyyy, 10);
+  if (m < 0 || isNaN(day) || isNaN(year)) return new Date(0);
+  return new Date(year, m, day);
+};
+
 const detailImageMap = {
   'blog1-detail.jpg': blog1Detail,
   'blog2-detail.jpg': blog2Detail,
   'blog3-detail.jpg': blog3Detail,
   'blog4-detail.jpg': blog4Detail,
+  'blog5-detail.jpg': blog5Detail,
+  'blog6-detail.jpg': blog6Detail,
+  'blog7-detail.jpg': blog7Detail,
 };
-
 const coverImageMap = {
   'blog1-cover.jpg': blog1Cover,
   'blog2-cover.jpg': blog2Cover,
   'blog3-cover.jpg': blog3Cover,
   'blog4-cover.jpg': blog4Cover,
+  'blog5-cover.jpg': blog5Cover,
+  'blog6-cover.jpg': blog6Cover,
+  'blog7-cover.jpg': blog7Cover,
 };
 
 const BlogDetail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+  const currentId = Number(id);
 
-  const blog = blogData.find((b) => b.id === parseInt(id));
+  const blog = blogData.find((b) => b.id === currentId);
 
   useEffect(() => {
-    window.scrollTo(0, 0); // Scroll to top when page loads
-  }, [id]);
+    window.scrollTo(0, 0);
+  }, [currentId]);
 
   if (!blog) {
     return (
@@ -54,10 +83,10 @@ const BlogDetail = () => {
     );
   }
 
-  // Get the three most recent posts excluding the current one
+  // Truly "recent" by date, exclude current
   const recentPosts = [...blogData]
-    .sort((a, b) => b.id - a.id)
-    .filter((b) => b.id !== parseInt(id))
+    .filter((b) => b.id !== currentId)
+    .sort((a, b) => parseDMY(b.date) - parseDMY(a.date))
     .slice(0, 3);
 
   const markdownComponents = {
@@ -74,31 +103,35 @@ const BlogDetail = () => {
       <button className={styles.blogDetailBackButton} onClick={() => navigate('/blogs')}>
         <img src={backIcon} alt="Back" className={styles.blogDetailBackIcon} />
       </button>
+
       <h1 className={styles.blogDetailTitle}>{blog.title}</h1>
       <p className={styles.blogDetailDate}>{blog.date}</p>
+
       {blog.image && (
         <img
-          src={detailImageMap[blog.image]} // ✅ Load from static map
+          src={detailImageMap[blog.image] ?? blog1Detail}
           alt={blog.title}
           className={styles.blogDetailImage}
         />
       )}
+
       <ReactMarkdown components={markdownComponents}>{blog.content}</ReactMarkdown>
+
       <h1 className={styles.blogsTitleMorePost}>Read more posts</h1>
-      <div className={styles.allPostsContainer}>
-        {recentPosts.map((recent) => (
-          <Link to={`/blogs/${recent.id}`} key={recent.id} className={styles.blogCardLink}>
+      <div className={styles.readMorePostsContainer}>
+        {recentPosts.map((post) => (
+          <Link to={`/blogs/${post.id}`} key={post.id} className={styles.blogCardLink}>
             <div className={styles.blogCardAllPosts}>
               <img
-                src={coverImageMap[recent.coverImage]}
-                alt={recent.title}
+                src={coverImageMap[post.coverImage] ?? blog1Cover}
+                alt={post.title}
                 className={styles.blogImageAllPosts}
               />
               <div className={styles.blogContent}>
                 <img src={redIcon} alt="Red Arrow" className={styles.redIconAllposts} />
-                <p className={styles.blogDateAllPosts}>{recent.date}</p>
-                <h2 className={styles.titleAllPosts}>{recent.title}</h2>
-                <p className={styles.blogExcerptAllPosts}>{recent.excerpt}</p>
+                <p className={styles.blogDateAllPosts}>{post.date}</p>
+                <h2 className={styles.titleAllPosts}>{post.title}</h2>
+                <p className={styles.blogExcerptAllPosts}>{post.excerpt}</p>
               </div>
             </div>
           </Link>
