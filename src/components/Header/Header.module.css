@@ -266,7 +266,7 @@
 .mobileNavItems {
   flex: 1;
   padding: 20px; /* Compact padding for dropdown */
-  padding-bottom: 79px;
+  padding-bottom: 45px;
 }
 
 .mobileNavItem {
@@ -371,9 +371,9 @@ background-color: #f89a1c;
 @media (max-width: 768px) {
   .navbar {
     padding-left: 20px;
-    padding-top: 18px;
+    padding-top: 8px;
     padding-right: 20px;
-    height: 80px;
+    height: 70px;
   }
 
   .logoImg {

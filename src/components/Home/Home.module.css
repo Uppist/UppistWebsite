@@ -705,8 +705,14 @@
     align-items: center;
     padding: 20px; /* Reduced padding for mobile */
     padding-top: 100px;
-    height: 935px; /* Remove fixed height to adapt */
+    height: 907px; /* Remove fixed height to adapt */
     /* min-height: 500px; Minimum height for content */
+  }
+
+  @media (max-width: 375px) and (max-height: 667px) {
+    .heroSection {
+      height: 935px;   /* or a smaller height */
+    }
   }
 
   .content {
@@ -773,8 +779,8 @@
   } */
 
   .imageContainer img {
-    width: 393px;
-    height: 430px;
+    width: 354px;
+    height: 403px;
   }
 
   .heroSection::before {

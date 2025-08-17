@@ -385,6 +385,7 @@
     opacity: 1;
   }
 }
+
 @media only screen and (max-width: 768px) {
   .logo {
     align-items: end;
@@ -394,6 +395,14 @@
 
   .logo span {
     font-size: 14px;
+  }
+
+  .header {
+    padding: 12px 48px;
+  }
+
+  .header img {
+    width: 92px;
   }
 
   .header h2 {
@@ -428,14 +437,37 @@
     right: 5px;
   }
 
+  /* Welcome section Adjustments */
+
+    /* iPhone SE: width up to 375px */
+    @media only screen and (max-width: 375px) {
+      .welcome {
+        bottom: 81px;
+      }
+    }
+
+    /* iPhone 12 Pro: width between 376px and 390px */
+    @media only screen and (min-width: 376px) and (max-width: 390px) {
+      .welcome {
+        bottom: 265px;
+      }
+    }
+
+    /* iPhone XR: width between 391px and 414px */
+    @media only screen and (min-width: 391px) and (max-width: 414px) {
+      .welcome {
+        bottom: 305px;
+      }
+    }
+
   .welcome {
     position: fixed;
-    bottom: 289px;
+    /* bottom: 303px; */
     right: 0px;
     display: flex;
     flex-direction: column;
     background-color: hsla(0, 0%, 97%, 1);
-    padding: 15px 20px;
+    /* padding: 15px 20px; */
     border-radius: 10px;
     align-items: center;
     gap: 21px;
