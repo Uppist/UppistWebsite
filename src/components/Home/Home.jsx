@@ -33,8 +33,8 @@ const Home = () => {
         <div className={styles.content}>
           <h1>
             Empowering Brands and Businesses with{' '}
-            <span className={styles.highlight}>Digital Marketing, Brand Design</span>{' '}
-            and <span className={styles.highlight}>Technology</span>.
+            <span className={styles.highlight}>Digital <span className={styles.desktopHighlight}> Marketing, </span> <span className={styles.mobileHighlight}> <br /> Marketing, </span> Brand Design</span>{' '}
+            <span className={styles.desktopHighlight}>and</span> <span className={styles.mobileHighlight}> <br /> and</span> <span className={styles.highlight}>Technology</span>.
           </h1>
           <p>
             Our expert services in digital marketing, brand identity design and technology development help 

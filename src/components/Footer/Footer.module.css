@@ -1,3 +1,6 @@
+/** @format */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
 .footer {
   background: linear-gradient(180deg, rgb(67, 24, 73), hsla(304, 32%, 11%, 1));
   color: #ffffff;
@@ -91,11 +94,11 @@
   letter-spacing: 0%;
 }
 
-.logo {
+/* .logo {
   height: 40px;
   margin-bottom: 15px;
   padding-top: 20px;
-}
+} */
 
 .description {
   color: #FFFFFF;
@@ -183,4 +186,154 @@
   line-height: 100%;
   letter-spacing: 0%;
   vertical-align: middle;
+}
+
+/* Mobile Section */
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 30px 26px;
+    height: auto;
+  }
+
+  /* Contact Section (Location, Contact, Work Hours) */
+  .topSection {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin-bottom: 30px;
+  }
+
+  .contactItem {
+    font-size: 18px;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .icon {
+    width: 24px;
+    height: 30px;
+    margin-right: 12px;
+  }
+
+  .contactItem p {
+    padding-right: 12px;
+    width: 190px;
+    line-height: 130%;
+    color: #FFFFFF;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+  }
+
+  /* Yellow line */
+  .yellowLine {
+    width: 100%;
+    height: 2px;
+    margin: 20px 0;
+  }
+
+  /* Footer content */
+  .footerContent {
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 30px;
+  }
+
+  .footerSection {
+    min-width: 100%;
+  }
+
+  .description {
+    max-width: 100%;
+    color: #FFFFFF;
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0%;
+  }
+
+  /* Quick Links */
+  .sectionQuick {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .sectionTitle {
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 100%;
+    color: #FFFFFF;
+  }
+
+  .sectionQuickLinks {
+    font-size: 15px;
+  }
+
+  /* Stay Connected */
+  .sectionStay {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  .subscriptionBox {
+    display: flex;
+    width: 324px;
+    height: 56px;
+    margin-top: 12px;
+  }
+
+  .subscriptionInput {
+    width: 192px;
+    padding: 10px 12px;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .subscriptionButton {
+    width: 119px; /* Matches UI design */
+    height: 46px; /* Matches UI design */
+    font-family: 'Lato';
+    font-weight: 500;
+    font-size: 17px;
+  }
+
+  /* Social section */
+  .socialSection {
+    margin-top: 20px;
+    margin-bottom: 250px;
+    text-align: center;
+  }
+
+  /* .socialIcons {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 12px;
+  } */
+
+  .socialIcon {
+    width: 32px;   /* make them slightly bigger for visibility */
+    height: 32px;
+    /* filter: brightness(0) invert(1); */
+  }
+
+  /* Footer bottom */
+  .footerBottom p {
+    display: block;
+    font-size: 22px;
+    color: #FFFFFF;
+    font-family: 'Lato';
+    font-weight: 400;
+  }
+
+  .footerCopy {
+    display: block;
+    padding-top: 50px;
+    font-size: 12px;
+    color: #FFFFFF;
+    font-family: 'Lato';
+    font-weight: 400;
+  }
 }

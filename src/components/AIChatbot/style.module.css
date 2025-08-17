@@ -387,8 +387,9 @@
 }
 @media only screen and (max-width: 768px) {
   .logo {
-    right: 0px;
     align-items: end;
+    top: 420px;
+    right: 15px;
   }
 
   .logo span {
@@ -423,11 +424,26 @@
     right: inherit;
     bottom: inherit;
     height: 400px;
+    top: 170px;
+    right: 5px;
+  }
+
+  .welcome {
+    position: fixed;
+    bottom: 289px;
+    right: 0px;
+    display: flex;
+    flex-direction: column;
+    background-color: hsla(0, 0%, 97%, 1);
+    padding: 15px 20px;
+    border-radius: 10px;
+    align-items: center;
+    gap: 21px;
   }
 
   .texts {
     height: 350px;
-    margin-bottom: 100px;
+    margin-bottom: 40px;
   }
 
   .send {

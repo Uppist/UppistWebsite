@@ -8,3 +8,16 @@
 main {
   flex: 1;
 }
+
+#app-scroll {
+  overflow-x: hidden; /* Prevents horizontal scrolling */
+  width: 100%; /* Ensures full width */
+  box-sizing: border-box; /* Includes padding in width calculation */
+}
+
+@media (max-width: 768px) {
+  #app-scroll {
+    overflow-x: hidden; /* Reinforce for mobile */
+    max-width: 100vw; /* Limits to viewport width */
+  }
+}

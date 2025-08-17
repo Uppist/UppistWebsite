@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './Header.module.css';
 import logo from '../../assets/uppist.svg';
-import { FaBars, FaTimes, FaChevronRight } from 'react-icons/fa';
+import { FaBars, FaTimes, FaChevronRight } from 'react-icons/fa'; // Re-added FaTimes
 
 function HeaderMobile() {
   const location = useLocation();
@@ -60,20 +60,14 @@ function HeaderMobile() {
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
-        <a href="https://www.google.com" target="_blank" rel="noopener noreferrer" className={styles.logoLink}>
+        <a href="/" className={styles.logoLink}>
           <img src={logo} alt="Uppist Logo" className={styles.logoImg} />
         </a>
       </div>
-      <div className={styles.hamburger} onClick={toggleMenu}>
-        {isMenuOpen ? <FaTimes /> : <FaBars />}
+      <div className={styles.hamburger} onClick={toggleMenu} aria-expanded={isMenuOpen}>
+        {isMenuOpen ? <FaTimes /> : <FaBars />} {/* Toggle between FaBars and FaTimes */}
       </div>
       <div className={`${styles.mobileMenu} ${isMenuOpen ? styles.open : ''}`}>
-        <div className={styles.mobileHeader}>
-          <div className={styles.logo}>
-            <img src={logo} alt="Uppist Logo" className={styles.logoImg} />
-          </div>
-          <FaTimes className={styles.closeIcon} onClick={toggleMenu} />
-        </div>
         <div className={styles.mobileNavItems}>
           {navItems.map(({ id, label, path }) => (
             <div key={id}>
@@ -103,13 +97,13 @@ function HeaderMobile() {
                     className={styles.mobileSubItem}
                     onClick={() => handleServiceClick('/services/creative')}
                   >
-                    Creative & Digital Marketing
+                    Creative & Digital <br /> Marketing
                   </div>
                   <div
                     className={styles.mobileSubItem}
                     onClick={() => handleServiceClick('/services/technology')}
                   >
-                    Technology Solutions
+                    Technology  <br /> Solutions
                   </div>
                 </div>
               )}

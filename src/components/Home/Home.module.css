@@ -14,7 +14,7 @@
   align-items: center;
   padding-left: 90px;
   padding-top: 185px;
-  height: 647px;
+  height: 651px;
   color: white;
   position: relative;
   /* background-image: url('../assets/people.png'); */ /* Removed since ::before handles it */
@@ -86,8 +86,8 @@
 }
 
 .imageContainer img {
-  width: 540px;
-  height: 650px;
+  width: 575px;
+  height: 655px;
   object-fit: cover;
   padding-right: 2px;
 }
@@ -505,6 +505,7 @@
 }
 
 /* Clients section styles */
+
 .clients {
   padding: 60px 100px;
   background-color: #ffffff;
@@ -515,11 +516,10 @@
 .clientsTitle {
   font-family: 'Lato', sans-serif;
   font-weight: 700;
-  font-size: 48px;
+  font-size: 35px;
   text-align: center;
   margin-bottom: 40px;
   background: linear-gradient(180deg, #D81B60 0%, #6B046D 100%);
-  -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
@@ -548,6 +548,7 @@
 }
 
 /* Testimonials section styles */
+
 .testimonials {
   padding: 80px 60px;
   background-color: #ffffff;
@@ -685,4 +686,423 @@
 .rightArrow {
   right: 10px;
   top: 270px;
+}
+
+/* Mobile Hero Section */
+
+/* Adjust Text display According to screen ratio */
+
+@media (min-width: 768px) {
+  .mobileHighlight{
+  display: none; /* Hides on desktop */
+}
+}
+
+@media (max-width: 768px) {
+  .heroSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px; /* Reduced padding for mobile */
+    padding-top: 100px;
+    height: 935px; /* Remove fixed height to adapt */
+    /* min-height: 500px; Minimum height for content */
+  }
+
+  .content {
+    max-width: 100%; /* Full width on mobile */
+    text-align: center;
+    padding: 0;
+    padding-bottom: 20px;
+  }
+
+  .content h1 {
+    padding-left: 6px;
+    width: 100%;
+    font-size: 29px;
+    line-height: 1.4;
+    padding-top: 65px;
+    padding-bottom: 5px;
+    vertical-align: middle;
+    text-align: left;
+  }
+
+  .highlight {
+    font-size: 1.5rem; /* Match h1 size */
+    font-weight: 700; /* Ensure bold highlight */
+  }
+
+  .desktopHighlight{
+    display: none; /* Hide on mobile */
+  }
+
+  .content p {
+    padding-left: 6px;
+    width: 100%; /* Full width */
+    line-height: 1.5;
+    height: auto; /* Remove fixed height */
+    margin-bottom: 15px;
+    text-align: left; /* Align text left for readability */
+    color: #FFFFFF;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-size: 19px;
+    vertical-align: middle;
+  }
+
+  .cta {
+    padding: 10px 20px; /* Adjusted for touch */
+    font-size: 1rem; /* Reduced from 18px */
+    width: 200px; /* Slightly narrower */
+    height: 45px; /* Remove fixed height */
+    margin-top: 10px;
+    margin-right: 159px;
+    color: #2B2B2B;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 16.5px;
+    line-height: 19.2px;
+    text-align: center;
+    vertical-align: middle;
+    margin-bottom: 40px;
+  }
+
+  /* .imageContainer {
+    width: 100%;
+    padding: 0;
+  } */
+
+  .imageContainer img {
+    width: 393px;
+    height: 430px;
+  }
+
+  .heroSection::before {
+    height: 100%; /* Ensure background covers */
+    background-position: center top; /* Adjust for mobile */
+    filter: blur(4px); /* Slightly less blur on mobile */
+  }
+}
+
+/* Mobile People Section */
+
+@media (max-width: 768px) {
+  .people {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px; /* Reduced from 60px 100px */
+    height: auto; /* Remove fixed height */
+    min-height: 400px; /* Minimum height for content */
+    text-align: center;
+  }
+
+  .peopleImage img {
+    width: 100%;
+    height: auto;
+    max-width: 300px; /* Limit image size for mobile */
+    object-fit: cover;
+    margin-bottom: 20px; /* Space below image */
+  }
+
+  .peopleContent {
+    max-width: 100%; /* Full width on mobile */
+    padding-left: 0; /* Remove left padding */
+    padding: 0 10px; /* Small horizontal padding */
+  }
+
+  .peopleTitle {
+    font-size: 1.5rem; /* Reduced from 48px */
+    line-height: 1.4;
+    margin-bottom: 15px;
+  }
+
+  .peopleText {
+    width: 100%; /* Full width */
+    height: auto; /* Remove fixed height */
+    font-size: 0.9rem; /* Reduced from 24px */
+    line-height: 1.5;
+    margin-bottom: 15px;
+  }
+
+  .peopleCta {
+    padding: 8px 20px; /* Adjusted for touch */
+    font-size: 1rem; /* Reduced from 18px */
+    width: 180px; /* Slightly narrower */
+    height: auto; /* Remove fixed height */
+  }
+}
+
+/* Mobile Mission Section */
+
+@media (max-width: 768px) {
+  .mission {
+    padding: 20px; /* Reduced from 55px 100px */
+    height: auto; /* Remove fixed height */
+    min-height: 600px; /* Minimum height for content */
+    background-position: center top; /* Adjust for mobile */
+  }
+
+  .mission::after {
+    height: 100%; /* Ensure overlay covers */
+  }
+
+  .missionContent {
+    width: 100%; /* Full width on mobile */
+    height: auto; /* Remove fixed height */
+    flex-direction: column; /* Stack columns vertically */
+    gap: 20px; /* Space between columns */
+    padding: 10px; /* Reduced padding */
+  }
+
+  .missionColumn {
+    max-width: 100%; /* Full width per column */
+    padding: 15px; /* Reduced padding */
+    border-radius: 8px;
+    padding-left: 20px; /* Adjusted padding */
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .missionIcon {
+    width: 30px; /* Reduced from 40px */
+    height: 30px; /* Reduced from 40px */
+    margin-bottom: 10px; /* Reduced from 18px */
+    padding-top: 10px; /* Reduced from 20px */
+  }
+
+  .missionTitle {
+    font-size: 1.2rem; /* Reduced from 30px */
+    line-height: 1.4;
+    margin-bottom: 10px; /* Reduced from 15px */
+  }
+
+  .missionText {
+    font-size: 0.9rem; /* Reduced from 23px */
+    line-height: 1.5;
+    height: auto; /* Remove fixed height */
+    width: 100%; /* Full width */
+    padding-bottom: 15px; /* Reduced from 30px */
+  }
+}
+
+/* Mobile Services Section */
+
+@media (max-width: 768px) {
+  .services {
+    padding: 20px; /* Reduced from 60px 100px */
+    text-align: center;
+  }
+
+  .serviceBody {
+    padding-left: 0; /* Remove large padding */
+    padding-right: 0;
+  }
+
+  .servicesTitle {
+    font-size: 1.5rem; /* Reduced from 48px */
+    line-height: 1.4;
+    margin-bottom: 15px;
+    padding-top: 20px; /* Reduced from 50px */
+  }
+
+  .servicesText {
+    font-size: 0.9rem; /* Reduced from 24px */
+    line-height: 1.5;
+    margin: 0 auto 20px; /* Reduced from 40px */
+    max-width: 100%; /* Full width on mobile */
+  }
+
+  .servicesContainer,
+  .servicesContainer2 {
+    flex-direction: column; /* Stack vertically */
+    align-items: center;
+    margin-bottom: 20px; /* Reduced from 40px */
+    padding: 0; /* Remove padding */
+    position: relative; /* Reset positioning */
+  }
+
+  .servicesImage,
+  .servicesImage2 {
+    position: relative; /* Remove absolute positioning */
+    margin: 0; /* Reset margins */
+    width: 100%;
+    height: auto;
+    max-width: 300px; /* Limit image size */
+    padding-top: 0; /* Remove padding */
+    margin-bottom: 20px; /* Space below image */
+  }
+
+  .serviceBox,
+  .serviceBox2 {
+    padding-top: 0; /* Remove padding */
+    position: relative; /* Reset positioning */
+    width: 100%; /* Full width */
+  }
+
+  .servicesCard,
+  .servicesCard2 {
+    position: relative; /* Remove absolute positioning */
+    margin: 0; /* Reset margins */
+    width: 100%; /* Full width */
+    max-width: 350px; /* Limit card width */
+    height: auto; /* Remove fixed height */
+    padding: 20px; /* Reduced from 35px 20px */
+    margin-bottom: 20px; /* Space between cards */
+  }
+
+  .servicesCardIcon {
+    width: 30px; /* Reduced from 40px */
+  }
+
+  .servicesCardTitle {
+    font-size: 1.2rem; /* Reduced from 24px */
+    line-height: 1.4;
+    margin-bottom: 10px; /* Reduced from 12px */
+    text-align: center; /* Center for mobile */
+  }
+
+  .servicesCardText {
+    font-size: 0.9rem; /* Reduced from 18px */
+    line-height: 1.5;
+    max-width: 100%; /* Full width */
+    text-align: center; /* Center for mobile */
+  }
+
+  .servicesCardButton {
+    padding: 8px 15px; /* Adjusted for touch */
+    font-size: 0.9rem; /* Reduced from 15px */
+    width: 150px; /* Narrower */
+    margin: 0 auto; /* Center button */
+    margin-top: 15px; /* Reduced from 20px */
+  }
+}
+
+/* Mobile Choose Section */
+
+@media (max-width: 768px) {
+  .choose {
+    width: 100%; /* Full width on mobile */
+    height: auto; /* Remove fixed height */
+    min-height: 600px; /* Minimum height for content */
+    padding-left: 20px; /* Reduced from 100px */
+    padding-right: 20px; /* Reduced from 100px */
+    text-align: center;
+  }
+
+  .chooseTitle {
+    font-size: 1.5rem; /* Reduced from 48px */
+    line-height: 1.4;
+    text-align: center; /* Center for mobile */
+    margin-bottom: 15px; /* Reduced from 20px */
+    padding-top: 20px; /* Reduced from 45px */
+  }
+
+  .chooseContainer {
+    flex-direction: column; /* Stack vertically */
+    align-items: center;
+    margin-top: 20px; /* Reduced from 40px */
+    gap: 20px; /* Reduced from 40px */
+  }
+
+  .chooseContent {
+    max-width: 100%; /* Full width on mobile */
+    text-align: center; /* Center for mobile */
+  }
+
+  .chooseText {
+    font-size: 0.9rem; /* Reduced from 24px */
+    line-height: 1.5;
+    height: auto; /* Remove fixed height */
+    width: 100%; /* Full width */
+    margin-bottom: 15px; /* Reduced from 20px */
+    text-align: center; /* Center for mobile */
+  }
+
+  .chooseButton {
+    font-size: 1rem; /* Reduced from 17px */
+    width: 200px; /* Reduced from 280px */
+    height: auto; /* Remove fixed height */
+    padding: 8px 15px; /* Adjusted for touch */
+    margin-top: 15px; /* Reduced from 20px */
+  }
+
+  .chooseImage {
+    width: 100%; /* Full width on mobile */
+    height: auto; /* Remove fixed height */
+    max-width: 300px; /* Limit image size */
+    padding-left: 0; /* Remove padding */
+    margin: 0 auto; /* Center the image */
+  }
+}
+
+/* Mobile Testimonials Section */
+
+@media (max-width: 768px) {
+  .testimonials {
+    flex-direction: column; /* Stack image above carousel */
+    align-items: center;
+    padding: 20px 20px; /* Reduced from 80px 60px */
+    gap: 20px; /* Reduced from 40px */
+  }
+
+  .testimonialImageStandalone {
+    width: 100%; /* Full width on mobile */
+    max-width: 405px; /* Match desktop width */
+    height: auto; /* Maintain aspect ratio */
+    margin: 0 auto; /* Center the image */
+  }
+
+  .testimonialsCarousel {
+    position: relative; /* Remove absolute positioning */
+    padding-left: 0; /* Remove left padding */
+    width: 100%; /* Full width on mobile */
+    max-width: 730px; /* Match desktop width */
+    margin: 0 auto; /* Center the carousel */
+  }
+
+  .testimonialsTitle {
+    padding-left: 0; /* Remove left padding */
+    text-align: center; /* Center for mobile */
+  }
+
+  .carouselWrapper {
+    width: 100%; /* Full width on mobile */
+    max-width: 730px; /* Match desktop width */
+  }
+
+  /* .carouselTrack {
+    No change to flex-direction or transition
+  } */
+
+  /* .testimonialCard {
+    No change to height or padding
+  } */
+
+  .stars {
+    padding-right: 0; /* Remove right padding */
+  }
+
+  .testimonialQuote,
+  .testimonialAuthor,
+  .testimonialPosition {
+    padding-left: 0; /* Remove left padding */
+    text-align: center; /* Center for mobile */
+    max-width: 100%; /* Full width */
+  }
+
+  /* .carouselButton {
+    No change to position or styling
+  } */
+
+  .leftArrow {
+    left: 10px; /* Adjust position for mobile */
+    top: 50%; /* Center vertically */
+  }
+
+  .rightArrow {
+    right: 10px; /* Adjust position for mobile */
+    top: 50%; /* Center vertically */
+  }
 }
