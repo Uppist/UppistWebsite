@@ -82,7 +82,7 @@ const Footer = () => {
             <img src={linkedinIcon} alt="LinkedIn" className={styles.socialIcon} />
           </a>
         </div>
-        <p className={styles.footerCopy}>&copy; UPPIST 2025. All rights reserved</p>
+        {/* <p className={styles.footerCopy}>&copy; UPPIST 2025. All rights reserved</p> */}
       </div>
       <div className={styles.footerBottom}>
         <p>&copy; UPPIST 2025. All rights reserved</p>
