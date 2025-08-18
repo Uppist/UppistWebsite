@@ -1,0 +1,7 @@
+/** @format */
+
+.app {
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+    width: 100%; /* Ensures full width */
+    box-sizing: border-box; /* Includes padding in width calculation */
+}
