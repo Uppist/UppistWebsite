@@ -196,3 +196,194 @@
 .dropdown {
   display: none;
 }
+
+/* Mobile Responsiveness  */
+
+@media (max-width: 768px) {
+  .case {
+    padding: 40px 20px; /* Reduced from 80px 100px */
+    max-width: 100%; /* Full width */
+    margin: 0;
+  }
+
+  .caseTitle {
+    font-size: 24px; /* Reduced from 48px */
+    margin-bottom: 40px; /* Reduced from 40px */
+    padding-top: 80px; /* Reduced from 50px */
+  }
+
+  .caseContainer {
+    gap: 30px; /* Reduced from 70px */
+  }
+
+  .caseCard {
+    width: 312px; /* Full width */
+    height: auto; /* Auto height */
+    padding: 15px; /* Reduced from 20px */
+    padding-bottom: 20px; /* Reduced from 30px */
+    margin-bottom: 20px; /* Reduced from 20px */
+    flex-direction: column; /* Stack image and content vertically */
+    align-items: center;
+  }
+
+  .caseCard:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .expandedCard {
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    margin-top: -10px; /* Reduced from -20px */
+    padding-top: 0;
+    box-shadow: none;
+  }
+
+  .cardImage {
+    width: 100%; /* Full width */
+    height: auto; /* Auto height */
+    max-width: 319px; /* Match desktop max */
+    margin-right: 0; /* Remove margin */
+    margin-bottom: 15px; /* Add space below image */
+  }
+
+  .cardContent {
+    text-align: center; /* Center text on mobile */
+    width: 100%; /* Full width */
+  }
+
+  .cardHeader {
+    align-items: center; /* Center align items */
+    margin-bottom: 10px; /* Reduced from 15px */
+  }
+
+  .yellowIcon {
+    width: 25px; /* Reduced from 30px */
+    height: 25px; /* Reduced from 30px */
+    padding-right: 266px;
+  }
+
+  .cardTitle {
+    width: 212px;
+    font-size: 20px;
+    text-align: left;
+    padding-right: 104px;
+    padding-left: 23px;
+  }
+
+  .cardDescription {
+    font-size: 16px;
+    line-height: 1.4;
+    width: 91%;
+    height: auto;
+    text-align: left;
+    padding-left: 11px;
+  }
+
+  .section {
+    margin-bottom: 15px; /* Reduced from 20px */
+    text-align: center; /* Center text */
+  }
+
+  .sectionTitle {
+    font-size: 20px;
+    margin-bottom: 5px;
+    text-align: left;
+    padding-left: 10px;
+  }
+
+  .sectionDescription {
+    width: 284px;
+    padding-left: 10px;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+
+  .faintLine {
+    margin: 15px 0; /* Reduced from 20px */
+  }
+
+  .buttonContainer {
+    justify-content: center; /* Ensure centered */
+  }
+
+  .seeMoreButton {
+    font-size: 1rem; /* Reduced from 20px */
+    padding: 6px 12px; /* Reduced from 8px 16px */
+  }
+
+  .seeLessButton {
+    font-size: 1rem; /* Reduced from 20px */
+    padding: 6px 12px; /* Reduced from 8px 16px */
+  }
+
+  .dropdown {
+    display: none; /* Maintain hidden state */
+  }
+}
+
+/* Extra-Small Mobile (iPhone SE and ≤400px) */
+@media (max-width: 375px) {
+  .case {
+    padding: 30px 15px; /* Tighter padding */
+  }
+
+  .caseTitle {
+    font-size: 20px; 
+    padding-top: 50px;
+    margin-bottom: 25px;
+  }
+
+  .caseContainer {
+    gap: 20px; /* Smaller gap */
+  }
+
+  .caseCard {
+    width: 82%; /* Fit screen */
+    padding: 12px;
+    margin-bottom: 15px;
+  }
+
+  .cardImage {
+    max-width: 100%; /* Stretch to container */
+    margin-bottom: 10px;
+  }
+
+  .cardTitle {
+    font-size: 18px;
+    padding-right: 74px;
+  }
+
+  .cardDescription {
+    text-align: left;
+    font-size: 14px;
+    line-height: 1.3;
+    width: 92%;
+    padding: 0 8px;
+  }
+
+  .yellowIcon {
+    width: 20px;
+    height: 20px;
+    padding-right: 240px;
+    margin-bottom: 5px;
+  }
+
+  .sectionTitle {
+    font-size: 18px;
+    padding-left: 5px;
+  }
+
+  .sectionDescription {
+    width: 91%;
+    font-size: 14px;
+    padding: 0 5px;
+  }
+
+  .seeMoreButton,
+  .seeLessButton {
+    font-size: 0.9rem;
+    padding: 5px 10px;
+  }
+}
