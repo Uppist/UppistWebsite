@@ -40,6 +40,41 @@ const Testimonials = () => {
     return () => clearInterval(interval);
   }, []);
 
+  // === Touch Swipe Support (Mobile / Touch devices) ===
+  useEffect(() => {
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+
+    let startX = 0;
+    let endX = 0;
+    const SWIPE_THRESHOLD = 50; // px distance to trigger swipe
+
+    const handleTouchStart = (e) => {
+      startX = e.touches[0].clientX;
+    };
+
+    const handleTouchEnd = (e) => {
+      endX = e.changedTouches[0].clientX;
+      const diff = startX - endX;
+
+      if (diff > SWIPE_THRESHOLD) {
+        // swipe left → go next
+        handleNext();
+      } else if (diff < -SWIPE_THRESHOLD) {
+        // swipe right → go prev
+        handlePrev();
+      }
+    };
+
+    carousel.addEventListener("touchstart", handleTouchStart);
+    carousel.addEventListener("touchend", handleTouchEnd);
+
+    return () => {
+      carousel.removeEventListener("touchstart", handleTouchStart);
+      carousel.removeEventListener("touchend", handleTouchEnd);
+    };
+  }, []);
+
   const testimonials = [
     {
       quote:
@@ -69,13 +104,16 @@ const Testimonials = () => {
 
   return (
     <section className={styles.testimonials}>
+      <span className={styles.mobileHighlight2}> Testimonials </span>
       <img
         src={lady1}
         alt="Testimonial scene"
         className={styles.testimonialImageStandalone}
       />
       <div className={styles.testimonialsCarousel}>
-        <h2 className={styles.testimonialsTitle}>Testimonials</h2>
+        <h2 className={styles.testimonialsTitle}> 
+          <span className={styles.desktopHighlight2}> Testimonials </span> 
+        </h2>
 
         {/* Arrows */}
         <button
