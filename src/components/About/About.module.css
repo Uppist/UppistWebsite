@@ -172,3 +172,177 @@
 .mission3 {
   padding-bottom: 120px;
 }
+
+/* Mobile About Section  */
+
+/* Mobile Responsiveness */
+@media (max-width: 1024px) {
+  .about {
+    padding: 80px 40px;
+  }
+
+  .aboutTitle {
+    font-size: 36px;
+    padding-top: 50px;
+  }
+
+  .aboutImage {
+    width: 331px;
+    height: 235px;
+  }
+
+  .aboutDescription,
+  .missionText,
+  .missionContent {
+    font-size: 20px;
+    text-align: left;
+  }
+}
+
+@media (max-width: 768px) {
+  .aboutContainer {
+    flex-direction: column; /* stack image and text */
+    align-items: center;
+    text-align: center;
+  }
+
+  .aboutText {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .missionItem {
+    justify-content: center;
+  }
+
+  .aboutTitle {
+    font-size: 32px;
+  }
+
+  .aboutDescription,
+  .missionText,
+  .missionContent {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 375px) { /* iPhone SE and others */
+  .about {
+    padding: 60px 38px;
+  }
+
+  .aboutTitle {
+    font-size: 28px;
+    margin-bottom: 25px;
+  }
+
+  .aboutImage {
+    width: 315px;
+    height: 223px;
+  }
+
+  .aboutDescription,
+  .missionText,
+  .missionContent {
+    font-size: 16px;
+  }
+
+  .tickIcon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Mission Mobile Section */
+
+/* 🔹 Tablet Screens */
+@media (max-width: 1024px) {
+  .mission2 {
+    padding: 40px 40px;
+    height: auto; /* Let content define height */
+  }
+
+  .missionContent2 {
+    width: 100%;
+    height: auto;
+    padding: 30px;
+    flex-direction: column; /* Stack mission and vision */
+    align-items: flex-start;
+  }
+
+  .missionColumn2 {
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  .missionText2 {
+    font-size: 20px;
+    width: 100%;
+    height: auto;
+    line-height: 26px;
+  }
+
+  .missionIcon2 {
+    width: 30px;
+    height: 30px;
+    padding-top: 10px;
+  }
+
+  .missionTitle2 {
+    font-size: 26px;
+  }
+}
+
+/* 🔹 Mobile Screens */
+@media (max-width: 768px) {
+  .mission2 {
+    padding: 30px 20px;
+  }
+
+  .missionContent2 {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .missionColumn2 {
+    padding: 15px;
+    text-align: left;
+  }
+
+  .missionTitle2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .missionText2 {
+    font-size: 18px;
+    line-height: 24px;
+    padding-bottom: 20px;
+  }
+}
+
+/* 🔹 iPhone SE and others (Smallest) */
+@media (max-width: 375px) {
+  .mission2 {
+    padding: 20px 15px;
+  }
+
+  .missionContent2 {
+    padding: 15px;
+  }
+
+  .missionTitle2 {
+    font-size: 20px;
+  }
+
+  .missionText2 {
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  .missionIcon2 {
+    width: 24px;
+    height: 24px;
+  }
+}
+

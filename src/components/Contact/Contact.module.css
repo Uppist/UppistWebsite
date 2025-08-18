@@ -109,3 +109,119 @@
   object-fit: inherit; /* Avoid cropping, show full image */
   z-index: 0; /* Ensure visibility above other elements */
 }
+
+/* Mobile Responsiveness */
+
+@media (max-width: 768px) {
+  .contact {
+    padding: 40px 20px; /* Reduced from 80px 100px */
+    padding-bottom: 0px;
+    background-color: #ffffff;
+    max-width: 100%; /* Full width */
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+    position: relative;
+  }
+
+  .contactTitle {
+    padding-top: 30px;
+    padding-left: 20px;
+    margin-top: 50px; /* Reduced from 185px */
+    margin-bottom: 15px; /* Reduced from 20px */
+    font-size: 1.5rem; /* Reduced from 48px */
+    letter-spacing: 0%;
+  }
+
+  .contactSubtitle {
+    padding-left: 20px;
+    color: #667085;
+    margin-bottom: 20px; /* Reduced from 40px */
+    font-size: 0.9rem; /* Reduced from 24px */
+    line-height: 100%;
+    letter-spacing: 0%;
+    margin-top: 0;
+  }
+
+  .contactContainer {
+    flex-direction: column; /* Stack form above image */
+    align-items: center;
+    justify-content: center;
+  }
+
+  .contactForm {
+    padding-right: 20px;
+    width: 324px;
+    height: auto;
+    padding-bottom: 20px;
+    gap: 25px;
+  }
+
+  .formInput {
+    width: 100%; /* Full width */
+    padding: 10px; /* Reduced from 12px */
+    font-size: 0.9rem; /* Reduced from 17px */
+  }
+
+  .formTextarea {
+    width: 100%; /* Full width */
+    padding: 10px; /* Reduced from 12px */
+    font-size: 0.9rem; /* Reduced from 18px */
+    height: 120px; /* Reduced from 150px */
+  }
+
+  .submitButton {
+    width: 150px; /* Reduced from 176px */
+    height: 45px; /* Reduced from 54px */
+    font-size: 0.9rem; /* Reduced from 18px */
+    padding: 10px 15px; /* Adjusted */
+  }
+
+  .contactImage {
+    /* padding-top: 50px; */
+    position: relative;
+    /* margin-bottom: 0px; */
+    /* height: auto; */
+    height: 451px;
+    object-fit: cover;
+    margin-top: 20px;
+    z-index: 0;
+    display: block;
+    width: 111%;
+    padding-left: 0px;
+  }
+
+}
+
+/* Extra-Small Screens (iPhone SE and ≤400px) */
+@media (max-width: 400px) {
+  .contactForm {
+    width: 302px; /* Take full width */
+    padding-right: 0;
+    gap: 20px;
+  }
+
+  .formInput,
+  .formTextarea {
+    font-size: 0.8rem; /* Slightly smaller text */
+    padding: 8px;
+  }
+
+  .formTextarea {
+    height: 100px; /* More compact */
+  }
+
+  .submitButton {
+    width: 140px; /* Slightly smaller */
+    height: 40px;
+    font-size: 0.8rem;
+    padding: 8px 12px;
+  }
+
+  .contactImage {
+    height: auto; /* Scale proportionally */
+    max-height: 320px; /* Limit height for small screens */
+    width: 112%;
+    object-fit: cover;
+    margin-top: 15px;
+  }
+}
