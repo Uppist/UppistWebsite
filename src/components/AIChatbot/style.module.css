@@ -7,10 +7,11 @@
   box-sizing: border-box; /* Includes padding in width calculation */
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1025px) {
   #app-scroll {
     overflow-x: hidden; /* Reinforce for mobile */
-    max-width: 100vw; /* Limits to viewport width */
+    width: 100%; /* Limits to viewport width */
+    box-sizing: border-box; /* Includes padding in width calculation */
   }
 }
 
@@ -403,8 +404,8 @@
 @media only screen and (max-width: 768px) {
   .logo {
     align-items: end;
-    top: 475px;
-    right: 17px;
+    /* top: 475px;
+    right: 17px; */
   }
 
   .logo span {
@@ -457,6 +458,7 @@
     @media only screen and (max-width: 375px) {
       .welcome {
         bottom: 70px;
+        right: 5px;
       }
     }
 
@@ -464,6 +466,7 @@
     @media only screen and (min-width: 376px) and (max-width: 390px) {
       .welcome {
         bottom: 265px;
+        right: 5px;
       }
     }
 
@@ -471,13 +474,14 @@
     @media only screen and (min-width: 391px) and (max-width: 414px) {
       .welcome {
         bottom: 305px;
+        right: 5px;
       }
     }
 
   .welcome {
     position: fixed;
     /* bottom: 303px; */
-    right: 0px;
+    right: 5px;
     display: flex;
     flex-direction: column;
     background-color: hsla(0, 0%, 97%, 1);

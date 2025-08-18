@@ -157,7 +157,7 @@ const Home = () => {
           <img src={client6} alt="Client 6" className={styles.clientImage} />
           <img src={client7} alt="Client 7" className={styles.clientImage} />
         </div>
-        <Testimonials />
+        {/* <Testimonials /> */}
       </section>
     </>
   );

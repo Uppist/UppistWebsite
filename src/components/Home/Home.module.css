@@ -1112,12 +1112,9 @@ html, body {
   }
 
   .chooseImage {
-    /* width: 100%;
-    height: auto;
-    max-width: 300px;
-    padding: 0;
-    margin: 0 auto; */
     display: block;
+    width: 108%;
+    padding-left: 0px;
   }
 }
 
