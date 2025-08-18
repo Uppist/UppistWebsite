@@ -129,7 +129,7 @@ const BlogDetail = () => {
               />
               <div className={styles.blogContent}>
                 <img src={redIcon} alt="Red Arrow" className={styles.redIconAllposts} />
-                <p className={styles.blogDateAllPosts}>{post.date}</p>
+                <p className={`${styles.blogDateAllPosts} ${styles.blogDateMorePosts}`}>{post.date}</p>
                 <h2 className={styles.titleAllPosts}>{post.title}</h2>
                 <p className={styles.blogExcerptAllPosts}>{post.excerpt}</p>
               </div>

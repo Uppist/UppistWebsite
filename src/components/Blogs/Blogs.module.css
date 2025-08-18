@@ -379,3 +379,463 @@
 .blogDetailLink:active {
   color: #6941C6; /* Ensure active state matches */
 }
+
+/* Mobile styling for Blogs.jsx */
+
+@media (max-width: 768px) {
+  .blogs {
+    padding: 40px 20px; /* Reduced from 80px 100px */
+    max-width: 100%; /* Full width */
+    margin: 0;
+    padding-bottom: 100px;
+  }
+
+  .blogsTitle {
+    margin-top: 110px; /* Reduced from 100px */
+    font-size: 1.5rem; /* Reduced from 48px */
+    margin-bottom: 20px; /* Reduced from 40px */
+    text-align: center;
+  }
+
+  .blogsContainer {
+    gap: 30px; /* Reduced from 70px */
+  }
+
+  .blogCardLink {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .blogCard {
+    width: 85%; /* Full width */
+    height: auto; /* Auto height */
+    padding: 15px; /* Reduced from 21px */
+    margin-bottom: 20px; /* Reduced from 20px */
+    flex-direction: column; /* Stack image and content vertically */
+    align-items: center;
+    gap: 15px; /* Reduced from 30px */
+  }
+
+  .blogCard:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .blogImage {
+    width: 100%; /* Full width */
+    height: auto; /* Auto height */
+    max-width: 480px; /* Match desktop max */
+    margin-bottom: 15px; /* Space below image */
+  }
+
+  .blogContent {
+    text-align: center; /* Center text on mobile */
+    width: 100%; /* Full width */
+  }
+
+  .redIcon {
+    position: absolute;
+    top: 20px; /* Adjusted for mobile layout */
+    right: 20px; /* Adjusted for mobile padding */
+    width: 10px; /* Reduced from 12px */
+    height: 20px; /* Reduced from 24px */
+  }
+
+  .blogCard:hover .redIcon {
+    transform: scale(1.1);
+  }
+
+  .blogDate {
+    font-size: 13px; /* Reduced from 14px */
+    margin-bottom: 5px; /* Maintained */
+    text-align: left;
+    padding-left: 10px;
+  }
+
+  .recentPosts {
+    font-size: 20px; /* Reduced from 30px */
+    margin-bottom: 10px; /* Maintained */
+    margin-top: 20px; /* Reduced from 34px */
+    text-align: left;
+    padding-left: 10px;
+  }
+
+  .blogTitle {
+    font-size: 1.2rem; /* Reduced from 24px */
+    margin: 5px 0; /* Maintained */
+    width: 88%;
+    text-align: left;
+    padding-left: 10px;
+  }
+
+  .blogExcerpt {
+    font-size: 0.9rem; /* Reduced from 18px */
+    line-height: 1.4; /* Adjusted */
+    margin-top: 10px; /* Maintained */
+    width: 81%;
+    padding-left: 10px;
+    text-align: left;
+  }
+}
+
+/* Mobile Styles for  All posts and Read more posts style  */
+
+@media (max-width: 768px) {
+  .allPostsContainer {
+    padding-left: 23px; /* Reduced from 20px */
+    padding-right: 20px; /* Reduced from 40px */
+    width: 90%;
+  }
+
+  .readMorePostsContainer {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column on mobile */
+    gap: 50px; /* Reduced from 50px */
+    padding: 0 10px; /* Added padding for better spacing */
+  }
+
+  .allPostsRow {
+    flex-direction: column; /* Stack cards vertically */
+    gap: 60px; /* Reduced from 45px */
+    margin-bottom: 30px; /* Reduced from 76px */
+    padding-right: 0; /* Removed extra padding */
+    align-items: center;
+  }
+
+  .blogCardAllPosts {
+    width: 100%; /* Full width */
+    height: auto; /* Auto height */
+    padding-bottom: 15px; /* Reduced from 20px */
+    max-width: 365px; /* Match desktop max */
+  }
+
+  .blogCardAllPosts:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .blogImageAllPosts {
+    width: 100%; /* Full width */
+    height: auto; /* Auto height */
+    min-height: 200px; /* Minimum height to ensure visibility */
+  }
+
+  .blogExcerptAllPosts {
+    width: 81%;
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 18px;
+    padding: 0 21px;
+    text-align: left;
+  }
+
+  .blogDateAllPosts {
+    padding-right: 222px;
+    padding-top: 33px; /* Reduced from 19px */
+    padding-left: 10px; /* Reduced from 20px */
+    font-size: 12px; /* Reduced from 15px */
+    margin-bottom: 5px; /* Maintained */
+  }
+
+  .blogDateMorePosts {
+    padding-right: 175px;
+    padding-top: 33px; /* Reduced from 19px */
+    padding-left: 10px; /* Reduced from 20px */
+    font-size: 12px; /* Reduced from 15px */
+    margin-bottom: 5px; /* Maintained */
+  }
+
+  .titleAllPosts {
+    width: 81%;
+    padding-left: 19px;
+    padding-bottom: 5px;
+    font-size: 18px;
+    text-align: left;
+  }
+
+  .redIconAllposts {
+    top: 45px; /* Adjusted for mobile layout */
+    right: 22px; /* Adjusted for mobile padding */
+    width: 8px; /* Reduced from 10px */
+    height: 20px; /* Reduced from 24px */
+  }
+
+  .blogCardAllPosts:hover .redIconAllposts {
+    transform: scale(1.1);
+  }
+}
+
+/* Styles for small screens */
+
+/* Extra-Small Mobile (iPhone SE and ≤400px) */
+@media (max-width: 375px) {
+  .blogDateAllPosts {
+    padding-right: 179px;
+    padding-top: 33px;
+    padding-left: 10px;
+    font-size: 13px;
+    margin-bottom: 5px;
+  }
+}
+
+/* Blog Details Responsive styling */
+
+@media (max-width: 768px) {
+  /* Existing styles remain unchanged */
+  .blogs {
+    padding: 40px 20px;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  /* .blogsTitle {
+    margin-top: 50px;
+    font-size: 24px; Reduced from 48px
+    margin-bottom: 20px;
+    text-align: center;
+  } */
+
+  /* .blogsContainer {
+    gap: 30px;
+  }
+
+  .blogCardLink {
+    text-decoration: none;
+    color: inherit;
+  } */
+
+  /* .blogCard {
+    width: 100%;
+    height: auto;
+    padding: 15px;
+    margin-bottom: 20px;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  } */
+
+  /* .blogCard:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  } */
+
+  /* .blogImage {
+    width: 100%;
+    height: auto;
+    max-width: 480px;
+    margin-bottom: 15px;
+  } */
+
+  /* .blogContent {
+    text-align: center;
+    width: 100%;
+  }
+
+  .redIcon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 10px;
+    height: 20px;
+  } */
+
+  /* .blogCard:hover .redIcon {
+    transform: scale(1.1);
+  }
+
+  .blogDate {
+    font-size: 12px;
+    margin-bottom: 5px;
+  } */
+
+  /* .recentPosts {
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    text-align: center;
+  } */
+
+  /* .blogTitle {
+    font-size: 18px;
+    margin: 5px 0;
+    width: 100%;
+    text-align: center;
+  } */
+
+  .blogsTitleMorePost {
+    margin-top: 165px;
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    background: linear-gradient(180deg, #D81B60 0%, #6B046D 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-align: center;
+  }
+
+  /* .blogExcerpt {
+    font-size: 14px;
+    line-height: 18px;
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+  } */
+
+  /* New styles for blog detail page elements */
+  
+  .blogDetailTitle {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 25px;
+    margin: 20px 18px;
+    background: linear-gradient(180deg, #D81B60 0%, #6B046D 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-align: center;
+    width: 292px;
+  }
+
+  .blogDetailSection {
+    padding: 130px 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: 'Lato', sans-serif;
+    background-color: #f9f9f9;
+  }
+
+  .blogDetailImage {
+    width: 300px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  .blogDetailBackButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px 16px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+    font-size: 16px; /* Reduced from an assumed 20px based on seeMoreButton */
+    color: #F89A1C;
+    transition: color 0.3s ease;
+    margin: 10px 0; /* Space above and below */
+    text-align: center;
+    display: block; /* Ensure it behaves as a block element */
+    width: 150px; /* Fixed width to fit screen */
+    margin-left: -78px;
+  }
+
+  .blogDetailBackButton:hover {
+    color: #e08815;
+  }
+
+  .blogDetailDate {
+    font-size: 15px;
+    font-weight: 500;
+    color: #6941C6;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+  /* Existing blog detail content styles remain unchanged */
+  .blogDetailContent {
+    max-width: 100%;
+    margin: 0;
+    padding-top: 20px;
+  }
+
+  .blogDetailParagraph {
+    max-width: 100%;
+    margin: 0;
+    font-size: 16px;
+    line-height: 22px;
+    padding-top: 20px;
+    text-align: center;
+  }
+
+  .blogDetailHeading {
+    font-size: 24px;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .blogDetailListItem {
+    max-width: 100%;
+    margin: 0;
+    font-size: 16px;
+    line-height: 22px;
+    padding-top: 20px;
+    text-align: center;
+  }
+
+  .blogDetailText {
+    max-width: 100%;
+    margin: 0;
+    font-size: 16px;
+    line-height: 22px;
+    padding-top: 20px;
+    text-align: justify;
+  }
+
+  .blogDetailSubheading {
+    max-width: 100%;
+    margin: 0;
+    font-size: 20px;
+    line-height: 24px;
+    padding-top: 20px;
+    text-align: left;
+  }
+
+  .blogDetailLink {
+    color: #6941C6;
+    text-decoration: none;
+  }
+
+  .blogDetailLink:hover {
+    color: #6941C6;
+  }
+
+  .blogDetailLink:visited {
+    color: #9929EA;
+  }
+
+  .blogDetailLink:active {
+    color: #6941C6;
+  }
+}
+
+/* Extra-Small Mobile (iPhone SE and ≤400px) */
+@media (max-width: 375px) {
+  .blogDetailTitle {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 25px;
+    margin: 20px 2px;
+    background: linear-gradient(180deg, #D81B60 0%, #6B046D 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-align: center;
+    width: 292px;
+  }
+
+  .blogDetailImage {
+    width: 281px;
+    height: 168px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  .blogsTitleMorePost {
+    margin-top: 165px;
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    background: linear-gradient(180deg, #D81B60 0%, #6B046D 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-align: center;
+  }
+}
