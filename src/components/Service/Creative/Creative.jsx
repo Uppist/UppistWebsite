@@ -101,7 +101,7 @@ const Creative = () => {
             {/* Call to action */}
             <button
               className={styles.ctaButton}
-              onClick={() => navigate('/contact')} // ✅ Fixed
+              onClick={() => navigate('/contact')} // Fixed
             >
               Let’s Get Started →
             </button>
@@ -115,8 +115,8 @@ const Creative = () => {
           <img src={brandImage} alt="Core Offerings" className={styles.brandImage} />
           <div className={styles.brandText}>
             <div className={styles.brandDesign}>
-              <img src={yellowIcon} alt="Yellow Icon" className={styles.yellowIcon} />
-              <h2 className={styles.brandDesignTitle}>Brand marketing</h2>
+              <img src={yellowIcon} alt="Yellow Icon" className={`${styles.yellowIcon} ${styles.yellowIcon2}`} />
+              <h2 className={`${styles.brandDesignTitle} ${styles.brandDesignTitle2}`}>Brand marketing</h2>
             </div>
             <p className={styles.brandDescription}>
               Your brand deserves more than just visibility, it deserves connection, recognition, and loyalty. 

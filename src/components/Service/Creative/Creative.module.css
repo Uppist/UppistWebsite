@@ -479,6 +479,15 @@ html, body {
     width: 108%;
     padding-left: 0px;
   }
+
+    @media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 375px) 
+  and (-webkit-min-device-pixel-ratio: 2) {  
+    .chooseText {
+      padding-left: 41px;
+    }
+  }
 }
 
 /* Creative Responsiveness */
@@ -691,6 +700,27 @@ html, body {
     color: #FFFFFF;
   }
 
+  @media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 375px) 
+  and (-webkit-min-device-pixel-ratio: 2) {  
+    .yellowIcon {
+      padding-right: 251px;
+    }
+
+    .yellowIcon2 {
+      padding-right: 245px;
+    }
+
+    .brandDesignTitle {
+      padding-right: 166px;
+    }
+
+    .brandDesignTitle2 {
+      padding-right: 130px;
+    }
+  }
+
   /* Brand Marketing Section */
   .brandMarketing {
     padding: 20px 10px; /* Reduced from 40px 50px */
@@ -734,4 +764,14 @@ html, body {
     font-size: 16px; /* Reduced from 18px */
     text-align: left; /* Center for mobile */
   }
+
+  @media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 375px) 
+  and (-webkit-min-device-pixel-ratio: 2) {  
+    .brandImage {
+      width: 302px;
+    }
+  }
+
 }

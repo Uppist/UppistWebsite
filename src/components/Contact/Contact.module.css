@@ -125,7 +125,7 @@
 
   .contactTitle {
     padding-top: 30px;
-    padding-left: 20px;
+    padding-left: 10px;
     margin-top: 50px; /* Reduced from 185px */
     margin-bottom: 15px; /* Reduced from 20px */
     font-size: 1.5rem; /* Reduced from 48px */
@@ -133,7 +133,7 @@
   }
 
   .contactSubtitle {
-    padding-left: 20px;
+    padding-left: 11px;
     color: #667085;
     margin-bottom: 20px; /* Reduced from 40px */
     font-size: 0.9rem; /* Reduced from 24px */
@@ -143,6 +143,7 @@
   }
 
   .contactContainer {
+    padding-right: 18px;
     flex-direction: column; /* Stack form above image */
     align-items: center;
     justify-content: center;
@@ -186,7 +187,7 @@
     margin-top: 20px;
     z-index: 0;
     display: block;
-    width: 111%;
+    width: 124%;
     padding-left: 0px;
   }
 
@@ -220,7 +221,7 @@
   .contactImage {
     height: auto; /* Scale proportionally */
     max-height: 320px; /* Limit height for small screens */
-    width: 112%;
+    width: 124%;
     object-fit: cover;
     margin-top: 15px;
   }
