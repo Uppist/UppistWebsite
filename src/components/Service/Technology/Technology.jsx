@@ -1,6 +1,6 @@
 /** @format */
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // ✅ Add navigation
+import { useNavigate } from 'react-router-dom'; // Add navigation
 import styles from './Technology.module.css';
 import guy from '../Technology/Technology-assets/guy.png';
 import girl from '../../Home/Home-assets/girl.png';
@@ -13,12 +13,13 @@ import luround from '../Technology/Technology-assets/luround.png';
 import man2 from '../Technology/Technology-assets/man2.png';
 
 const Technology = () => {
-  const navigate = useNavigate(); // ✅ Initialize navigation function
+  const navigate = useNavigate(); // Initialize navigation function
 
   return (
     <>
       <section className={styles.technology}>
         <div className={styles.contentContainer}>
+          <h1 className={styles.technologyTitle2}>Technology Solutions</h1>
           <img src={guy} alt="Technology Solutions" className={styles.technologyImage} />
           <div>
             <h1 className={styles.technologyTitle}>Technology Solutions</h1>
@@ -59,8 +60,8 @@ const Technology = () => {
           <img src={brandImage} alt="Core Offerings" className={styles.brandImage} />
           <div className={styles.brandText}>
             <div className={styles.brandDesign}>
-              <img src={yellowIcon} alt="Yellow Icon" className={styles.yellowIcon} />
-              <h2 className={styles.brandDesignTitle}>Cloud Solution</h2>
+              <img src={yellowIcon} alt="Yellow Icon" className={`${styles.yellowIcon} ${styles.yellowIcon2}`} />
+              <h2 className={`${styles.brandDesignTitle} ${styles.brandDesignTitle2}`}>Cloud Solution</h2>
             </div>
             <p className={styles.brandDescription}>
               Move faster and reduce costs by migrating to secure and scalable cloud infrastructures. We design and
@@ -102,8 +103,8 @@ const Technology = () => {
           <img src={luround} alt="Core Offerings" className={styles.luroundImage} />
           <div className={styles.brandText}>
             <div className={styles.brandDesign}>
-              <img src={yellowIcon} alt="Yellow Icon" className={styles.yellowIcon} />
-              <h2 className={styles.brandDesignTitle}>Luround</h2>
+              <img src={yellowIcon} alt="Yellow Icon" className={`${styles.yellowIcon} ${styles.yellowIcon2}`} />
+              <h2 className={`${styles.brandDesignTitle} ${styles.brandDesignTitle2}`}>Luround</h2>
             </div>
             <p className={styles.brandDescription}>
               Luround is an all-in-one client management app for professional services providers that simplifies how prospects and 

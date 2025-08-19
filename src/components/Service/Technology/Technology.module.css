@@ -367,3 +367,365 @@
   height: 10px;
   margin-right: 10px;
 }
+
+/* Mobile Responsivenss For Technology */
+
+@media (min-width: 768px) {
+  .technologyTitle2 {
+    display: none;
+  }
+}
+
+/* Prevent horizontal scrolling globally */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .technology {
+    padding: 40px 20px; /* Reduced from 100px 100px */
+    padding-bottom: 5px;
+    max-width: 100%; /* Full width */
+    margin: 0;
+    flex-direction: column; /* Stack vertically */
+    align-items: center;
+  }
+
+  .contentContainer {
+    padding: 20px 10px; /* Reduced from 50px 50px */
+    flex-direction: column; /* Stack content and image */
+    align-items: center;
+    gap: 20px; /* Space between content and image */
+  }
+
+  .technologyTitle {
+    display: none; /* Hide original title */
+  }
+
+  .technologyTitle2 {
+    font-size: 24px; /* Reduced from 48px */
+    margin-bottom: 15px; /* Reduced from 20px */
+    text-align: center; /* Center for mobile */
+    width: 100%; /* Full width */
+    padding-top: 90px;
+    background: linear-gradient(180deg, #D81B60 0%, #6B046D 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    /* width: 625px; */
+  }
+
+  .technologyContent {
+    font-weight: 400;
+    margin: 0 21px;
+    font-size: 16px;
+    width: 90%;
+    height: auto;
+    text-align: left;
+  }
+
+  .technologyImage {
+    width: 100%; /* Full width */
+    height: auto; /* Auto height */
+    max-width: 668px; /* Match desktop max */
+    padding-top: 10px; /* Reduced from 25px */
+    margin: 0 auto; /* Center the image */
+  }
+}
+
+/* Mobile Choose Section */
+
+@media (max-width: 768px) {
+  .choose {
+    width: 100%; /* Full width on mobile */
+    height: auto; /* Remove fixed height */
+    min-height: 600px; /* Minimum height for content */
+    padding: 0 15px; /* Balanced left/right padding */
+    text-align: center;
+    box-sizing: border-box; /* Ensures padding doesn't cause overflow */
+  }
+
+  .chooseTitle {
+    font-size: 20px;
+    line-height: 1.4;
+    text-align: center;
+    margin-bottom: 15px;
+    padding-top: 35px;
+  }
+
+  .chooseContainer {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    gap: 20px;
+    width: 100%; /* Force container to fit */
+  }
+
+  .chooseContent {
+    max-width: 100%;
+    width: 100%; /* Stretch content safely */
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .chooseText {
+    font-size: 16px;
+    line-height: 1.5;
+    height: auto;
+    width: 262px;
+    margin-bottom: 15px;
+    text-align: justify;
+    padding-left: 40px;
+  }
+
+  .chooseButton {
+    font-size: 1rem;
+    width: 273px;
+    height: 43px;
+    padding: 8px 15px;
+    margin-top: 2px;
+  }
+
+  .chooseImage {
+    display: block;
+    width: 108%;
+    padding-left: 0px;
+  }
+}
+
+/* Core Offerings & Brand Marketing Section */
+
+@media (max-width: 768px) {
+    .brandText {
+    margin-right: 0px !important;
+    margin-top: 0px !important;
+  }  
+}
+
+@media (max-width: 768px) {
+  .coreTitle {
+    font-size: 24px; /* Reduced from 48px */
+    margin-bottom: 20px; /* Reduced from 35px */
+    text-align: center;
+  }
+
+  .coreOfferings {
+    padding: 20px 10px; /* Reduced from 40px 50px */
+    padding-bottom: 40px; /* Reduced from 85px */
+    max-width: 100%; /* Full width */
+    margin: 0;
+  }
+
+  .coreContainer {
+    flex-direction: column; /* Stack vertically */
+    align-items: center;
+    gap: 20px; /* Reduced from 40px */
+    padding: 0;
+    position: static; /* Remove absolute positioning context */
+  }
+
+  .offerImage {
+    padding-top: 35px;
+    position: static;
+    width: 342px;
+    height: 235px;
+    max-width: 661px;
+    margin-bottom: -39px;
+    z-index: 1;
+  }
+
+  .coreText {
+    margin-left: 12px !important;
+    margin-top: 0px !important;
+    padding-bottom: 0px;
+    margin: 0px;
+    width: 312px;
+    height: 320px;
+    padding: 15px;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    border-radius: 8px;
+  }
+
+  .brandDesign {
+    align-items: center; /* Center items on mobile */
+    margin-bottom: 15px; /* Reduced from 20px */
+  }
+
+  .yellowIcon {
+    padding-right: 271px;
+    /* width: 20px; */
+    /* height: 20px; */
+    margin-bottom: 8px;
+  }
+
+  .yellowIcon2 {
+    padding-right: 249px;
+  }
+
+  .brandDesignTitle {
+    padding-right: 10px;
+    font-size: 20px;
+    text-align: left;
+    width: 282px;
+  }
+
+  .brandDesignTitle2 {
+    padding-left: 20px;
+  }
+
+
+  .brandDescription {
+    width: 276px;
+    font-size: 16px;
+    text-align: left;
+    margin-bottom: 15px;
+    padding-left: 10px;
+  }
+
+  .offerList {
+    padding-left: 0;
+    margin-bottom: 10px; /* Maintained */
+    text-align: center; /* Center list items */
+  }
+
+  .offerList span {
+    font-size: 14px; /* Reduced from 18px */
+    text-align: center; /* Center text */
+  }
+
+  .dotIcon {
+    width: 8px; /* Reduced from 10px */
+    height: 8px; /* Reduced from 10px */
+    margin-right: 8px; /* Reduced from 10px */
+  }
+
+  .ctaButton {
+    margin-bottom: 45px;
+    padding-left: 16px;
+    margin-left: 10px;
+    padding-right: 20px;
+    border: 1px solid #F89A1C;
+    padding: 8px 16px;
+    font-size: 12px;
+    margin-right: 0px;
+  }
+
+  .ctaButton:hover {
+    background-color: #F89A1C;
+    color: #FFFFFF;
+  }
+
+  /* Brand Marketing Section */
+  .brandMarketing {
+    padding: 20px 10px; /* Reduced from 40px 50px */
+    padding-bottom: 40px; /* Reduced from 85px */
+    max-width: 100%; /* Full width */
+    margin: 0;
+  }
+
+  .brandContainer {
+    flex-direction: column; /* Stack vertically */
+    align-items: center;
+    gap: 20px; /* Reduced from 40px */
+    padding: 0;
+    position: static; /* Remove absolute positioning context */
+  }
+
+  .brandImage {
+    position: static; /* Remove absolute positioning */
+    width: 84%; /* Full width */
+    height: auto; /* Auto height */
+    max-width: 660px; /* Match desktop max */
+    /* margin-bottom: 20px; */
+    left: 0; /* Reset left position */
+    z-index: 1;
+  }
+
+  .luroundImage {
+    padding-top: 15px;
+    position: static; /* Remove absolute positioning */
+    width: 84%; /* Full width */
+    height: auto; /* Auto height */
+    max-width: 660px; /* Match desktop max */
+    left: 0; /* Reset left position */
+    z-index: 1;
+  }
+
+  .brandText {
+    margin: 0; /* Remove margins */
+    width: 78%; /* Full width */
+    height: auto; /* Auto height */
+    margin-top: 0; /* Remove fixed margin */
+    padding: 15px; /* Reduced from 30px */
+    box-shadow: -2px 4px 10px rgba(0, 0, 0, 0.1); /* Reduced shadow */
+    z-index: 2;
+    border-radius: 8px; /* Reduced from 10px */
+  }
+
+  .design {
+    font-size: 14px; /* Reduced from 18px */
+    text-align: center; /* Center for mobile */
+  }
+}
+
+@media only screen 
+and (min-device-width: 320px) 
+and (max-device-width: 375px) 
+and (-webkit-min-device-pixel-ratio: 2) {  
+  .offerImage {
+      padding-top: 35px;
+      position: static;
+      width: 330px;
+      height: 235px;
+      max-width: 661px;
+      margin-bottom: -39px;
+      z-index: 1;
+  }
+
+  .coreText {
+    margin-left: 12px !important;
+    margin-top: 0px !important;
+    padding-bottom: 0px;
+    margin: 0px;
+    width: 290px;
+    height: 320px;
+    padding: 15px;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    border-radius: 8px;
+  }
+
+  .yellowIcon {
+    padding-right: 260px;
+    /* width: 20px; */
+    /* height: 20px; */
+    margin-bottom: 8px;
+  }
+
+  .yellowIcon2 {
+    padding-right: 249px;
+  }
+
+  .brandDesignTitle {
+    padding-left: 9px;
+    font-size: 20px;
+    text-align: left;
+    width: 282px;
+  }
+
+  .brandDesignTitle2 {
+    padding-left: 13px;
+  }
+
+  .ctaButton {
+    margin-left: 0px;
+  }
+
+  .brandDescription {
+    padding-left: 0px;
+  }
+}
+

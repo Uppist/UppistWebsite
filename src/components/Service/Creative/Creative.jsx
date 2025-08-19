@@ -68,7 +68,7 @@ const Creative = () => {
           <div className={styles.coreText}>
             <div className={styles.brandDesign}>
               <img src={yellowIcon} alt="Yellow Icon" className={styles.yellowIcon} />
-              <h2 className={styles.brandDesignTitle}>Brand Design</h2>
+              <h2 className={`${styles.brandDesignTitle} ${styles.brandDesignTitle1}`}>Brand Design</h2>
             </div>
             <p className={styles.brandDescription}>
               Let your brand designs speak clearly, look sharp, and connect instantly. Whether you're just starting out or 

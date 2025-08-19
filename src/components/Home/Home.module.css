@@ -86,7 +86,8 @@
 }
 
 .imageContainer img {
-  padding-top: 27px;
+  padding-left: 90px;
+  padding-top: 0px;
   width: 575px;
   height: 655px;
   object-fit: cover;
@@ -793,6 +794,7 @@
   } */
 
   .imageContainer img {
+    padding-left: 0px;
     padding-top: 0px;
     width: 354px;
     height: 403px;
@@ -808,7 +810,8 @@
 /* Extra-Small Mobile (iPhone SE and ≤400px) */
 @media (max-width: 375px) {
   .imageContainer img {
-    padding-top: 27px;
+    padding-left: 0px;
+    padding-top: 28px;
     width: 344px;
     height: 375px;
   }
@@ -816,6 +819,7 @@
 
 @media (max-width: 360px) {
   .imageContainer img {
+    padding-left: 0px;
     padding-top: 0;
     width: 344px;
     height: 375px;

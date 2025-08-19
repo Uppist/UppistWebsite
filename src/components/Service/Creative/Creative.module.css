@@ -413,3 +413,325 @@
   object-fit: cover;
   padding-left: 55px;
 }
+
+/* Mobile Choose Section */
+
+/* Prevent horizontal scrolling globally */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .choose {
+    width: 100%; /* Full width on mobile */
+    height: auto; /* Remove fixed height */
+    min-height: 600px; /* Minimum height for content */
+    padding: 0 15px; /* Balanced left/right padding */
+    text-align: center;
+    box-sizing: border-box; /* Ensures padding doesn't cause overflow */
+  }
+
+  .chooseTitle {
+    font-size: 20px;
+    line-height: 1.4;
+    text-align: center;
+    margin-bottom: 15px;
+    padding-top: 35px;
+  }
+
+  .chooseContainer {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    gap: 20px;
+    width: 100%; /* Force container to fit */
+  }
+
+  .chooseContent {
+    max-width: 100%;
+    width: 100%; /* Stretch content safely */
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .chooseText {
+    font-size: 16px;
+    line-height: 1.5;
+    height: auto;
+    width: 262px;
+    margin-bottom: 15px;
+    text-align: justify;
+    padding-left: 53px;
+  }
+
+  .chooseButton {
+    font-size: 1rem;
+    width: 273px;
+    height: 43px;
+    padding: 8px 15px;
+    margin-top: 2px;
+  }
+
+  .chooseImage {
+    display: block;
+    width: 108%;
+    padding-left: 0px;
+  }
+}
+
+/* Creative Responsiveness */
+
+@media (max-width: 768px) {
+  .coreText {
+    margin-left: 0px;
+    margin-right: 0px !important;
+    margin-top: 0px !important;
+  }
+  
+  .brandText {
+    margin-left: 0px;
+    margin-right: 0px !important;
+    margin-top: 0px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .creative {
+    padding: 20px 10px; /* Reduced from 50px 50px */
+    max-width: 100%; /* Full width */
+    margin: 0;
+  }
+
+  .creativeTitle {
+    font-size: 24px; /* Reduced from 48px */
+    margin-bottom: 15px; /* Reduced from 20px */
+    padding-top: 89px; /* Reduced from 90px */
+    text-align: center;
+  }
+
+  .creativeContainer {
+    flex-direction: column; /* Stack vertically */
+    align-items: center;
+    gap: 20px; /* Reduced from 40px */
+    padding: 0;
+    text-align: center; /* Center all text */
+  }
+
+  .creativeImage {
+    width: 331px; /* Full width */
+    height: 213px; /* Auto height */
+    max-width: 568px; /* Match desktop max */
+    padding-top: 10px; /* Reduced from 25px */
+    margin: 0 auto; /* Center the image */
+  }
+
+  .creativeDescription {
+    padding-left: 13px;
+    font-size: 16px;
+    width: 300px;
+    height: auto;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+
+  .creativeItem {
+    align-items: center; /* Center items */
+    justify-content: center; /* Center horizontally */
+  }
+
+  .creativeContent {
+    font-size: 16px; /* Reduced from 22px */
+    text-align: center; /* Center for mobile */
+    padding-left: 0; /* Remove padding */
+    width: 100%; /* Full width */
+  }
+
+  .brand {
+    font-weight: 600;
+  }
+
+  .tickIcon {
+    width: 16.5px; /* Reduced from 24px */
+    height: 16.5px; /* Reduced from 24px */
+    margin-right: 8px; /* Reduced from 10px */
+    margin-top: 5px; /* Reduced from 10px */
+  }
+
+  .creativeTextItem {
+    width: 300px;
+    font-size: 16px;
+    margin-bottom: -10px;
+    text-align: left;
+  }
+
+  .creativeContent p {
+    font-size: 16px;
+    text-align: left;
+    padding-left: 29px;
+    width: 87%;
+  }
+
+  /* Core Offerings Section */
+
+  .coreTitle {
+    font-size: 24px; /* Reduced from 48px */
+    margin-bottom: 20px; /* Maintained */
+    text-align: center;
+  }
+
+  .coreOfferings {
+    padding: 20px 10px; /* Reduced from 40px 50px */
+    padding-bottom: 40px; /* Reduced from 85px */
+    max-width: 100%; /* Full width */
+    margin: 0;
+  }
+
+  .coreContainer {
+    flex-direction: column; /* Stack vertically */
+    align-items: center;
+    gap: 20px; /* Reduced from 40px */
+    padding: 0;
+    position: static; /* Remove absolute positioning context */
+  }
+
+  .offerImage {
+    padding-top: 10px;
+    position: static;
+    width: 333px;
+    height: 320px;
+    /* max-width: 621px; */
+    margin-bottom: 20px;
+    z-index: 1;
+  }
+
+  .coreText {
+    top: -93px;
+    left: 10px;
+    padding-bottom: 20px;
+    margin: 0;
+    width: 78%;
+    height: auto;
+    /* margin-top: 0; */
+    padding: 15px;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    border-radius: 8px; /* Reduced from 10px */
+  }
+
+  .brandDesign {
+    align-items: center; /* Center items on mobile */
+    margin-bottom: 15px; /* Reduced from 20px */
+  }
+
+  .yellowIcon {
+    padding-right: 269px;
+    width: 20px; /* Reduced from 24px */
+    height: 20px; /* Reduced from 24px */
+    margin-bottom: 8px; /* Reduced from 10px */
+  }
+
+  .brandDesignTitle1 {
+    padding-right: 190px;
+    font-size: 18px; /* Reduced from 24px */
+    text-align: left; /* Center for mobile */
+  }
+
+  .brandDesignTitle {
+    padding-right: 157px;
+    font-size: 18px; /* Reduced from 24px */
+    text-align: left; /* Center for mobile */
+  }
+
+  .brandDesignTitle1 {
+    padding-right: 190px;
+    font-size: 18px; /* Reduced from 24px */
+    text-align: left; /* Center for mobile */
+  }
+
+  .brandDescription {
+    width: 265px;
+    font-size: 16px; /* Reduced from 18px */
+    text-align: left; /* Center for mobile */
+    margin-bottom: 15px; /* Reduced from 20px */
+  }
+
+  .offerList {
+    padding-left: 0;
+    margin-bottom: 10px; /* Maintained */
+    text-align: left; /* Center list items */
+  }
+
+  .offerList span {
+    font-size: 16px; /* Reduced from 18px */
+    text-align: left; /* Center text */
+  }
+
+  .dotIcon {
+    width: 8px; /* Reduced from 10px */
+    height: 8px; /* Reduced from 10px */
+    margin-right: 8px; /* Reduced from 10px */
+  }
+
+  .ctaButton {
+    margin-bottom: 31px;
+    border: 1px solid #F89A1C;
+    padding: 8px 16px;
+    font-size: 12px;
+    width: 160px;
+    margin-top: 10px;
+    margin-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ctaButton:hover {
+    background-color: #F89A1C;
+    color: #FFFFFF;
+  }
+
+  /* Brand Marketing Section */
+  .brandMarketing {
+    padding: 20px 10px; /* Reduced from 40px 50px */
+    padding-bottom: 40px; /* Reduced from 85px */
+    max-width: 100%; /* Full width */
+    margin: 0;
+  }
+
+  .brandContainer {
+    flex-direction: column; /* Stack vertically */
+    align-items: center;
+    gap: 0px; /* Reduced from 40px */
+    padding: 0;
+    position: static; /* Remove absolute positioning context */
+  }
+
+  .brandImage {
+    position: static; /* Remove absolute positioning */
+    width: 326px; /* Full width */
+    height: 311px; /* Auto height */
+    max-width: 621px; /* Match desktop max */
+    margin-bottom: 20px; /* Space below image */
+    left: 0; /* Reset left position */
+    z-index: 1;
+  }
+
+  .brandText {
+    right: 2px;
+    top: -69px;
+    margin: 0; /* Remove margins */
+    width: 75%; /* Full width */
+    height: auto; /* Auto height */
+    margin-top: 0; /* Remove fixed margin */
+    padding: 15px; /* Reduced from 30px */
+    box-shadow: -2px 4px 10px rgba(0, 0, 0, 0.1); /* Reduced shadow */
+    z-index: 2;
+    border-radius: 8px; /* Reduced from 10px */
+  }
+
+  .design {
+    font-size: 16px; /* Reduced from 18px */
+    text-align: left; /* Center for mobile */
+  }
+}
