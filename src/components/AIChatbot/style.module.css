@@ -1,22 +1,7 @@
 /** @format */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
-
-#app-scroll {
-  overflow-x: hidden; /* Prevents horizontal scrolling */
-  width: 100%; /* Ensures full width */
-  box-sizing: border-box; /* Includes padding in width calculation */
-}
-
-@media (max-width: 1025px) {
-  #app-scroll {
-    overflow-x: hidden; /* Reinforce for mobile */
-    width: 100%; /* Limits to viewport width */
-    box-sizing: border-box; /* Includes padding in width calculation */
-  }
-}
-
 
 .logo {
+  z-index: 5;
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -25,7 +10,6 @@
   flex-direction: column;
   gap: 20px;
   align-items: center;
-  z-index: 3;
 }
 
 .logo img {
@@ -67,7 +51,7 @@
 }
 .welcome {
   position: fixed;
-  bottom: 7px;
+  bottom: 20px;
   right: 20px;
   display: flex;
   flex-direction: column;
@@ -75,14 +59,13 @@
   /* padding: 25px 40px; */
   border-radius: 10px;
   align-items: center;
-  gap: 21px;
-  overflow-x: hidden; /* Reinforce for mobile */
+  gap: 28px;
 }
 
 .header {
   background: url("../../assets/chatbotImage.png") no-repeat center center;
   background-size: cover;
-  padding: 7px 40px;
+  padding: 25px 40px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
@@ -91,7 +74,6 @@
   width: 335px;
   font-size: 30px;
   font-weight: 700;
-  font-family: "Inter";
   color: hsla(0, 0%, 93%, 1);
 }
 
@@ -133,7 +115,6 @@
   height: 16px;
   font-size: 16px;
   font-weight: 500;
-  font-family: 'Inter';
 }
 
 .content {
@@ -161,7 +142,6 @@
   width: 226px;
   font-size: 12px;
   font-weight: 500;
-  font-family: 'Inter';
   color: hsla(210, 5%, 45%, 1);
 }
 
@@ -186,8 +166,7 @@
   flex-direction: column;
   background-color: hsla(0, 0%, 97%, 1);
   width: 30%;
-  height: 500px;
-  overflow-x: hidden; /* Reinforce for mobile */
+  height: 590px;
 }
 .logos {
   display: flex;
@@ -280,7 +259,6 @@
   /* width: fit-content; */
   color: white;
   font-weight: 500;
-  font-family: "Inter";
   padding: 16px 24px;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
@@ -295,7 +273,6 @@
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   padding: 0px 0px 0px 24px;
-  justify-content: space-between;
 }
 
 .send div {
@@ -305,7 +282,6 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  width: 230px;
 }
 
 .send div textarea {
@@ -325,10 +301,6 @@
 .send div textarea::placeholder {
   display: flex;
   align-items: center;
-}
-
-.send div textarea:focus {
-  outline: none;
 }
 
 .send div textarea::-webkit-scrollbar {
@@ -375,7 +347,6 @@
 
 .botText p {
   margin: 0;
-  font-family: "Inter";
 }
 
 .typing span {
@@ -402,24 +373,14 @@
     opacity: 1;
   }
 }
-
 @media only screen and (max-width: 768px) {
   .logo {
+    right: 0px;
     align-items: end;
-    top: 500px;
-    right: 17px;
   }
 
   .logo span {
     font-size: 14px;
-  }
-
-  .header {
-    padding: 12px 48px;
-  }
-
-  .header img {
-    width: 92px;
   }
 
   .header h2 {
@@ -446,60 +407,15 @@
   }
 
   .chatbot {
-    width: 362px;
+    width: 85%;
     right: inherit;
     bottom: inherit;
-    height: 400px;
-    top: 170px;
-    right: 5px;
-  }
-
-  /* Welcome section Adjustments */
-
-    /* iPhone SE: width up to 375px */
-    @media only screen and (max-width: 375px) {
-      .welcome {
-        bottom: 70px;
-        right: 5px;
-        overflow-x: hidden; /* Reinforce for mobile */
-      }
-    }
-
-    /* iPhone 12 Pro: width between 376px and 390px */
-    @media only screen and (min-width: 376px) and (max-width: 390px) {
-      .welcome {
-        bottom: 265px;
-        right: 5px;
-        overflow-x: hidden; /* Reinforce for mobile */
-      }
-    }
-
-    /* iPhone XR: width between 391px and 414px */
-    @media only screen and (min-width: 391px) and (max-width: 414px) {
-      .welcome {
-        bottom: 305px;
-        right: 5px;
-        overflow-x: hidden; /* Reinforce for mobile */
-      }
-    }
-
-  .welcome {
-    position: fixed;
-    /* bottom: 303px; */
-    right: 5px;
-    display: flex;
-    flex-direction: column;
-    background-color: hsla(0, 0%, 97%, 1);
-    /* padding: 15px 20px; */
-    border-radius: 10px;
-    align-items: center;
-    gap: 21px;
-    overflow-x: hidden; /* Reinforce for mobile */
+    height: auto;
   }
 
   .texts {
     height: 350px;
-    margin-bottom: 40px;
+    margin-bottom: 100px;
   }
 
   .send {
@@ -539,7 +455,6 @@
 
   .input input {
     font-size: 14px;
-    font-family: 'Inter';
   }
 
   .input span {
