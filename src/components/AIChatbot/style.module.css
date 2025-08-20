@@ -1,4 +1,22 @@
 /** @format */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Laptops and above (from 1024px upward) */
+@media only screen and (min-width: 1024px) {
+  .welcome {
+    height: 508px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: hsla(0, 0%, 97%, 1);
+    /* padding: 25px 40px; */
+    border-radius: 10px;
+    align-items: center;
+    gap: 28px;
+  }
+}
 
 .logo {
   z-index: 5;
@@ -71,6 +89,7 @@
 }
 
 .header h2 {
+  font-family: 'Inter', sans-serif;
   width: 335px;
   font-size: 30px;
   font-weight: 700;
@@ -138,6 +157,7 @@
 }
 
 .text span {
+  font-family: 'Inter', sans-serif;
   display: flex;
   width: 226px;
   font-size: 12px;
@@ -157,6 +177,36 @@
   cursor: pointer;
 }
 
+/* Laptops and above (from 1024px upward) */
+@media only screen and (min-width: 1024px) {
+  .content {
+    bottom: 37px;
+    background-color: white;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
+    position: relative;
+    top: -35px;
+    gap: 20px;
+    border-radius: 10px;
+  }
+
+  .content button {
+    padding: 11px 113px;
+    border: 0;
+    background-color: hsla(34, 94%, 54%, 1);
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: "Inter";
+    border-radius: 8px;
+    cursor: pointer;
+  }
+}
+
+
 /*Chatbot styling*/
 .chatbot {
   position: fixed;
@@ -165,8 +215,8 @@
   display: flex;
   flex-direction: column;
   background-color: hsla(0, 0%, 97%, 1);
-  width: 30%;
-  height: 590px;
+  width: 31%;
+  height: 500px;
 }
 .logos {
   display: flex;
@@ -251,6 +301,7 @@
 }
 
 .human span {
+  font-family: 'Inter', sans-serif;
   max-width: 75%;
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -276,6 +327,7 @@
 }
 
 .send div {
+  gap: 5px;
   background-color: hsla(0, 0%, 96%, 1);
   padding: 10px 16px;
   border-radius: 10px;
@@ -284,7 +336,21 @@
   justify-content: space-between;
 }
 
+/* Laptops and above (from 1024px upward) */
+@media only screen and (min-width: 1024px) {
+  .send div {
+    gap: 10px;
+    background-color: hsla(0, 0%, 96%, 1);
+    padding: 10px 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+}
+
 .send div textarea {
+  outline: none;
   word-wrap: break-word;
   border: none !important;
   background-color: hsla(0, 0%, 96%, 1) !important;
@@ -346,6 +412,7 @@
 }
 
 .botText p {
+  font-family: 'Inter', sans-serif;
   margin: 0;
 }
 
@@ -459,6 +526,17 @@
 
   .input span {
     font-size: 12px;
+  }
+
+  /* For Iphone SE and smaller screens  */
+
+  @media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 375px) 
+  and (-webkit-min-device-pixel-ratio: 2) {  
+  .texts {
+    margin-bottom: -20px;
+    }
   }
 }
 

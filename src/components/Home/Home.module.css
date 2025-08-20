@@ -807,8 +807,8 @@
   }
 }
 
-/* Extra-Small Mobile (iPhone SE and ≤400px) */
-@media (max-width: 375px) {
+  /* Extra-Small Mobile (iPhone SE and ≤400px) */
+  @media (max-width: 375px) {
   .imageContainer img {
     padding-left: 0px;
     padding-top: 28px;
@@ -817,12 +817,30 @@
   }
 }
 
-@media (max-width: 360px) {
+  @media (max-width: 360px) {
   .imageContainer img {
     padding-left: 0px;
     padding-top: 0;
     width: 344px;
     height: 375px;
+  }
+}
+
+  @media (max-width: 344px) {
+  .imageContainer img {
+    padding-left: 0px;
+    padding-top: 0;
+    width: 344px;
+    height: 334px;
+  }
+}
+
+  @media (max-width: 320px) {
+  .imageContainer img {
+    padding-left: 0px;
+    padding-top: 0;
+    width: 344px;
+    height: 333px;
   }
 }
 
@@ -1292,5 +1310,16 @@ html, body {
   .rightArrow {
     right: 10px; /* Adjust position for mobile */
     top: 63%; /* Center vertically */
+  }
+
+    /* For Iphone SE and smaller screens  */
+
+  @media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 375px) 
+  and (-webkit-min-device-pixel-ratio: 2) {  
+    .testimonialQuote {
+      padding-left: 31px;
+    }
   }
 }
