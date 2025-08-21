@@ -36,7 +36,7 @@ const Testimonials = () => {
         currentIndexRef.current * 100
       }%)`;
     };
-    const interval = setInterval(autoScroll, 5000);
+    const interval = setInterval(autoScroll, 8000);
     return () => clearInterval(interval);
   }, []);
 
