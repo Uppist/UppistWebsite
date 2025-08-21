@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './Header.module.css';
 import logo from '../../assets/uppist.svg';
-import { FaBars, FaTimes, FaChevronRight } from 'react-icons/fa'; // Re-added FaTimes
+import { FaBars, FaTimes, FaChevronRight } from 'react-icons/fa';
 
 function HeaderMobile() {
   const location = useLocation();
@@ -23,7 +23,9 @@ function HeaderMobile() {
 
   useEffect(() => {
     const currentNavItem = navItems.find(
-      (item) => item.path === location.pathname || (item.id === 'services' && location.pathname.startsWith('/services'))
+      (item) =>
+        item.path === location.pathname ||
+        (item.id === 'services' && location.pathname.startsWith('/services'))
     );
     if (location.pathname.startsWith('/blogs')) {
       setActiveItem('blogs');
@@ -35,7 +37,7 @@ function HeaderMobile() {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
     if (isMenuOpen) {
-      setIsServicesOpen(false); // Close sub-menu when closing main menu
+      setIsServicesOpen(false); // Close submenu when closing menu
     }
   };
 
@@ -60,39 +62,62 @@ function HeaderMobile() {
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
-        <a href="https://www.google.com" target="_blank" rel="noopener noreferrer" className={styles.logoLink}>
+        <a
+          href="https://www.google.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.logoLink}
+        >
           <img src={logo} alt="Uppist Logo" className={styles.logoImg} />
         </a>
       </div>
-      <div className={styles.hamburger} onClick={toggleMenu} aria-expanded={isMenuOpen}>
-        {isMenuOpen ? <FaTimes /> : <FaBars />} {/* Toggle between FaBars and FaTimes */}
+      <div
+        className={styles.hamburger}
+        onClick={toggleMenu}
+        aria-expanded={isMenuOpen}
+      >
+        {isMenuOpen ? <FaTimes /> : <FaBars />}
       </div>
-      <div className={`${styles.mobileMenu} ${isMenuOpen ? styles.open : ''}`}>
+      <div
+        className={`${styles.mobileMenu} ${isMenuOpen ? styles.open : ''}`}
+      >
         <div className={styles.mobileNavItems}>
           {navItems.map(({ id, label, path }) => (
-            <div key={id}>
+            <div key={id} className={styles.mobileNavWrapper}>
               {id === 'services' ? (
                 <div
-                  className={`${styles.mobileNavItem} ${activeItem === id ? styles.active : ''}`}
+                  className={`${styles.mobileNavItem} ${
+                    activeItem === id ? styles.active : ''
+                  }`}
                   onClick={() => handleItemClick(id, path)}
                 >
                   <div className={styles.servicesDropdown}>
                     <span className={styles.servicesLabel}>{label}</span>
                     <FaChevronRight
-                      className={`${styles.chevron} ${isServicesOpen ? styles.open : ''}`}
+                      className={`${styles.chevron} ${
+                        isServicesOpen ? styles.open : ''
+                      }`}
                     />
                   </div>
                 </div>
               ) : (
                 <div
-                  className={`${styles.mobileNavItem} ${activeItem === id ? styles.active : ''}`}
+                  className={`${styles.mobileNavItem} ${
+                    activeItem === id ? styles.active : ''
+                  }`}
                   onClick={() => handleItemClick(id, path)}
                 >
                   <span className={styles.mobileNavLabel}>{label}</span>
                 </div>
               )}
-              {id === 'services' && isServicesOpen && (
-                <div className={styles.mobileSubMenu}>
+
+              {/* Services submenu always exists, but only shows with .open */}
+              {id === 'services' && (
+                <div
+                  className={`${styles.mobileSubMenu} ${
+                    isServicesOpen ? styles.open : ''
+                  }`}
+                >
                   <div
                     className={styles.mobileSubItem}
                     onClick={() => handleServiceClick('/services/creative')}
@@ -103,7 +128,7 @@ function HeaderMobile() {
                     className={styles.mobileSubItem}
                     onClick={() => handleServiceClick('/services/technology')}
                   >
-                    Technology  <br /> Solutions
+                    Technology <br /> Solutions
                   </div>
                 </div>
               )}
