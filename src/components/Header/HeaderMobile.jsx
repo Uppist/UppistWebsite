@@ -60,7 +60,7 @@ function HeaderMobile() {
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
-        <a href="/" className={styles.logoLink}>
+        <a href="https://www.google.com" className={styles.logoLink}>
           <img src={logo} alt="Uppist Logo" className={styles.logoImg} />
         </a>
       </div>
