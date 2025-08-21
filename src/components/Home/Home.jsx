@@ -22,7 +22,7 @@ import Testimonials from './Testimonials.jsx';
 const Home = () => {
   const navigate = useNavigate();
 
-  // Scroll to top whenever Home mounts
+  // Scroll to top whenever Home mountss
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
