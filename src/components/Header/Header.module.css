@@ -258,7 +258,7 @@
 }
 
 .mobileMenu.open {
-  height: calc(100vh - 70px); /* Full viewport height minus navbar */
+  height: 88.5vh; /* Full viewport height minus navbar */
   max-height: 100vh; /* expand to full screen height */
   opacity: 1;
   display: flex;
@@ -266,10 +266,10 @@
 
 .mobileNavItems {
   margin-top: 25px;
-  flex: 1;
+  /* flex: 1; */
   padding: 20px;
   /* padding-bottom: 80px; Space for fixed button */
-  overflow-y: auto; /* Allow scrolling */
+  overflow-y: clip; /* Allow scrolling */
 }
 
 .mobileNavItem {
@@ -361,7 +361,8 @@
 }
 
 .mobileFooterButton {
-  /* position: fixed;  */
+  margin-top: 200px;
+  position: fixed; 
   bottom: 0;
   left: 0;
   width: 100%;
@@ -376,7 +377,7 @@
   text-align: center;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  z-index: 1002; /* Above other content */
+  z-index: 10; /* Above other content */
 }
 
 .mobileFooterButton:hover {
@@ -409,6 +410,60 @@
     display: block;
   }
 }
+
+/* For Iphone SE and smaller screens  */
+
+    @media only screen 
+  and (min-device-width: 412px) 
+  and (max-device-width: 430px) 
+  and (-webkit-min-device-pixel-ratio: 2) {  
+    .mobileFooterButton {
+      margin-top: 103px;
+      position: fixed; 
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background-color: #f89a1c;
+      color: #2b2b2b;
+      border: none;
+      font-family: 'Lato', sans-serif;
+      font-size: 19px;
+      font-weight: 700;
+      padding: 21px;
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      z-index: 10; /* Above other content */
+    }
+  }
+
+
+  @media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 375px) 
+  and (-webkit-min-device-pixel-ratio: 2) {  
+    .mobileFooterButton {
+      margin-top: 103px;
+      position: fixed; 
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background-color: #f89a1c;
+      color: #2b2b2b;
+      border: none;
+      font-family: 'Lato', sans-serif;
+      font-size: 19px;
+      font-weight: 700;
+      padding: 21px;
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      z-index: 10; /* Above other content */
+    }
+  }
+
 
 /* Extra-Small Mobile (iPhone SE and ≤400px) Adjustments */
 /* @media (max-width: 414px) {
@@ -446,6 +501,7 @@
     margin-top: 25px;
     flex: 1;
     padding: 20px;
+    overflow-y: clip;
     /* padding-bottom: 80px; */
   }
 }

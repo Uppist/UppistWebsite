@@ -463,7 +463,7 @@
     align-items: center;
     gap: 80px;
     width: 90vw;
-    height: 75vh;
+    height: 70vh;
   }
 
   .header {
@@ -521,7 +521,7 @@
     bottom: inherit;
     height: auto;
     width: 95vw;
-    height: 84vh; /* Full viewport height minus navbar */
+    height: 70vh; /* Full viewport height minus navbar */
     /* max-height: 100vh;  */
   }
 
@@ -626,7 +626,7 @@
       align-items: center;
       gap: 80px;
       width: 90vw;
-      height: 75vh;
+      height: 70vh;
     }
     .content {
       background-color: white;
@@ -636,9 +636,10 @@
       align-items: center;
       padding: 15px;
       position: relative;
-      top: -119px;
+      top: -146px;
       gap: 19px;
       border-radius: 10px;
+      z-index: -1;
     }
   }
 }
