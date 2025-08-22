@@ -268,7 +268,7 @@
   margin-top: 25px;
   flex: 1;
   padding: 20px;
-  padding-bottom: 80px; /* Space for fixed button */
+  /* padding-bottom: 80px; Space for fixed button */
   overflow-y: auto; /* Allow scrolling */
 }
 
@@ -411,48 +411,48 @@
 }
 
 /* Extra-Small Mobile (iPhone SE and ≤400px) Adjustments */
-@media (max-width: 414px) {
+/* @media (max-width: 414px) {
   .mobileNavItems {
-    padding-bottom: 80px; /* Space for fixed button */
+    padding-bottom: 80px; Space for fixed button
   }
-}
+} */
 
-@media (max-width: 412px) {
+/* @media (max-width: 412px) {
   .mobileNavItems {
-    padding-bottom: 80px; /* Space for fixed button */
+    padding-bottom: 80px; Space for fixed button
   }
-}
+} */
 
-@media (max-width: 390px) {
+/* @media (max-width: 390px) {
   .mobileNavItems {
-    padding-bottom: 80px; /* Space for fixed button */
+    padding-bottom: 80px; Space for fixed button
   }
-}
+} */
 
-@media (max-width: 375px) {
+/* @media (max-width: 375px) {
   .mobileNavItems {
-    padding-bottom: 80px; /* Space for fixed button */
+    padding-bottom: 80px; Space for fixed button
   }
-}
+} */
 
-@media (max-width: 360px) {
+/* @media (max-width: 360px) {
   .mobileNavItems {
-    padding-bottom: 80px; /* Space for fixed button */
+    padding-bottom: 80px;  Space for fixed button 
   }
-}
+} */
 
 @media (max-width: 344px) {
   .mobileNavItems {
     margin-top: 25px;
     flex: 1;
     padding: 20px;
-    padding-bottom: 80px; /* Space for fixed button */
+    /* padding-bottom: 80px; */
   }
 }
 
 /* Galaxy S8 Portrait (360px wide) */
-@media screen and (device-width: 360px) and (orientation: portrait) {
+/* @media screen and (device-width: 360px) and (orientation: portrait) {
   .mobileNavItems {
-    padding-bottom: 80px; /* Space for fixed button */
+    padding-bottom: 80px;
   }
-}
+} */
