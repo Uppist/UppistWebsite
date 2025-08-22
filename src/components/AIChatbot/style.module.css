@@ -636,7 +636,7 @@
       align-items: center;
       padding: 15px;
       position: relative;
-      top: -146px;
+      top: -141px;
       gap: 19px;
       border-radius: 10px;
       z-index: -1;
@@ -648,6 +648,12 @@
 @media screen and (device-width: 360px) and (orientation: portrait) {
   .header {
     padding: 25px 14%;
+  }
+}
+
+@media screen and (device-width: 460px) and (orientation: portrait) {
+  .header {
+    padding: 25px 21.9%;
   }
 }
 
