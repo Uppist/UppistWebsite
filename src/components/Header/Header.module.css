@@ -265,8 +265,8 @@
 }
 
 .mobileNavItems {
-  margin-top: 25px;
-  /* flex: 1; */
+  /* margin-top: 25px; */
+  flex: 1;
   padding: 20px;
   /* padding-bottom: 80px; Space for fixed button */
   overflow-y: clip; /* Allow scrolling */
@@ -361,7 +361,7 @@
 }
 
 .mobileFooterButton {
-  margin-top: 270px;
+  /* margin-top: 270px; */
   /* position: fixed; */
   /* bottom: 0; */
   /* left: 0; */
@@ -496,7 +496,7 @@
 
 @media (max-width: 344px) {
   .mobileNavItems {
-    margin-top: 25px;
+    /* margin-top: 25px; */
     flex: 1;
     padding: 20px;
     overflow-y: clip;

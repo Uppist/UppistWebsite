@@ -497,7 +497,7 @@
     align-items: center;
     padding: 39px;
     position: relative;
-    top: -20px;
+    top: -54px;
     gap: 33px;
     border-radius: 10px;
   }
@@ -588,6 +588,7 @@
     }
 
     .content{
+      padding: 0px;
       top: -57px;
     }
   }
@@ -600,13 +601,13 @@
       margin-bottom: -20px;
     }
     .form {
-      top: -54px;
+      top: -68px;
       gap: 9px;
     }
     .header {
       background-size: cover;
       margin-left: 1px;
-      padding: 25px 15%;
+      padding: 19px 15%;
       border-top-left-radius: 28px;
       border-top-right-radius: 28px;
     }
