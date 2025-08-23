@@ -527,7 +527,7 @@
 
   .texts {
     height: 350px;
-    margin-bottom: 100px;
+    margin-bottom: -93px;
   }
 
   .send {
@@ -598,7 +598,7 @@
   and (max-device-width: 375px) 
   and (-webkit-min-device-pixel-ratio: 2) {  
     .texts {
-      margin-bottom: -20px;
+      margin-bottom: -200px;
     }
     .form {
       top: -68px;
