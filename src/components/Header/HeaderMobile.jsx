@@ -135,15 +135,17 @@ function HeaderMobile() {
             </div>
           ))}
         </div>
-        <button
-          className={styles.mobileFooterButton}
-          onClick={() => {
-            window.open('https://calendly.com/uppist/15min', '_blank');
-            setIsMenuOpen(false);
-          }}
-        >
-          BOOK A FREE CONSULTATION
-        </button>
+        {isMenuOpen && (
+          <button
+            className={styles.mobileFooterButton}
+            onClick={() => {
+              window.open('https://calendly.com/uppist/15min', '_blank');
+              setIsMenuOpen(false);
+            }}
+          >
+            BOOK A FREE CONSULTATION
+          </button>
+        )}
       </div>
     </nav>
   );
