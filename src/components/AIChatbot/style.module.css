@@ -134,6 +134,7 @@
   height: 16px;
   font-size: 16px;
   font-weight: 500;
+  outline: none;
 }
 
 .content {
@@ -563,7 +564,6 @@
 
   .input {
     gap: 0;
-    margin-left: 10px;
   }
 
   .input input {
