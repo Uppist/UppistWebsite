@@ -652,6 +652,15 @@
   }
 }
 
+@media screen and (device-width: 414px) and (orientation: portrait) {
+  .form {
+    gap: 8px;
+  }
+  .welcome {
+    gap: 55px;
+  }
+}
+
 @media screen and (device-width: 460px) and (orientation: portrait) {
   .header {
     padding: 25px 21.9%;

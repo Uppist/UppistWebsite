@@ -98,9 +98,17 @@ function Header() {
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
-        <a href="https://www.google.com" target="_blank" rel="noopener noreferrer" className={styles.logoLink}>
+        <div
+          className={styles.logoLink}
+          onClick={() => {
+            navigate('/');
+            setActiveItem('home');
+            setIsServicesOpen(false);
+            setServiceItemClicked(false);
+          }}
+        >
           <img src={logo} alt="Uppist Logo" className={styles.logoImg} />
-        </a>
+        </div>
       </div>
       <div className={styles.navLinks}>
         {navItems.map(({ id, label, path }) => (

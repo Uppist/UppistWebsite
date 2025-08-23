@@ -28,6 +28,24 @@
   height: 40px;
 }
 
+.logoLink {
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.logoLink:hover {
+  opacity: 0.85;
+}
+
+/* .logoLink:focus {
+  outline: 2px solid #f89a1c;
+  outline-offset: 2px;
+} */
+
+.logoLink:active {
+  transform: scale(0.95);
+}
+
 .navLinks {
   display: flex;
   align-items: center;
