@@ -442,6 +442,7 @@
     opacity: 1;
   }
 }
+
 @media only screen and (max-width: 768px) {
   .logo {
     right: 0px;
@@ -516,25 +517,30 @@
     width: 24px !important;
   }
 
+  /* ✅ FIX: make chatbot a column flex so messages flow top → bottom */
   .chatbot {
-    width: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 95vw;
+    height: 70vh; /* Full viewport height */
     right: inherit;
     bottom: inherit;
-    height: auto;
-    width: 95vw;
-    height: 70vh; /* Full viewport height minus navbar */
-    /* max-height: 100vh;  */
   }
 
+  /* ✅ FIX: let texts grow naturally & scroll if long */
   .texts {
-    height: 350px;
-    margin-bottom: -93px;
+    flex: 1;              /* expand to available space */
+    overflow-y: auto;     /* scroll when needed */
+    margin: 0;            /* remove negative margin */
+    padding: 10px;        /* spacing inside */
   }
 
+  /* ✅ FIX: remove large gap under input */
   .send {
     padding: 16px 0px 16px 24px;
     justify-content: space-between;
-    margin-top: 224px;
+    margin-top: 0; /* removed 224px gap */
   }
 
   .send div textarea {
@@ -575,7 +581,6 @@
   }
 
   /* For Iphone SE and smaller screens  */
-
   @media only screen and (max-width: 430px) {
     .header {
       padding: 25px 19%;
@@ -587,7 +592,7 @@
       padding: 25px 15.9%;
     }
 
-    .content{
+    .content {
       padding: 0px;
       top: -57px;
     }
@@ -597,8 +602,9 @@
   and (min-device-width: 320px) 
   and (max-device-width: 375px) 
   and (-webkit-min-device-pixel-ratio: 2) {  
+    /* ⚠️ old spacing removed, texts should now flow correctly */
     .texts {
-      margin-bottom: -200px;
+      margin-bottom: 0;
     }
     .form {
       top: -68px;
