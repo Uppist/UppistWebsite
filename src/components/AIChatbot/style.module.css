@@ -517,7 +517,7 @@
     width: 24px !important;
   }
 
-  /* ✅ FIX: make chatbot a column flex so messages flow top → bottom */
+  /* FIX: make chatbot a column flex so messages flow top → bottom */
   .chatbot {
     display: flex;
     flex-direction: column;
@@ -528,15 +528,15 @@
     bottom: inherit;
   }
 
-  /* ✅ FIX: let texts grow naturally & scroll if long */
+  /* FIX: let texts grow naturally & scroll if long */
   .texts {
     flex: 1;              /* expand to available space */
     overflow-y: auto;     /* scroll when needed */
     margin: 0;            /* remove negative margin */
-    padding: 10px;        /* spacing inside */
+    padding: 20px;        /* spacing inside */
   }
 
-  /* ✅ FIX: remove large gap under input */
+  /* FIX: remove large gap under input */
   .send {
     padding: 16px 0px 16px 24px;
     justify-content: space-between;
