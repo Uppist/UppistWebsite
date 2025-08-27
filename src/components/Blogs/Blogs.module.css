@@ -41,11 +41,15 @@
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   padding: 21px;
+  padding-left: 1px;
+  padding-bottom: 0px;
+  padding-top: 3px;
   margin: 0 auto 20px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.2s ease;
   display: flex;
   position: relative;
+  /* padding-right: 0px; */
 }
 
 .blogCard:hover {
@@ -414,6 +418,7 @@
     flex-direction: column; /* Stack image and content vertically */
     align-items: center;
     gap: 15px; /* Reduced from 30px */
+    padding-top: 0px;
   }
 
   .blogCard:hover {
@@ -421,7 +426,7 @@
   }
 
   .blogImage {
-    width: 100%; /* Full width */
+    width: 108%; /* Full width */
     height: auto; /* Auto height */
     max-width: 480px; /* Match desktop max */
     margin-bottom: 15px; /* Space below image */
