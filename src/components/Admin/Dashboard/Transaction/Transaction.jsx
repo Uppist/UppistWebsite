@@ -10,7 +10,7 @@ import copy from "../../../../assets/Dashboard/copy.svg";
 import delte from "../../../../assets/Dashboard/delte.svg";
 import Buttons from "./Buttons";
 
-export default function Transaction({ logs = [], loading }) {
+export default function Transaction({ logs = [], loading, isActive, setIsActive }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [isClick, setIsClick] = useState(null);
   const [isTime, setIsTime] = useState(false);
@@ -60,6 +60,8 @@ export default function Transaction({ logs = [], loading }) {
     link.click();
   };
 
+  console.log(isActive);
+
   function filterByTime(logs) {
     const now = new Date();
     return logs.filter((log) => {
@@ -98,7 +100,7 @@ export default function Transaction({ logs = [], loading }) {
   const totalPages = Math.ceil(filteredLogs.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentLogs = filteredLogs.slice(startIndex, startIndex + itemsPerPage);
-
+  console.log(currentLogs);
   return (
     <div className={styles.transaction}>
       <div className={styles.log}>
@@ -131,8 +133,8 @@ export default function Transaction({ logs = [], loading }) {
       <div className={styles.table}>
         <div className={styles.tableHeader}>
           <div className={`${styles.name} ${styles.headerText}`}>
-            <span className={styles.firstName}>User Name</span>
-            <span>Email Address</span>
+            {isActive === 'log' && <span className={styles.firstName}>User Name</span>}
+            {isActive === 'log' && <span>Email Address</span>}
             <span>Prompt Query</span>
             <span>AI Response</span>
             <span>Date/Time</span>
@@ -144,7 +146,20 @@ export default function Transaction({ logs = [], loading }) {
               <div className={styles.span2}>No data available</div>
             ) : (
               currentLogs.map((data, index) => (
-                <div className={styles.name} key={index}>
+                <> 
+                  {isActive === 'whatsapp' && data.platform === 'whatsapp' ? (
+                    <div className={styles.name} key={index}>
+                  <span className={styles.prompt}>{data.prompt}</span>
+                  <span className={styles.response}>{data.response}</span>
+                  <span>{new Date(data.timestamp).toLocaleString()}</span>
+                  <img
+                    src={vector}
+                    alt='options'
+                    onClick={() => handleClick(index)}
+                  />
+                </div>
+                  ) : (
+                    <div className={styles.name} key={index}>
                   <span>{data.user_name}</span>
                   <span>{data.email}</span>
                   <span className={styles.prompt}>{data.prompt}</span>
@@ -155,25 +170,9 @@ export default function Transaction({ logs = [], loading }) {
                     alt='options'
                     onClick={() => handleClick(index)}
                   />
-                  {/* {isClick === index && (
-                    <div className={styles.dropdown} onClick={closeClick}>
-                      <div
-                        className={styles.overlay}
-                        onClick={closeClick}
-                      ></div>
-                      <div className={styles.copy}>
-                        <span>
-                          <img src={copy} alt='copy' />
-                          Copy
-                        </span>
-                        <span>
-                          <img src={delte} alt='delete' />
-                          Delete
-                        </span>
-                      </div>
-                    </div>
-                  )} */}
                 </div>
+                  ) }
+                </>
               ))
             )}
           </div>

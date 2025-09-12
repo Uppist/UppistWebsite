@@ -12,6 +12,7 @@ import axios from "axios";
 export default function Dashboard() {
   // const [navBarText, setNavBarText] = useState("Dashboard");
   const [transactionLog, setTransactionLog] = useState(false);
+  const [isActive, setIsActive] = useState(null);
 
   function resetDashboard() {
     // setNavBarText("Dashboard");
@@ -65,11 +66,14 @@ export default function Dashboard() {
       <div className={styles.dashboard}>
         <NavBar resetDashboard={resetDashboard} />
         <SideBar
+          setIsActive={setIsActive}
+          isActive={isActive}
           resetDashboard={resetDashboard}
           handlechatBot={handlechatBot}
         />
         {transactionLog ? (
-          <Transaction logs={logs} loading={loading} />
+          <Transaction logs={logs} loading={loading} 
+          isActive={isActive} setIsActive={setIsActive}/>
         ) : (
           <Content
             // handlechatBot={handlechatBot}

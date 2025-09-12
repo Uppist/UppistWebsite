@@ -5,8 +5,10 @@ import styles from "./style.module.css";
 import { Link } from "react-router-dom";
 import Uppist from "../../../assets/uppist.png";
 
-export default function SideBar({ resetDashboard, handlechatBot }) {
-  const [isActive, setIsActive] = useState(null);
+export default function SideBar({ resetDashboard, handlechatBot, isActive, setIsActive }) {
+  // const [isActive, setIsActive] = useState(null);
+  // console.log(isActive);
+  // console.log(setIsActive);
   return (
     <div className={styles.sidebar}>
       <img src={Uppist} alt="UppistLogo" />
@@ -56,6 +58,30 @@ export default function SideBar({ resetDashboard, handlechatBot }) {
           </svg>
           <span onClick={handlechatBot}>Chatbot Log</span>
         </div>
+
+        {/* Whatsapp Chatbot Log */}
+        <div
+          className={isActive === "whatsapp" ? styles.active : styles.notactive}
+          onClick={() => setIsActive("whatsapp")}
+        >
+          <svg
+            width='20'
+            height='20'
+            viewBox='0 0 20 20'
+            fill='none'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+            <path
+              d='M6.66667 5.00016L17.5 5.00081M6.66667 10.0002L17.5 10.0008M6.66667 15.0002L17.5 15.0007M2.5 5.41683H3.33333V4.5835H2.5V5.41683ZM2.5 10.4168H3.33333V9.5835H2.5V10.4168ZM2.5 15.4168H3.33333V14.5835H2.5V15.4168Z'
+              stroke='currentColor'
+              stroke-width='2'
+              stroke-linecap='round'
+              stroke-linejoin='round'
+            />
+          </svg>
+          <span onClick={handlechatBot}>WhatsApp</span>
+        </div>
+        
         <hr />
         <div
           className={isActive === "logout" ? styles.active : styles.notactive}
