@@ -6,13 +6,10 @@ import time from "../../../../assets/Dashboard/time.svg";
 import right from "../../../../assets/Dashboard/Icon.svg";
 import csv from "../../../../assets/Dashboard/csv.svg";
 import vector from "../../../../assets/Dashboard/Vector.svg";
-import copy from "../../../../assets/Dashboard/copy.svg";
-import delte from "../../../../assets/Dashboard/delte.svg";
 import Buttons from "./Buttons";
 
-export default function Transaction({ logs = [], loading, isActive, setIsActive }) {
+export default function Transaction({ logs = [], loading, isActive }) {
   const [currentPage, setCurrentPage] = useState(1);
-  const [isClick, setIsClick] = useState(null);
   const [isTime, setIsTime] = useState(false);
   const [selectedTime, setSelectedTime] = useState("All Time");
 
@@ -28,13 +25,9 @@ export default function Transaction({ logs = [], loading, isActive, setIsActive 
     "All Time",
   ];
 
-  // Reset to page 1 when logs or filter change
   useEffect(() => {
     setCurrentPage(1);
-  }, [logs, selectedTime]);
-
-  const handleClick = (index) => setIsClick(index);
-  const closeClick = () => setIsClick(null);
+  }, [logs, selectedTime, isActive]);
 
   const handleTime = (item) => {
     setSelectedTime(item);
@@ -43,29 +36,26 @@ export default function Transaction({ logs = [], loading, isActive, setIsActive 
 
   const closeTime = () => setIsTime(false);
 
-  const downloadCSV = () => {
-    const csvContent =
-      "Name,Email,Prompt,Response,Date\n" +
-      logs
-        .map(
-          (data) =>
-            `"${data.user_name}","${data.email}","${data.prompt}","${data.response}","${data.timestamp}"`
-        )
-        .join("\n");
-    const blob = new Blob([csvContent], { type: "text/csv" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "Logs.csv";
-    link.click();
+  // Normalized date parser
+  const parseDate = (ts) => {
+    if (!ts) return null;
+    const d = new Date(ts);
+    if (isNaN(d.getTime())) {
+      // Try replacing space with T
+      return new Date(ts.replace(" ", "T"));
+    }
+    return d;
   };
 
-  console.log(isActive);
-
+  // Filtering logic
   function filterByTime(logs) {
+    if (selectedTime === "All Time") return logs;
+
     const now = new Date();
     return logs.filter((log) => {
-      const logDate = new Date(log.timestamp);
+      const logDate = parseDate(log.timestamp);
+      if (!logDate) return false;
+
       switch (selectedTime) {
         case "Today":
           return logDate.toDateString() === now.toDateString();
@@ -96,20 +86,69 @@ export default function Transaction({ logs = [], loading, isActive, setIsActive 
     });
   }
 
-  const filteredLogs = filterByTime(logs);
+  // Filter platform + time
+  let filteredLogs = filterByTime(logs);
+
+  if (isActive === "whatsapp") {
+    filteredLogs = filteredLogs.filter((l) => l.platform === "whatsapp");
+  } else if (isActive === "log") {
+    filteredLogs = filteredLogs.filter((l) => l.platform === "web");
+  }
+
+  // Sort newest → oldest
+  filteredLogs.sort(
+    (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
+  );
+
   const totalPages = Math.ceil(filteredLogs.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentLogs = filteredLogs.slice(startIndex, startIndex + itemsPerPage);
-  console.log(currentLogs);
+
+  // CSV Export
+  const downloadCSV = () => {
+    const isWhatsApp = isActive === "whatsapp";
+
+    const headers = isWhatsApp
+      ? ["Phone Number", "Prompt", "Response", "Date/Time"]
+      : ["User Name", "Email", "Prompt", "Response", "Date/Time"];
+
+    const rows = filteredLogs.map((data) =>
+      isWhatsApp
+        ? [
+            data.phone_number || "N/A",
+            data.prompt,
+            data.response,
+            data.timestamp,
+          ]
+        : [
+            data.user_name,
+            data.email,
+            data.prompt,
+            data.response,
+            data.timestamp,
+          ]
+    );
+
+    const csvContent =
+      headers.join(",") + "\n" + rows.map((r) => r.join(",")).join("\n");
+
+    const blob = new Blob([csvContent], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = isWhatsApp ? "WhatsApp_Logs.csv" : "Chatbot_Logs.csv";
+    link.click();
+  };
+
   return (
     <div className={styles.transaction}>
       <div className={styles.log}>
-        <span>Chatbot Logs</span>
+        <span>{isActive === "whatsapp" ? "WhatsApp Logs" : "Chatbot Logs"}</span>
         <div className={styles.div}>
           <button className={styles.time} onClick={() => setIsTime(!isTime)}>
-            <img src={time} alt='' />
+            <img src={time} alt="" />
             {selectedTime}
-            <img src={right} alt='' />
+            <img src={right} alt="" />
           </button>
           {isTime && (
             <div className={styles.dropdownTime}>
@@ -124,7 +163,7 @@ export default function Transaction({ logs = [], loading, isActive, setIsActive 
             </div>
           )}
           <button className={styles.csv} onClick={downloadCSV}>
-            <img src={csv} alt='' />
+            <img src={csv} alt="" />
             Download CSV
           </button>
         </div>
@@ -133,8 +172,9 @@ export default function Transaction({ logs = [], loading, isActive, setIsActive 
       <div className={styles.table}>
         <div className={styles.tableHeader}>
           <div className={`${styles.name} ${styles.headerText}`}>
-            {isActive === 'log' && <span className={styles.firstName}>User Name</span>}
-            {isActive === 'log' && <span>Email Address</span>}
+            {isActive === "log" && <span className={styles.firstName}>User Name</span>}
+            {isActive === "log" && <span>Email Address</span>}
+            {isActive === "whatsapp" && <span>Phone Number</span>}
             <span>Prompt Query</span>
             <span>AI Response</span>
             <span>Date/Time</span>
@@ -146,33 +186,28 @@ export default function Transaction({ logs = [], loading, isActive, setIsActive 
               <div className={styles.span2}>No data available</div>
             ) : (
               currentLogs.map((data, index) => (
-                <> 
-                  {isActive === 'whatsapp' && data.platform === 'whatsapp' ? (
-                    <div className={styles.name} key={index}>
+                <div className={styles.name} key={index}>
+                  {isActive === "log" && (
+                    <>
+                      <span>{data.user_name}</span>
+                      <span>{data.email}</span>
+                    </>
+                  )}
+                  {isActive === "whatsapp" && (
+                    <span>{data.phone_number || "N/A"}</span>
+                  )}
                   <span className={styles.prompt}>{data.prompt}</span>
                   <span className={styles.response}>{data.response}</span>
-                  <span>{new Date(data.timestamp).toLocaleString()}</span>
+                  <span>
+                    {data.timestamp
+                      ? new Date(data.timestamp).toLocaleString()
+                      : ""}
+                  </span>
                   <img
                     src={vector}
-                    alt='options'
-                    onClick={() => handleClick(index)}
+                    alt="options"
                   />
                 </div>
-                  ) : (
-                    <div className={styles.name} key={index}>
-                  <span>{data.user_name}</span>
-                  <span>{data.email}</span>
-                  <span className={styles.prompt}>{data.prompt}</span>
-                  <span className={styles.response}>{data.response}</span>
-                  <span>{new Date(data.timestamp).toLocaleString()}</span>
-                  <img
-                    src={vector}
-                    alt='options'
-                    onClick={() => handleClick(index)}
-                  />
-                </div>
-                  ) }
-                </>
               ))
             )}
           </div>

@@ -56,7 +56,7 @@ export default function SideBar({ resetDashboard, handlechatBot, isActive, setIs
               stroke-linejoin='round'
             />
           </svg>
-          <span onClick={handlechatBot}>Chatbot Log</span>
+          <span onClick={handlechatBot}>Chatbot Logs</span>
         </div>
 
         {/* Whatsapp Chatbot Log */}
@@ -79,7 +79,7 @@ export default function SideBar({ resetDashboard, handlechatBot, isActive, setIs
               stroke-linejoin='round'
             />
           </svg>
-          <span onClick={handlechatBot}>WhatsApp</span>
+          <span onClick={handlechatBot}>WhatsApp Logs</span>
         </div>
         
         <hr />

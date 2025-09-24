@@ -9,70 +9,40 @@ export default function Buttons({ currentPage, setCurrentPage, totalPages }) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentPage]);
-  const getPaginationRange = () => {
-    const delta = 1;
-    const range = [];
-    const left = Math.max(2, currentPage - delta);
-    const right = Math.min(totalPages - 1, currentPage + delta);
 
-    range.push(1);
+  if (!totalPages || totalPages <= 1) return null;
 
-    if (left > 2) range.push("...");
-
-    for (let i = left; i <= right; i++) {
-      range.push(i);
-    }
-
-    if (right < totalPages - 1) range.push("...");
-
-    if (totalPages > 1) range.push(totalPages);
-
-    return range;
-  };
-
-  const paginationRange = getPaginationRange();
+  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
-    <div className={styles.buttons}>
-      <div className={styles.pageInfo}>
-        <span>
-          Page {currentPage} of {totalPages}
-        </span>
-      </div>
-      <div className={styles.pageButtons}>
-        {paginationRange.map((page, idx) => (
-          <button
-            key={idx}
-            disabled={page === "..."}
-            className={`${styles.pageButton} ${
-              page === currentPage ? styles.active : ""
-            }`}
-            onClick={() => {
-              if (page !== "...") setCurrentPage(page);
-            }}
-          >
-            {page}
-          </button>
-        ))}
-      </div>
-      <div className={styles.navigation}>
+    <div className={styles.pagination}>
+      <div className={styles.controls}>
         <button
-          className={styles.previous}
+          className={styles.back}
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
         >
-          <img src={back} alt='' />
-          Previous
+          <img src={back} alt="back" /> Back
         </button>
+
+        <div className={styles.pages}>
+          {pages.map((p) => (
+            <button
+              key={p}
+              className={currentPage === p ? styles.active : undefined}
+              onClick={() => setCurrentPage(p)}
+            >
+              {p}
+            </button>
+          ))}
+        </div>
+
         <button
           className={styles.next}
-          onClick={() =>
-            setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-          }
+          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
           disabled={currentPage === totalPages}
         >
-          Next
-          <img src={forward} alt='' />
+          Next <img src={forward} alt="next" />
         </button>
       </div>
     </div>

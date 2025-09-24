@@ -1,63 +1,73 @@
-/** @format */
+// Admin/Table.jsx
+import React, { useState, useMemo } from "react";
+import Buttons from "./Dashboard/Transaction/Buttons";
 
-import React, { useEffect, useState } from "react";
-import Buttons from "./Buttons";
-import styles from "./style.module.css";
-import axios from "axios";
+const TableComponent = ({ data, type }) => {
+  const [page, setPage] = useState(1);
+  const rowsPerPage = 10;
 
-export default function Table() {
-  const [logs, setLogs] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 15;
+  // ✅ Always sort by date DESC so newest comes first
+  const sortedData = useMemo(() => {
+    return [...data].sort((a, b) => new Date(b.time) - new Date(a.time));
+  }, [data]);
 
-  useEffect(() => {
-    const fetchLogs = async () => {
-      try {
-        const response = await axios.get("https://bot.uppist.xyz/logs");
-        setLogs(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Failed to fetch logs:", error);
-        setLoading(false);
-      }
-    };
+  // ✅ Slice for pagination
+  const paginatedData = useMemo(() => {
+    const startIndex = (page - 1) * rowsPerPage;
+    return sortedData.slice(startIndex, startIndex + rowsPerPage);
+  }, [sortedData, page]);
 
-    fetchLogs();
-  }, []);
-
-  const totalPages = Math.ceil(logs.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentLogs = logs.slice(startIndex, startIndex + itemsPerPage);
+  const totalPages = Math.ceil(sortedData.length / rowsPerPage);
 
   return (
-    <div className={styles.table}>
-      <div className={styles.tableHeader}>
-        <div className={`${styles.name} ${styles.headerText}`}>
-          <span className={styles.firstName}>User Name</span>
-          <span>Email Address</span>
-          <span>Prompt Query</span>
-          <span>AI Response</span>
-          <span>Date/Time</span>
-        </div>
+    <div>
+      <table className="custom-table">
+        <thead>
+          <tr>
+            {type === "whatsapp" ? (
+              <>
+                <th>Phone Number</th>
+                <th>Prompt</th>
+                <th>Response</th>
+                <th>Time</th>
+              </>
+            ) : (
+              <>
+                <th>Email</th>
+                <th>Prompt</th>
+                <th>Response</th>
+                <th>Time</th>
+              </>
+            )}
+          </tr>
+        </thead>
+        <tbody>
+          {paginatedData.map((row, idx) => (
+            <tr key={idx}>
+              {type === "whatsapp" ? (
+                <>
+                  <td>{row.phone}</td>
+                  <td>{row.prompt}</td>
+                  <td>{row.response}</td>
+                  <td>{new Date(row.time).toLocaleString()}</td>
+                </>
+              ) : (
+                <>
+                  <td>{row.email}</td>
+                  <td>{row.prompt}</td>
+                  <td>{row.response}</td>
+                  <td>{new Date(row.time).toLocaleString()}</td>
+                </>
+              )}
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
-        {currentLogs.map((data, index) => (
-          <div className={styles.name} key={index}>
-            <span>{data.user_name}</span>
-            <span>{data.email}</span>
-            <span>{`"${data.prompt}"`}</span>
-            <span>{`"${data.response}"`}</span>
-            <span>{data.timestamp}</span>
-          </div>
-        ))}
-      </div>
-
-      {/* Pass pagination props */}
-      <Buttons
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        totalPages={totalPages}
-      />
+      {/* ✅ Pagination buttons */}
+      <Buttons page={page} setPage={setPage} totalPages={totalPages} />
     </div>
   );
-}
+};
+
+export default TableComponent;
