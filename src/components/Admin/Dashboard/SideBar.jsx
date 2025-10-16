@@ -3,7 +3,8 @@
 import React, { useState } from "react";
 import styles from "./style.module.css";
 import { Link } from "react-router-dom";
-import Uppist from "../../../assets/uppist.png";
+// import Uppist from "../../../assets/uppist.png";
+import Uppist2 from "../../../assets/uppist2.png";
 
 export default function SideBar({ resetDashboard, handlechatBot, isActive, setIsActive }) {
   // const [isActive, setIsActive] = useState(null);
@@ -11,7 +12,7 @@ export default function SideBar({ resetDashboard, handlechatBot, isActive, setIs
   // console.log(setIsActive);
   return (
     <div className={styles.sidebar}>
-      <img src={Uppist} alt="UppistLogo" />
+      <img src={Uppist2} alt="UppistLogo" />
 
       <div className={styles.div}>
         <div
