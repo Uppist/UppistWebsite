@@ -15,7 +15,8 @@
 .log {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: end;
+  margin-bottom: 20px;
   font-size: 24px;
   font-weight: 600;
   color: hsla(0, 0%, 17%, 0.8);
@@ -42,7 +43,7 @@
   cursor: pointer;
 }
 .csv {
-  background-color: hsla(293, 78%, 31%, 1);
+  background-color: hsla(34, 94%, 54%, 1);
   border: 0;
   padding: 8px 12px;
   color: white;
@@ -57,7 +58,6 @@
 }
 
 .table {
-  border: 1px solid hsla(218, 17%, 91%, 1);
 }
 
 .tableRow {
@@ -67,12 +67,16 @@
 }
 
 .name {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  border-bottom: 3px solid hsla(218, 20%, 98%, 1);
-  align-items: center;
+  height: fit-content;
+  background-color: hsla(0, 0%, 100%, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   font-family: "Inter";
-  position: relative;
+  padding: 18px;
+  border-radius: 14px;
+  gap: 10px;
+  border: 1px solid hsla(218, 17%, 91%, 1);
 }
 .svg {
   color: transparent;
@@ -82,20 +86,42 @@
   justify-self: center;
 }
 
-.name > span {
-  overflow-wrap: anywhere;
-  padding: 12px 24px;
-  width: -webkit-fill-available;
-  font-size: 14px;
-  font-weight: 400;
+.userInfo span {
+  font-size: 16px;
+  font-weight: 600;
+  color: hsla(0, 0%, 26%, 1);
+}
+
+.userInfo2 span {
+  font-size: 13px;
+  font-weight: 300;
   color: hsla(0, 0%, 17%, 0.8);
+}
+
+.userInfo2,
+.userInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.userInfo img,
+.view {
+  cursor: pointer;
+}
+
+.view {
+  font-size: 14px !important;
+  font-weight: 300 !important;
+  color: hsla(34, 94%, 54%, 1) !important;
+  display: flex;
+  align-items: center;
 }
 
 .name > img {
   cursor: pointer;
 }
 .tableHeader {
-  background-color: white;
 }
 .headerText > span {
   background-color: hsla(210, 20%, 99%, 1) !important;
@@ -114,9 +140,12 @@
 }
 
 .logs {
-  height: 500px;
+  height: auto;
   scroll-behavior: smooth;
   overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
 }
 
 .logs::-webkit-scrollbar {
@@ -216,9 +245,12 @@
   border-radius: 4px;
 }
 
-.pageButton:hover {
-  background-color: hsla(293, 78%, 31%, 1);
+.pageButton:hover,
+.next:hover,
+.back:hover {
+  background-color: hsla(34, 94%, 54%, 1);
   color: white;
+  border-radius: 4px;
 }
 
 /* .next {
@@ -226,6 +258,103 @@
 
 .mobiletransaction {
   display: none;
+}
+
+.back2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Inter";
+  cursor: pointer;
+  width: fit-content;
+}
+
+.back2 svg {
+  transform: rotate(180deg);
+}
+
+.container2 {
+  background-color: white;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.container2 hr {
+  border: 1px solid hsla(0, 0%, 96%, 1);
+}
+
+.viewmore {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 63px 48px 40px;
+}
+
+.more {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.more span {
+  font-size: 14px;
+  font-weight: 400;
+  font-family: "Inter";
+  color: hsla(324, 3%, 37%, 1);
+}
+
+.more h2 {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Inter";
+  color: hsla(0, 0%, 26%, 1);
+  margin: 0;
+}
+
+.container3 {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 24px 40px;
+  font-family: "Inter";
+}
+
+.container3 div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.container3 div span {
+  font-size: 16px;
+  font-weight: 600;
+  color: hsla(0, 0%, 26%, 1);
+}
+
+.container3 div p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+
+  color: hsla(0, 0%, 26%, 0.8);
+}
+
+.container3 > span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  color: hsla(324, 3%, 37%, 1);
+}
+
+:global(.Toastify__toast-icon svg) {
+  fill: hsla(34, 94%, 54%, 1) !important;
+}
+
+:global(.Toastify__progress-bar--success) {
+  background: hsla(34, 94%, 54%, 1) !important;
 }
 
 @media only screen and (max-width: 768px) {
@@ -306,7 +435,7 @@
     padding: 16px 0 0;
     font-size: 14px;
     font-weight: 600;
-    color: hsla(293, 78%, 31%, 1);
+    color: hsla(34, 94%, 54%, 1);
     font-family: "Inter";
   }
 
@@ -321,7 +450,7 @@
     padding: 16px 0 0;
     font-size: 14px;
     font-weight: 600;
-    color: hsla(293, 78%, 31%, 1);
+    color: hsla(34, 94%, 54%, 1);
     font-family: "Inter";
   }
 

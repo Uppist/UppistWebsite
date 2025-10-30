@@ -19,11 +19,12 @@ export default function Navbar({ resetDashboard, handlechatBot }) {
   return (
     <div className={styles.logo}>
       {" "}
-      <img src={Uppist} alt="UppistLogo" />
+      <img src={Uppist} alt='UppistLogo' />
       {location.pathname === "/dashboard" && (
         <svg
           onClick={sideBar}
           className={styles.menu}
+          style={{ cursor: "pointer" }}
           width='27'
           height='26'
           viewBox='0 0 27 26'

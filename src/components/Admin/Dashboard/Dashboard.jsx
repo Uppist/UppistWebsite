@@ -9,30 +9,36 @@ import Transaction from "./Transaction/Transaction";
 import MobileDashboard from "./MobileDashboard";
 import axios from "axios";
 
+import img2 from "../../../assets/Dashboard/Content/img2.png";
+import img3 from "../../../assets/Dashboard/Content/img3.png";
+import img4 from "../../../assets/Dashboard/Content/img4.png";
+import img5 from "../../../assets/Dashboard/Content/img5.png";
+import img6 from "../../../assets/Dashboard/Content/img6.png";
+import img7 from "../../../assets/Dashboard/Content/img7.png";
+import img8 from "../../../assets/Dashboard/Content/img8.png";
+
 export default function Dashboard() {
-  // const [navBarText, setNavBarText] = useState("Dashboard");
   const [transactionLog, setTransactionLog] = useState(false);
   const [isActive, setIsActive] = useState(null);
+  const [logs, setLogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [view, setView] = useState(false);
 
   function resetDashboard() {
-    // setNavBarText("Dashboard");
     setTransactionLog(false);
   }
 
   function handlechatBot() {
-    // setNavBarText("Chatbot Logs");
     setTransactionLog(true);
   }
 
-  /*API integration */
-  const [logs, setLogs] = useState([]);
-  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchLogs = async () => {
       try {
         const response = await axios.get("https://bot.uppist.xyz/logs");
         setLogs(response.data);
         setLoading(false);
+
         console.log("Logs fetched successfully:", response.data);
       } catch (error) {
         console.error("Failed to fetch logs:", error);
@@ -42,25 +48,78 @@ export default function Dashboard() {
 
     fetchLogs();
   }, []);
+
   const visitors = new Set(logs.map((item) => item.email)).size;
   const validEmailCount = new Set(logs.map((item) => item.email)).size;
-  const prompt_query = logs.filter((item) => item.prompt).length;
-  const ai_responses = logs.filter((item) => item.response).length;
+  const whatsappVisitors = new Set(
+    logs
+      .filter((item) => item.platform === "whatsapp")
+      .map((item) => item.phone_number)
+  ).size;
 
+  const total_web_prompt_query = logs.filter(
+    (item) => item.platform === "web" && item.prompt
+  ).length;
+
+  const total_whatsapp_prompt_query = logs.filter(
+    (item) => item.platform === "whatsapp" && item.prompt
+  ).length;
+
+  const total_web_ai_responses = logs.filter(
+    (item) => item.platform === "web" && item.response
+  ).length;
+
+  const total_whatsapp_ai_responses = logs.filter(
+    (item) => item.platform === "whatsapp" && item.response
+  ).length;
+
+  const totalVisitors = validEmailCount + whatsappVisitors;
+
+  /* --- Programme Data --- */
   const Programme = [
     {
-      title: "Total email addresses",
+      img: img2,
+      title: "Total Website Visitors",
       amount: validEmailCount,
     },
     {
-      title: "Total prompt queries",
-      amount: prompt_query,
+      img: img3,
+
+      title: "Total WhatsApp Visitors",
+      amount: whatsappVisitors,
     },
     {
-      title: "Total AI responses",
-      amount: ai_responses,
+      img: img4,
+
+      title: "Total WhatsApp Prompt Queries",
+      amount: total_whatsapp_prompt_query,
+    },
+    {
+      img: img5,
+
+      title: "Total WhatsApp AI Responses",
+      amount: total_whatsapp_ai_responses,
+    },
+    {
+      img: img6,
+
+      title: "Total Website Prompt Queries",
+      amount: total_web_prompt_query,
+    },
+    {
+      img: img7,
+
+      title: "Total Website AI Responses",
+      amount: total_web_ai_responses,
+    },
+    {
+      img: img8,
+
+      title: "Total Website Email Addresses",
+      amount: validEmailCount,
     },
   ];
+
   return (
     <>
       <div className={styles.dashboard}>
@@ -69,24 +128,31 @@ export default function Dashboard() {
           setIsActive={setIsActive}
           isActive={isActive}
           resetDashboard={resetDashboard}
+          onClose={() => setView(false)}
           handlechatBot={handlechatBot}
         />
+
         {transactionLog ? (
-          <Transaction logs={logs} loading={loading} 
-          isActive={isActive} setIsActive={setIsActive}/>
+          <Transaction
+            logs={logs}
+            loading={loading}
+            view={view}
+            setView={setView}
+            isActive={isActive}
+            setIsActive={setIsActive}
+          />
         ) : (
           <Content
-            // handlechatBot={handlechatBot}
             Programme={Programme}
             logs={logs}
             visitors={visitors}
+            totalVisitors={totalVisitors}
           />
         )}
       </div>
 
-      {/* /*Mobile Dashboard */}
+      {/* Mobile Dashboard */}
       <div className={styles.mobileDashboard}>
-        {" "}
         <MobileDashboard
           handlechatBot={handlechatBot}
           Programme={Programme}

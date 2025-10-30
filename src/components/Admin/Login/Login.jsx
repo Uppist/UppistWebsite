@@ -5,6 +5,8 @@ import styles from "./style.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../Admin/Navbar/Navbar";
+import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 
 export default function Login() {
   const [logindetail, setLogindetail] = useState({
@@ -24,15 +26,23 @@ export default function Login() {
   function Submit(e) {
     e.preventDefault();
     if (!logindetail.email || !logindetail.password) {
-      alert("Please fill in all fields");
+      toast.error("Please fill in all fields");
       return;
     }
-    axios.post("https://api.luround.com/v1/auth/login", data).then((res) => {
-      // console.log("response", res);
-      alert("Login successful");
-      navigate("/dashboard");
-      window.location.reload();
-    });
+
+    axios
+      .post("https://api.luround.com/v1/auth/login", data)
+      .then((res) => {
+        // console.log("response", res);
+        toast.success("Login successful");
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 10000);
+        // window.location.reload();
+      })
+      .catch((err) => {
+        toast.error("Login failed. Please check your credentials.");
+      });
   }
 
   return (
@@ -46,6 +56,7 @@ export default function Login() {
             <input
               type='email'
               name='email'
+              className={styles.input}
               value={logindetail.email}
               placeholder='Email address'
               onChange={(e) => LoginDetail(e)}
@@ -57,6 +68,7 @@ export default function Login() {
               type='password'
               name='password'
               id=''
+              className={styles.input}
               value={logindetail.password}
               placeholder='password'
               onChange={(e) => LoginDetail(e)}
@@ -66,6 +78,7 @@ export default function Login() {
           <button>Login</button>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 }

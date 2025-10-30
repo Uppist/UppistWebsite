@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import styles from "./style.module.css";
 import { Link } from "react-router-dom";
-import Uppist from "../../../assets/uppist.png";
+import Uppist from "../../../assets/uppist3.png";
 
 export default function MobileNav({
   resetDashboard,
@@ -26,9 +26,13 @@ export default function MobileNav({
             onClose();
           }}
         >
-          <img src={Uppist} alt="UppistLogo" />
+          <img src={Uppist} alt='UppistLogo' />
         </Link>
-        <a className='dropdown-close' onClick={onClose}>
+        <a
+          className='dropdown-close'
+          style={{ cursor: "pointer" }}
+          onClick={onClose}
+        >
           <svg
             width='24'
             height='24'
@@ -57,21 +61,33 @@ export default function MobileNav({
           }}
         >
           <svg
-            width='20'
-            height='18'
-            viewBox='0 0 20 18'
+            width='24'
+            height='24'
+            viewBox='0 0 24 24'
             fill='none'
             xmlns='http://www.w3.org/2000/svg'
           >
             <path
-              fill-rule='evenodd'
-              clip-rule='evenodd'
-              d='M11.9137 0.987525C10.766 0.184112 9.23837 0.184109 8.09063 0.987524L2.35932 4.99944C1.39381 5.6753 0.856954 6.81078 0.947345 7.98587L1.53486 15.6236C1.64567 17.064 2.95084 18.111 4.38105 17.9067L7.0224 17.5294C8.25402 17.3534 9.16884 16.2986 9.16884 15.0545V14C9.16884 13.5398 9.54194 13.1667 10.0022 13.1667C10.4624 13.1667 10.8355 13.5398 10.8355 14V15.0545C10.8355 16.2986 11.7503 17.3534 12.982 17.5294L15.6233 17.9067C17.0535 18.111 18.3587 17.064 18.4695 15.6236L19.057 7.98587C19.1474 6.81078 18.6105 5.67531 17.645 4.99944L11.9137 0.987525ZM9.0464 2.35291C9.62027 1.9512 10.3841 1.9512 10.9579 2.35291L16.6893 6.36483C17.172 6.70276 17.4404 7.2705 17.3952 7.85805L16.8077 15.4957C16.7708 15.9759 16.3357 16.3249 15.859 16.2568L13.2177 15.8795C12.8071 15.8208 12.5022 15.4692 12.5022 15.0545V14C12.5022 12.6193 11.3829 11.5 10.0022 11.5C8.62146 11.5 7.50218 12.6193 7.50218 14V15.0545C7.50218 15.4692 7.19723 15.8208 6.7867 15.8795L4.14535 16.2568C3.66861 16.3249 3.23355 15.9759 3.19662 15.4957L2.6091 7.85804C2.56391 7.2705 2.83233 6.70276 3.31509 6.36483L9.0464 2.35291Z'
+              d='M7.24 2H5.34C3.15 2 2 3.15 2 5.33V7.23C2 9.41 3.15 10.56 5.33 10.56H7.23C9.41 10.56 10.56 9.41 10.56 7.23V5.33C10.57 3.15 9.42 2 7.24 2Z'
               fill='currentColor'
             />
-          </svg>{" "}
+            <path
+              d='M18.6699 2H16.7699C14.5899 2 13.4399 3.15 13.4399 5.33V7.23C13.4399 9.41 14.5899 10.56 16.7699 10.56H18.6699C20.8499 10.56 21.9999 9.41 21.9999 7.23V5.33C21.9999 3.15 20.8499 2 18.6699 2Z'
+              fill='currentColor'
+            />
+            <path
+              d='M18.6699 13.4302H16.7699C14.5899 13.4302 13.4399 14.5802 13.4399 16.7602V18.6602C13.4399 20.8402 14.5899 21.9902 16.7699 21.9902H18.6699C20.8499 21.9902 21.9999 20.8402 21.9999 18.6602V16.7602C21.9999 14.5802 20.8499 13.4302 18.6699 13.4302Z'
+              fill='currentColor'
+            />
+            <path
+              d='M7.24 13.4302H5.34C3.15 13.4302 2 14.5802 2 16.7602V18.6602C2 20.8502 3.15 22.0002 5.33 22.0002H7.23C9.41 22.0002 10.56 20.8502 10.56 18.6702V16.7702C10.57 14.5802 9.42 13.4302 7.24 13.4302Z'
+              fill='currentColor'
+            />
+          </svg>
+
           <span onClick={resetDashboard}>Dashboard</span>
         </div>
+
         <div
           className={isActive === "log" ? styles.active : styles.notactive}
           onClick={() => {
@@ -80,24 +96,69 @@ export default function MobileNav({
           }}
         >
           <svg
-            width='20'
-            height='20'
-            viewBox='0 0 20 20'
+            width='22'
+            height='22'
+            viewBox='0 0 22 22'
             fill='none'
             xmlns='http://www.w3.org/2000/svg'
           >
-            <path
-              d='M6.66667 5.00016L17.5 5.00081M6.66667 10.0002L17.5 10.0008M6.66667 15.0002L17.5 15.0007M2.5 5.41683H3.33333V4.5835H2.5V5.41683ZM2.5 10.4168H3.33333V9.5835H2.5V10.4168ZM2.5 15.4168H3.33333V14.5835H2.5V15.4168Z'
+            <circle
+              cx='10.75'
+              cy='10.75'
+              r='10'
               stroke='currentColor'
-              stroke-width='2'
+              stroke-width='1.5'
+            />
+            <ellipse
+              cx='10.75'
+              cy='10.75'
+              rx='4'
+              ry='10'
+              stroke='currentColor'
+              stroke-width='1.5'
+            />
+            <path
+              d='M0.75 10.75H20.75'
+              stroke='currentColor'
+              stroke-width='1.5'
               stroke-linecap='round'
               stroke-linejoin='round'
             />
           </svg>
-          <span onClick={handlechatBot}>Chatbot Log</span>
+
+          <span onClick={handlechatBot}>Website Logs</span>
         </div>
 
-        <hr />
+        {/* Whatsapp Chatbot Log */}
+        <div
+          className={isActive === "whatsapp" ? styles.active : styles.notactive}
+          onClick={() => {
+            setIsActive("whatsapp");
+            onClose();
+          }}
+        >
+          <svg
+            width='24'
+            height='24'
+            viewBox='0 0 24 24'
+            fill='none'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+            <path
+              d='M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 13.3789 2.27907 14.6926 2.78382 15.8877C3.06278 16.5481 3.20226 16.8784 3.21953 17.128C3.2368 17.3776 3.16334 17.6521 3.01642 18.2012L2 22L5.79877 20.9836C6.34788 20.8367 6.62244 20.7632 6.87202 20.7805C7.12161 20.7977 7.45185 20.9372 8.11235 21.2162C9.30745 21.7209 10.6211 22 12 22Z'
+              stroke='currentColor'
+              stroke-width='1.5'
+              stroke-linejoin='round'
+            />
+            <path
+              d='M8.58815 12.3773L9.45909 11.2956C9.82616 10.8397 10.2799 10.4153 10.3155 9.80826C10.3244 9.65494 10.2166 8.96657 10.0008 7.58986C9.91601 7.04881 9.41086 7 8.97332 7C8.40314 7 8.11805 7 7.83495 7.12931C7.47714 7.29275 7.10979 7.75231 7.02917 8.13733C6.96539 8.44196 7.01279 8.65187 7.10759 9.07169C7.51023 10.8548 8.45481 12.6158 9.91948 14.0805C11.3842 15.5452 13.1452 16.4898 14.9283 16.8924C15.3481 16.9872 15.558 17.0346 15.8627 16.9708C16.2477 16.8902 16.7072 16.5229 16.8707 16.165C17 15.8819 17 15.5969 17 15.0267C17 14.5891 16.9512 14.084 16.4101 13.9992C15.0334 13.7834 14.3451 13.6756 14.1917 13.6845C13.5847 13.7201 13.1603 14.1738 12.7044 14.5409L11.6227 15.4118'
+              stroke='currentColor'
+              stroke-width='1.5'
+            />
+          </svg>
+
+          <span onClick={handlechatBot}>WhatsApp Log</span>
+        </div>
         <div
           className={isActive === "logout" ? styles.active : styles.notactive}
           onClick={() => {
@@ -106,21 +167,27 @@ export default function MobileNav({
           }}
         >
           <svg
-            width='20'
-            height='20'
-            viewBox='0 0 20 20'
+            width='24'
+            height='24'
+            viewBox='0 0 24 24'
             fill='none'
             xmlns='http://www.w3.org/2000/svg'
           >
             <path
-              d='M13.3346 10.8333V9.16667H5.83464V6.66667L1.66797 10L5.83464 13.3333V10.8333H13.3346Z'
-              fill='currentColor'
+              d='M15 17.625C14.9264 19.4769 13.3831 21.0494 11.3156 20.9988C10.8346 20.9871 10.2401 20.8194 9.05112 20.484C6.18961 19.6769 3.70555 18.3204 3.10956 15.2816C3 14.723 3 14.0944 3 12.8373L3 11.1627C3 9.90561 3 9.27704 3.10956 8.71845C3.70555 5.67963 6.18961 4.32314 9.05112 3.516C10.2401 3.18062 10.8346 3.01293 11.3156 3.00116C13.3831 2.95058 14.9264 4.52305 15 6.37499'
+              stroke='currentColor'
+              stroke-width='1.5'
+              stroke-linecap='round'
             />
             <path
-              d='M16.6667 2.5H9.16667C8.2475 2.5 7.5 3.2475 7.5 4.16667V7.5H9.16667V4.16667H16.6667V15.8333H9.16667V12.5H7.5V15.8333C7.5 16.7525 8.2475 17.5 9.16667 17.5H16.6667C17.5858 17.5 18.3333 16.7525 18.3333 15.8333V4.16667C18.3333 3.2475 17.5858 2.5 16.6667 2.5Z'
-              fill='currentColor'
+              d='M10 12H21M10 12C10 11.2998 11.9943 9.99153 12.5 9.5M10 12C10 12.7002 11.9943 14.0085 12.5 14.5'
+              stroke='currentColor'
+              stroke-width='1.5'
+              stroke-linecap='round'
+              stroke-linejoin='round'
             />
-          </svg>{" "}
+          </svg>
+
           <span>
             <Link to='/login'>Log Out</Link>
           </span>

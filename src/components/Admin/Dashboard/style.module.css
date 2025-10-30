@@ -5,12 +5,12 @@
 }
 .nav {
   position: absolute;
-  left: 314px;
+  left: 274px;
   width: -webkit-fill-available;
   padding: 16px 24px;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 600;
-  color: hsla(0, 0%, 17%, 0.8);
+  color: hsla(0, 0%, 17%, 1);
   background-color: white;
   font-family: "Inter";
   display: flex;
@@ -18,31 +18,39 @@
   gap: 16px;
 }
 
+a {
+  text-decoration: currentColor;
+  color: currentColor;
+}
 .sidebar {
   width: 272px;
   padding: 25px 0;
   height: 982px;
-  background-color: white;
+  background-color: black;
   position: fixed;
   display: flex;
   flex-direction: column;
   gap: 70px;
-  border: 1px solid hsla(218, 17%, 91%, 1);
 }
 
 .sidebar > img {
   padding: 8px 24px;
+  width: 162px;
 }
 
 .div {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  padding: 0 20px;
 }
 
-.div hr {
-  width: -webkit-fill-available;
-  border: 1px solid hsla(218, 20%, 95%, 1);
+.div > span {
+  font-size: 16px;
+  color: white;
+  font-weight: 700;
+  font-family: "Inter";
+  margin-left: 12px;
 }
 
 .notactive {
@@ -50,10 +58,10 @@
   align-items: center;
   gap: 10px;
   padding: 8px;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 400;
   font-family: "Inter";
-  color: hsla(0, 0%, 17%, 0.8);
+  color: hsla(0, 0%, 76%, 1);
 }
 
 .notactive span {
@@ -69,12 +77,15 @@
   align-items: center;
   gap: 10px;
   padding: 8px;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 500;
   font-family: "Inter";
-  color: hsla(293, 78%, 31%, 1);
+  color: hsla(0, 0%, 90%, 1);
   cursor: pointer;
-  border-left: 5px solid hsla(34, 94%, 54%, 1);
+}
+
+.active svg {
+  color: hsla(34, 94%, 54%, 1);
 }
 
 .content {
@@ -90,27 +101,106 @@
   gap: 49px;
 }
 
-.content > span {
-  font-size: 24px;
+.dropdown {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  right: 85px;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.dropdownTime {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 20px;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.1);
+  transition: opacity 1.3s;
+}
+
+.time {
+  padding: 8px 12px;
+  border-radius: 8px;
+  background-color: white;
+  border: 0;
+  font-size: 14px;
   font-weight: 600;
-  font-family: 'Inter';
   color: hsla(0, 0%, 17%, 0.8);
+  font-family: "Inter";
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.copy {
+  position: absolute;
+  top: 80px;
+  right: 0;
+  background-color: white;
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.copy span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsla(180, 23%, 15%, 0.8);
+  font-family: "Inter";
+  cursor: pointer;
+}
+
+.overview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.overview > span {
+  font-size: 22px;
+  font-weight: 600;
+  font-family: "Inter";
+  color: hsla(0, 0%, 17%, 1);
 }
 
 .revenue {
   display: flex;
   flex-direction: column;
   gap: 100px;
-  background-color: hsla(293, 78%, 31%, 1);
+  background-color: hsla(0, 0%, 100%, 0.5);
   padding: 16px 24px;
   border-radius: 8px;
-  width: 50%;
-  color: white;
+  color: hsla(0, 0%, 17%, 0.8);
   font-family: "Inter";
 }
 
 .revenue span {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 500;
 }
 
@@ -121,24 +211,57 @@
 
 .programmeRevenue {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(268px, 1fr));
   padding: 24px 0;
   gap: 40px;
 }
 
-.text {
+.visitors {
   display: flex;
   flex-direction: column;
-  gap: 70px;
-  background-color: white;
+  gap: 10px;
+  background-color: hsla(0, 0%, 9%, 1);
   padding: 24px;
-  border-radius: 8px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+}
+
+.visitors span {
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+  font-family: "Inter";
+}
+
+.visitors div span {
+  font-size: 28px;
+  font-weight: 600;
+  color: white;
+  font-family: "Inter";
+}
+
+.text {
+  display: flex;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 10px;
+  background-color: hsla(0, 0%, 100%, 0.5);
+  padding: 24px;
+  border-radius: 14px;
+  border: 1px solid hsla(218, 17%, 91%, 1);
+}
+
+.text img,
+.visitors img {
+  width: 46px;
+  margin-bottom: 20px;
 }
 
 .text span {
-  font-size: 16px;
-  font-weight: 500;
-  color: hsla(0, 0%, 17%, 0.8);
+  font-size: 14px;
+  font-weight: 300;
+  color: hsla(218, 38%, 60%, 1);
   font-family: "Inter";
 }
 
@@ -149,9 +272,9 @@
 }
 
 .text div span {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 600;
-  color: hsla(0, 0%, 17%, 0.8);
+  color: hsla(0, 0%, 26%, 1);
   font-family: "Inter";
 }
 
@@ -166,6 +289,78 @@
   background-color: transparent;
   font-family: "Inter";
   cursor: pointer;
+}
+
+.chartSection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chartHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  font-family: "Inter";
+}
+
+.chartHeader label {
+  font-size: 22px;
+  font-weight: 600;
+  color: hsla(0, 0%, 17%, 1);
+}
+
+.chartHeader svg,
+.chartHeader svg:focus {
+  outline: none;
+}
+
+.recentWebsite {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 24px;
+  border-radius: 24px;
+  gap: 16px;
+  width: 350px;
+}
+
+.visitorItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.visitorItem div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.visitorItem div span {
+  font-size: 16px;
+  font: 500;
+  color: hsla(0, 0%, 14%, 1);
+}
+
+.visitorItem div p {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 400;
+  color: hsla(218, 38%, 60%, 1);
+}
+
+.recentVisitors {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  font-family: "Inter";
+}
+
+.recentVisitors label {
+  font-size: 22px;
+  font-weight: 600;
+  color: hsla(0, 0%, 17%, 1);
 }
 
 @media only screen and (max-width: 768px) {

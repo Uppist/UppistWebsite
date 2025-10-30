@@ -19,7 +19,7 @@ export default function Welcome({ handleClose, isChatbot, setIsChatbot }) {
 
     if (name && email) {
       setLoginDetail({ name, email });
-      setIsChatbot(true); // Open chatbot directly
+      setIsChatbot(true);
     }
   }, []);
   function LoginDetail(e) {
