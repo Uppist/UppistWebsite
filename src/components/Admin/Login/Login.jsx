@@ -7,12 +7,15 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../../Admin/Navbar/Navbar";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
-
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 export default function Login() {
   const [logindetail, setLogindetail] = useState({
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
+
   const data = {
     email: logindetail.email,
     password: logindetail.password,
@@ -30,6 +33,8 @@ export default function Login() {
       return;
     }
 
+    setLoading(true);
+
     axios
       .post("https://api.luround.com/v1/auth/login", data)
       .then((res) => {
@@ -37,7 +42,7 @@ export default function Login() {
         toast.success("Login successful");
         setTimeout(() => {
           navigate("/dashboard");
-        }, 10000);
+        }, 4500);
         // window.location.reload();
       })
       .catch((err) => {
@@ -74,8 +79,9 @@ export default function Login() {
               onChange={(e) => LoginDetail(e)}
             />
           </div>
-
-          <button>Login</button>
+          <button type='submit' disabled={loading}>
+            {loading ? <CircularProgress size={24} color='inherit' /> : "Login"}
+          </button>
         </form>
       </div>
       <ToastContainer />
