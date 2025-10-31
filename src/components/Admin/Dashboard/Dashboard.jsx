@@ -123,7 +123,7 @@ export default function Dashboard() {
   return (
     <>
       <div className={styles.dashboard}>
-        <NavBar resetDashboard={resetDashboard} />
+        <NavBar resetDashboard={resetDashboard} isActive={isActive} />
         <SideBar
           setIsActive={setIsActive}
           isActive={isActive}
