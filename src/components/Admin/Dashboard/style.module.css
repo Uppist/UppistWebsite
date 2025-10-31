@@ -304,6 +304,12 @@ a {
   font-family: "Inter";
 }
 
+:global(.recharts-legend-item svg) {
+  border-radius: 100% !important;
+  width: 10px;
+  height: 10px;
+}
+
 .chartHeader label {
   font-size: 22px;
   font-weight: 600;

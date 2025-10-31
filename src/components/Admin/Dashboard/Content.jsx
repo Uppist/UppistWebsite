@@ -27,6 +27,54 @@ export default function Content({ Programme, visitors, totalVisitors, logs }) {
   const [chartData, setChartData] = useState([]);
   const [recentWebLogs, setRecentWebLogs] = useState([]);
 
+  const parseDate = (ts) => {
+    if (!ts) return null;
+    const d = new Date(ts);
+    if (isNaN(d.getTime())) {
+      // Try replacing space with T
+      return new Date(ts.replace(" ", "T"));
+    }
+    return d;
+  };
+
+  function filterByTime(logs) {
+    if (selectedTime === "All time") return logs;
+
+    const now = new Date();
+    return logs.filter((log) => {
+      const logDate = parseDate(log.timestamp);
+      if (!logDate) return false;
+
+      switch (selectedTime) {
+        case "Today":
+          return logDate.toDateString() === now.toDateString();
+        case "Yesterday":
+          const yest = new Date();
+          yest.setDate(now.getDate() - 1);
+          return logDate.toDateString() === yest.toDateString();
+        case "This week":
+          const firstDay = new Date(now);
+          firstDay.setDate(now.getDate() - now.getDay());
+          return logDate >= firstDay;
+        case "Last 7 days":
+          const last7 = new Date();
+          last7.setDate(now.getDate() - 6);
+          return logDate >= last7;
+        case "This month":
+          return (
+            logDate.getMonth() === now.getMonth() &&
+            logDate.getFullYear() === now.getFullYear()
+          );
+        case "Last 30 days":
+          const last30 = new Date();
+          last30.setDate(now.getDate() - 29);
+          return logDate >= last30;
+        default:
+          return true;
+      }
+    });
+  }
+
   const Time = [
     "Today",
     "Yesterday",
@@ -34,7 +82,7 @@ export default function Content({ Programme, visitors, totalVisitors, logs }) {
     "Last 7 days",
     "This month",
     "Last 30 days",
-    "All Time",
+    "All time",
   ];
 
   const handleTime = (item) => {
@@ -45,13 +93,14 @@ export default function Content({ Programme, visitors, totalVisitors, logs }) {
   useEffect(() => {
     if (!logs || logs.length === 0) return;
 
+    const filteredLogs = filterByTime(logs, selectedTime);
+
     const getLast7DaysByPlatform = (logs) => {
       const now = dayjs();
       const last7Days = [];
 
       for (let i = 6; i >= 0; i--) {
         const date = now.subtract(i, "day");
-
         const dayLogs = logs.filter((log) => {
           const logDate = dayjs(log.timestamp, "YYYY-MM-DD / hh:mm A");
           return logDate.format("YYYY-MM-DD") === date.format("YYYY-MM-DD");
@@ -72,21 +121,20 @@ export default function Content({ Programme, visitors, totalVisitors, logs }) {
       return last7Days;
     };
 
-    const data = getLast7DaysByPlatform(logs);
+    const data = getLast7DaysByPlatform(filteredLogs);
     setChartData(data);
-    console.log("Chart data:", data);
 
-    const recentWeb = logs
+    const recentWeb = filteredLogs
       .filter((log) => log.platform === "web")
       .sort((a, b) => {
         const dateA = dayjs(a.timestamp, "YYYY-MM-DD / hh:mm A");
         const dateB = dayjs(b.timestamp, "YYYY-MM-DD / hh:mm A");
-        return dateB - dateA; // sort descending
+        return dateB - dateA;
       })
       .slice(0, 5);
 
     setRecentWebLogs(recentWeb);
-  }, [logs]);
+  }, [logs, selectedTime]);
 
   const closeTime = () => setIsTime(false);
 
@@ -165,6 +213,7 @@ export default function Content({ Programme, visitors, totalVisitors, logs }) {
               barCategoryGap='25%'
               backgroundColor='white'
               borderRadius='24px'
+              className={styles.bar}
             >
               <CartesianGrid
                 strokeDasharray='0'

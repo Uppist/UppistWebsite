@@ -61,6 +61,7 @@ export default function SideBar({
           onClick={() => {
             setIsActive("log");
             onClose;
+            onClose && onClose();
           }}
         >
           <svg
@@ -103,6 +104,7 @@ export default function SideBar({
           onClick={() => {
             setIsActive("whatsapp");
             onClose;
+            onClose && onClose();
           }}
         >
           <svg
