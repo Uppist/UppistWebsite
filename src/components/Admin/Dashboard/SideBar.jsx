@@ -127,7 +127,7 @@ export default function SideBar({
             />
           </svg>
 
-          <span onClick={handlechatBot}>WhatsApp Log</span>
+          <span onClick={handlechatBot}>WhatsApp Logs</span>
         </div>
         <div
           className={isActive === "logout" ? styles.active : styles.notactive}

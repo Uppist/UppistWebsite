@@ -7,9 +7,9 @@ export default function NavBar({ isActive }) {
   return (
     <nav className={styles.nav}>
       {isActive === "log"
-        ? "Website Log"
+        ? "Website Logs"
         : isActive === "whatsapp"
-        ? "Whatsapp Log"
+        ? "Whatsapp Logs"
         : "Dashboard"}
     </nav>
   );
