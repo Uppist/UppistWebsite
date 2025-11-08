@@ -294,7 +294,7 @@ a {
 .chartSection {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 100px;
 }
 
 .chartHeader {
@@ -302,6 +302,11 @@ a {
   flex-direction: column;
   gap: 24px;
   font-family: "Inter";
+  width: -webkit-fill-available;
+}
+
+.chartHeader > div {
+  height: 400px;
 }
 
 :global(.recharts-legend-item svg) {
@@ -370,9 +375,9 @@ a {
 }
 
 @media only screen and (max-width: 768px) {
-  .dashboard {
+  /* .dashboard {
     display: none;
-  }
+  } */
 
   .mobileDashboard {
     display: block;
@@ -386,6 +391,7 @@ a {
     display: flex;
     flex-direction: column;
     gap: 24px;
+    background-color: white;
   }
 
   .content > span {
@@ -399,8 +405,27 @@ a {
     grid-template-columns: 1fr;
   }
 
+  .sidebar {
+    display: none;
+  }
+
   .revenue {
     width: 85%;
+  }
+
+  .chartSection {
+    flex-direction: column;
+    gap: 50px;
+    align-items: baseline;
+  }
+
+  .recentWebsite {
+    width: 290px;
+  }
+
+  .chartHeader label,
+  .recentVisitors label {
+    font-size: 20px;
   }
 }
 

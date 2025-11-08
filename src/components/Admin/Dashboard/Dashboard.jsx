@@ -1,12 +1,11 @@
 /** @format */
 
 import React, { useEffect, useState } from "react";
-import NavBar from "./NavBar";
+import Navbar from "../Navbar/Navbar";
 import SideBar from "./SideBar";
 import Content from "./Content";
 import styles from "./style.module.css";
 import Transaction from "./Transaction/Transaction";
-import MobileDashboard from "./MobileDashboard";
 import axios from "axios";
 
 import img2 from "../../../assets/Dashboard/Content/img2.png";
@@ -50,7 +49,7 @@ export default function Dashboard() {
   }, []);
 
   const visitors = new Set(logs.map((item) => item.email)).size;
-  const validEmailCount = new Set(logs.map((item) => item.email)).size;
+  const validEmailCount = new Set(logs.map((item) => item.email));
   const whatsappVisitors = new Set(
     logs
       .filter((item) => item.platform === "whatsapp")
@@ -73,14 +72,14 @@ export default function Dashboard() {
     (item) => item.platform === "whatsapp" && item.response
   ).length;
 
-  const totalVisitors = validEmailCount + whatsappVisitors;
+  const totalVisitors = visitors + whatsappVisitors;
 
   /* --- Programme Data --- */
   const Programme = [
     {
       img: img2,
       title: "Total Website Visitors",
-      amount: validEmailCount,
+      amount: visitors,
     },
     {
       img: img3,
@@ -116,14 +115,19 @@ export default function Dashboard() {
       img: img8,
 
       title: "Total Website Email Addresses",
-      amount: validEmailCount,
+      amount: visitors,
     },
   ];
 
   return (
     <>
       <div className={styles.dashboard}>
-        <NavBar resetDashboard={resetDashboard} isActive={isActive} />
+        <Navbar
+          resetDashboard={resetDashboard}
+          isActive={isActive}
+          setIsActive={setIsActive}
+          handlechatBot={handlechatBot}
+        />
         <SideBar
           setIsActive={setIsActive}
           isActive={isActive}
@@ -140,6 +144,7 @@ export default function Dashboard() {
             setView={setView}
             isActive={isActive}
             setIsActive={setIsActive}
+            validEmailCount={validEmailCount}
           />
         ) : (
           <Content
@@ -149,18 +154,6 @@ export default function Dashboard() {
             totalVisitors={totalVisitors}
           />
         )}
-      </div>
-
-      {/* Mobile Dashboard */}
-      <div className={styles.mobileDashboard}>
-        <MobileDashboard
-          handlechatBot={handlechatBot}
-          Programme={Programme}
-          resetDashboard={resetDashboard}
-          transactionLog={transactionLog}
-          visitors={visitors}
-          logs={logs}
-        />
       </div>
     </>
   );

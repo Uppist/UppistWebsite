@@ -8,7 +8,9 @@ import Navbar from "../../Admin/Navbar/Navbar";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
+import image from "../../../assets/Dashboard/login.png";
+import uppist from "../../../assets/uppist2.png";
+
 export default function Login() {
   const [logindetail, setLogindetail] = useState({
     email: "",
@@ -42,7 +44,7 @@ export default function Login() {
         toast.success("Login successful");
         setTimeout(() => {
           navigate("/dashboard");
-        }, 4500);
+        }, 2500);
         // window.location.reload();
       })
       .catch((err) => {
@@ -53,36 +55,48 @@ export default function Login() {
   return (
     <div className={styles.login}>
       <Navbar />
-      <div className={styles.container}>
-        <label htmlFor=''>Log into account</label>
-        <form className={styles.form} onSubmit={Submit}>
-          <div>
-            <span>Email Address</span>
-            <input
-              type='email'
-              name='email'
-              className={styles.input}
-              value={logindetail.email}
-              placeholder='Email address'
-              onChange={(e) => LoginDetail(e)}
-            />
+      <div className={styles.login2}>
+        <img src={image} alt='' />
+
+        <div className={styles.container}>
+          <div className={styles.h3}>
+            <img src={uppist} alt='' />
+            <h3>AI Chatbot System</h3>
           </div>
-          <div>
-            <span>Password</span>
-            <input
-              type='password'
-              name='password'
-              id=''
-              className={styles.input}
-              value={logindetail.password}
-              placeholder='password'
-              onChange={(e) => LoginDetail(e)}
-            />
-          </div>
-          <button type='submit' disabled={loading}>
-            {loading ? <CircularProgress size={24} color='inherit' /> : "Login"}
-          </button>
-        </form>
+          <label htmlFor=''>Log into account</label>
+          <form className={styles.form} onSubmit={Submit}>
+            <div>
+              <span>Email Address</span>
+              <input
+                type='email'
+                name='email'
+                className={styles.input}
+                value={logindetail.email}
+                placeholder='Email address'
+                onChange={(e) => LoginDetail(e)}
+              />
+            </div>
+            <div>
+              <span>Password</span>
+              <input
+                type='password'
+                name='password'
+                id=''
+                className={styles.input}
+                value={logindetail.password}
+                placeholder='password'
+                onChange={(e) => LoginDetail(e)}
+              />
+            </div>
+            <button type='submit' disabled={loading}>
+              {loading ? (
+                <CircularProgress size={24} color='inherit' />
+              ) : (
+                "Login"
+              )}
+            </button>
+          </form>
+        </div>
       </div>
       <ToastContainer />
     </div>

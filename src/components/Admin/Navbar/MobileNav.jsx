@@ -3,16 +3,17 @@
 import React, { useState } from "react";
 import styles from "./style.module.css";
 import { Link } from "react-router-dom";
-import Uppist from "../../../assets/uppist3.png";
+import Uppist from "../../../assets/uppist2.png";
 
 export default function MobileNav({
   resetDashboard,
   isSidebarVisible,
   onClose,
   handlechatBot,
+  isActive,
+  setIsActive,
 }) {
-  const [isActive, setIsActive] = useState(null);
-
+  // const [isActive, setIsActive] = useState(null);
   return (
     <div
       className={`${styles.mobilenav} ${
@@ -93,6 +94,7 @@ export default function MobileNav({
           onClick={() => {
             setIsActive("log");
             onClose();
+            onClose && onClose();
           }}
         >
           <svg
@@ -135,6 +137,7 @@ export default function MobileNav({
           onClick={() => {
             setIsActive("whatsapp");
             onClose();
+            onClose && onClose();
           }}
         >
           <svg

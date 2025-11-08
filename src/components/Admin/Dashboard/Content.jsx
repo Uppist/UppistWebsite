@@ -200,78 +200,80 @@ export default function Content({ Programme, visitors, totalVisitors, logs }) {
             style={{
               backgroundColor: "white",
               borderRadius: "24px",
-              padding: "10px",
+              // padding: "10px",
             }}
           >
-            <BarChart
-              width={500}
-              height={300}
-              data={chartData}
-              margin={{ top: 20, right: 30, left: 0, bottom: 5 }}
-              barGap={12}
-              style={{ border: "none", outline: "none" }}
-              barCategoryGap='25%'
-              backgroundColor='white'
-              borderRadius='24px'
-              className={styles.bar}
-            >
-              <CartesianGrid
-                strokeDasharray='0'
-                stroke='#E0E0E0'
-                vertical={false}
-              />
-              <XAxis
-                dataKey='day'
-                stroke={false}
-                tick={{ fill: "#718EBF", fontSize: 13, fontWeight: 400 }}
-                fontFamily='Inter'
-                axisLine={false}
-              />
-              <Legend
-                verticalAlign='top'
-                align='right'
-                wrapperStyle={{
-                  textTransform: "capitalize",
-                  borderRadius: "8px",
-                  fontSize: "12px",
-                  marginTop: "-17px",
-                }}
-              />
+            <ResponsiveContainer width='100%' height='100%'>
+              <BarChart
+                width={500}
+                height={300}
+                data={chartData}
+                margin={{ top: 20, right: 30, left: 0, bottom: 5 }}
+                barGap={12}
+                style={{ border: "none", outline: "none" }}
+                barCategoryGap='25%'
+                backgroundColor='white'
+                borderRadius='24px'
+                className={styles.bar}
+              >
+                <CartesianGrid
+                  strokeDasharray='0'
+                  stroke='#E0E0E0'
+                  vertical={false}
+                />
+                <XAxis
+                  dataKey='day'
+                  stroke={false}
+                  tick={{ fill: "#718EBF", fontSize: 13, fontWeight: 400 }}
+                  fontFamily='Inter'
+                  axisLine={false}
+                />
+                <Legend
+                  verticalAlign='top'
+                  align='right'
+                  wrapperStyle={{
+                    textTransform: "capitalize",
+                    borderRadius: "8px",
+                    fontSize: "12px",
+                    marginTop: "-17px",
+                  }}
+                />
 
-              <YAxis
-                stroke={false}
-                tick={{ fill: "#999", fontSize: 12 }}
-                axisLine={false}
-                fontFamily='Inter'
-              />
+                <YAxis
+                  stroke={false}
+                  tick={{ fill: "#999", fontSize: 12 }}
+                  axisLine={false}
+                  fontFamily='Inter'
+                />
 
-              <Tooltip
-                contentStyle={{
-                  backgroundColor: "#fff",
-                  border: "1px solid #ddd",
-                  borderRadius: "8px",
-                  padding: "10px",
-                  fontFamily: "Inter",
-                  fontSize: "14px",
-                }}
-                cursor={{ fill: "rgba(136, 132, 200, 0.1)" }}
-                wrapperStyle={{ cursor: "pointer" }}
-              />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: "#fff",
+                    border: "1px solid #ddd",
+                    borderRadius: "8px",
+                    padding: "10px",
+                    fontFamily: "Inter",
+                    fontSize: "14px",
+                  }}
+                  cursor={{ fill: "rgba(136, 132, 200, 0.1)" }}
+                  wrapperStyle={{ cursor: "pointer" }}
+                />
 
-              <Bar
-                dataKey='web'
-                fill='#F89A1C'
-                radius={[8, 8, 8, 8]}
-                maxBarSize={50}
-              />
+                <Bar
+                  dataKey='web'
+                  fill='#F89A1C'
+                  radius={[8, 8, 8, 8]}
+                  maxBarSize={50}
+                />
 
-              <Bar
-                dataKey='whatsapp'
-                fill='#16DBCC'
-                radius={[8, 8, 8, 8]}
-                maxBarSize={50}
-              />
-            </BarChart>
+                <Bar
+                  dataKey='whatsapp'
+                  fill='#16DBCC'
+                  radius={[8, 8, 8, 8]}
+                  maxBarSize={50}
+                />
+              </BarChart>
+            </ResponsiveContainer>
           </div>
           {/* </ResponsiveContainer> */}
         </div>

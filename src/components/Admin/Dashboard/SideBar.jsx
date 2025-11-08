@@ -16,6 +16,9 @@ export default function SideBar({
   // const [isActive, setIsActive] = useState(null);
   // console.log(isActive);
   // console.log(setIsActive);
+
+  console.log(handlechatBot);
+
   return (
     <div className={styles.sidebar}>
       <img src={Uppist2} alt='UppistLogo' />
