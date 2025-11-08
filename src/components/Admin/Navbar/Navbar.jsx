@@ -24,46 +24,49 @@ export default function Navbar({
   return (
     <>
       <div className={styles.logo}>
-        <nav className={styles.nav}>
-          {isActive === "log"
-            ? "Website Logs"
-            : isActive === "whatsapp"
-            ? "Whatsapp Logs"
-            : "Dashboard"}
-        </nav>{" "}
-        <img src={Uppist} alt='UppistLogo' />
-        {location.pathname === "/dashboard" && (
-          <svg
-            onClick={sideBar}
-            width='27'
-            height='26'
-            viewBox='0 0 27 26'
-            fill='none'
-            xmlns='http://www.w3.org/2000/svg'
-          >
-            <path
-              d='M5.41882 18.4188L20.5915 18.4188'
-              stroke='#2B2B2B'
-              strokeWidth='2.16753'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-            />
-            <path
-              d='M5.41882 13H20.5915'
-              stroke='#2B2B2B'
-              strokeWidth='2.16753'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-            />
-            <path
-              d='M5.41882 7.58118L14.0889 7.58119'
-              stroke='#2B2B2B'
-              strokeWidth='2.16753'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-            />
-          </svg>
+        {location.pathname !== "/login" && (
+          <nav className={styles.nav}>
+            {isActive === "log"
+              ? "Website Logs"
+              : isActive === "whatsapp"
+              ? "Whatsapp Logs"
+              : "Dashboard"}
+          </nav>
         )}
+        <img src={Uppist} alt='UppistLogo' />
+        {location.pathname === "/dashboard" &&
+          location.pathname !== "/login" && (
+            <svg
+              onClick={sideBar}
+              width='27'
+              height='26'
+              viewBox='0 0 27 26'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path
+                d='M5.41882 18.4188L20.5915 18.4188'
+                stroke='#2B2B2B'
+                strokeWidth='2.16753'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+              />
+              <path
+                d='M5.41882 13H20.5915'
+                stroke='#2B2B2B'
+                strokeWidth='2.16753'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+              />
+              <path
+                d='M5.41882 7.58118L14.0889 7.58119'
+                stroke='#2B2B2B'
+                strokeWidth='2.16753'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+              />
+            </svg>
+          )}
         <MobileNav
           isSidebarVisible={isSidebarVisible}
           onClose={onClose}
