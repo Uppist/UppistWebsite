@@ -39,7 +39,7 @@ export default function Login() {
 
     axios
       .post("https://api.luround.com/v1/auth/login", data)
-      .then((res) => {
+      .then(() => {
         // console.log("response", res);
         toast.success("Login successful");
         setTimeout(() => {
@@ -47,7 +47,7 @@ export default function Login() {
         }, 2500);
         // window.location.reload();
       })
-      .catch((err) => {
+      .catch(() => {
         toast.error("Login failed. Please check your credentials.");
       });
   }
