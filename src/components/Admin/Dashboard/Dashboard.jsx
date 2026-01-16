@@ -5,7 +5,6 @@ import Navbar from "../Navbar/Navbar";
 import SideBar from "./SideBar";
 import Content from "./Content";
 import styles from "./style.module.css";
-import Transaction from "./Transaction/Transaction";
 import axios from "axios";
 
 import img2 from "../../../assets/Dashboard/Content/img2.png";
@@ -15,6 +14,7 @@ import img5 from "../../../assets/Dashboard/Content/img5.png";
 import img6 from "../../../assets/Dashboard/Content/img6.png";
 import img7 from "../../../assets/Dashboard/Content/img7.png";
 import img8 from "../../../assets/Dashboard/Content/img8.png";
+import Information from "./Transaction/Information";
 
 export default function Dashboard() {
   const [transactionLog, setTransactionLog] = useState(false);
@@ -137,7 +137,7 @@ export default function Dashboard() {
         />
 
         {transactionLog ? (
-          <Transaction
+          <Information
             logs={logs}
             loading={loading}
             view={view}

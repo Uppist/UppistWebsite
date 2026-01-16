@@ -30,6 +30,12 @@ export default function Navbar({
               ? "Website Logs"
               : isActive === "whatsapp"
               ? "Whatsapp Logs"
+              : isActive === "social"
+              ? "Social Media Logs"
+              : isActive === "agent"
+              ? "Live Agents"
+              : isActive === "setting"
+              ? "Settings"
               : "Dashboard"}
           </nav>
         )}

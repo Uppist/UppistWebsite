@@ -346,11 +346,11 @@
   color: hsla(324, 3%, 37%, 1);
 }
 
-:global(.Toastify__toast-icon svg) {
+.toastify :global(.Toastify__toast-icon svg) {
   fill: hsla(34, 94%, 54%, 1) !important;
 }
 
-:global(.Toastify__progress-bar--success) {
+.toastify :global(.Toastify__progress-bar--success) {
   background: hsla(34, 94%, 54%, 1) !important;
 }
 

@@ -41,7 +41,7 @@ function AppContent() {
             <Route path='/blogs' element={<Blogs />} />
             <Route path='/blogs/:id' element={<BlogDetail />} />
             <Route path='/services/creative' element={<Creative />} />
-            <Route path='/admin' element={<Admin />} />
+            {/* <Route path='/admin' element={<Admin />} /> */}
             <Route path='/login' element={<Login />} />
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/services/technology' element={<Technology />} />

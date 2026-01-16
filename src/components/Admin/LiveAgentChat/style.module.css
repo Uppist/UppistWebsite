@@ -1,0 +1,201 @@
+/** @format */
+
+.chat {
+  height: -webkit-fill-available;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: transparent;
+  color: rgba(43, 43, 43, 1);
+  border: none;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+  font-family: "Inter";
+}
+
+.container {
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid rgba(240, 242, 245, 1);
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  padding: 16px 24px;
+}
+
+.div1 {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.name {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  color: rgba(67, 67, 67, 1);
+}
+
+.name p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.name span {
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.name2 {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  width: -webkit-fill-available;
+}
+
+.name2 p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(43, 43, 43, 0.8);
+}
+
+.name2 div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chatBox {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 24px;
+}
+
+/*Email*/
+.email {
+  background-color: white;
+  padding: 16px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.search {
+  border: 1px solid rgba(208, 213, 221, 1);
+  border-radius: 6px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+}
+
+.search input {
+  width: -webkit-fill-available;
+  border: none;
+  font-size: 14px;
+  color: rgba(67, 67, 67, 1);
+  font-weight: 400;
+  font-family: "Inter";
+}
+
+.search input:focus {
+  outline: none;
+}
+
+.search input::placeholder {
+  color: rgba(102, 113, 133, 1);
+  font-size: 14px;
+  font-weight: 400;
+  font-family: "Inter";
+}
+
+.name2span {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.name2span span {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(43, 43, 43, 0.8);
+}
+
+.name2span p {
+  font-size: 9px;
+  font-weight: 400;
+  color: rgba(186, 186, 186, 1);
+  text-transform: uppercase;
+}
+
+.name2p {
+  font-size: 9px;
+  color: rgba(149, 149, 149, 1);
+  font-weight: 400;
+}
+
+.name2p p {
+  font-size: 10px;
+  color: white;
+  font-weight: 400;
+  width: 12px;
+  height: 12px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  border-radius: 40px;
+  background-color: rgba(248, 154, 28, 1);
+}
+
+/*Chat*/
+
+.chatbox {
+  background-color: rgba(248, 248, 248, 1);
+  box-shadow: 0px 0px 5px rgba(186, 186, 186, 0.14);
+  border-radius: 8px;
+}
+
+.details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px 16px;
+  border-bottom: 2px solid rgba(245, 245, 245, 1);
+  background-color: white;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.user p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(43, 43, 43, 0.8);
+}
+
+.user span {
+  font-size: 12px;
+  font-weight: 300;
+  color: rgba(43, 43, 43, 0.8);
+}
+
+.circle {
+  width: 3px;
+  height: 3px;
+  border-radius: 3px;
+  background-color: rgba(43, 43, 43, 0.65);
+}

@@ -21,7 +21,7 @@ import {
 import img from "../../../assets/Dashboard/Content/img2.png";
 dayjs.extend(customParseFormat);
 
-export default function Content({ Programme, visitors, totalVisitors, logs }) {
+export default function Content({ Programme, totalVisitors, logs }) {
   const [selectedTime, setSelectedTime] = useState("All time");
   const [isTime, setIsTime] = useState(false);
   const [chartData, setChartData] = useState([]);

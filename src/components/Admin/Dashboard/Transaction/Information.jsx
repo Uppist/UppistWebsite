@@ -7,10 +7,11 @@ import right from "../../../../assets/Dashboard/Icon.svg";
 import csv from "../../../../assets/Dashboard/csv.svg";
 import menu from "../../../../assets/Dashboard/menu.png";
 import Buttons from "./Buttons";
-// import { useNavigate } from "react-router-dom";
 import ViewMore from "./ViewMore";
+import Settings from "./Settings/Settings";
+import Agent from "./LiveAgent/Agent";
 
-export default function Transaction({
+export default function Information({
   logs = [],
   isActive,
   view,
@@ -116,8 +117,10 @@ export default function Transaction({
     filteredLogs = filteredLogs.filter((l) => l.platform === "web");
   }
 
-  // Sort newest → oldest
-  filteredLogs.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+  +(
+    // Sort newest → oldest
+    filteredLogs.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
+  );
 
   const totalPages = Math.ceil(filteredLogs.length / itemsPerPage);
   // const startIndex = (currentPage - 1) * itemsPerPage;
@@ -193,6 +196,10 @@ export default function Transaction({
           onClose={() => setView(false)}
           isActive={isActive}
         />
+      ) : isActive === "agent" ? (
+        <Agent />
+      ) : isActive === "setting" ? (
+        <Settings />
       ) : (
         <div className={styles.transaction}>
           <div className={styles.log}>

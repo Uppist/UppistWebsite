@@ -125,7 +125,7 @@ export default function ViewMore({ selectedLog, onClose, isActive }) {
           ))}{" "}
         </ol>
       </div>
-      <ToastContainer className={styles.toasify} />
+      <ToastContainer className={styles.toastify} />
     </div>
   );
 }
