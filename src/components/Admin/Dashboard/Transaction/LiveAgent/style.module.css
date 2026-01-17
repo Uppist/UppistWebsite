@@ -95,6 +95,21 @@
   background-color: rgba(177, 44, 26, 0.8);
 }
 
+.cancel {
+}
+
+.close {
+  padding: 14px 70px;
+  border-radius: 4px;
+  background-color: rgba(248, 154, 28, 1);
+  font-family: "Inter";
+  border: none;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 .toast :global(.Toastify__toast-theme--light) {
   background-color: rgba(0, 200, 81, 1) !important;
   color: white !important;

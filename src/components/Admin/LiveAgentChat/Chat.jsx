@@ -2,8 +2,39 @@
 
 import React from "react";
 import styles from "./style.module.css";
+import Reassign from "./Reassign";
+import CloseChat from "./CloseChat";
 
 export default function Chat() {
+  const [openSvg, setOpenSvg] = React.useState(false);
+  const [reassignAgent, setReassignAgent] = React.useState(false);
+  const [closeChat, setCloseChat] = React.useState(false);
+  function handleMenu() {
+    setOpenSvg((prev) => !prev);
+  }
+
+  function handleReassign() {
+    setReassignAgent((prev) => !prev);
+  }
+
+  function handleCloseChat() {
+    setCloseChat((prev) => !prev);
+  }
+
+  React.useEffect(() => {
+    function handleClickOutside(event) {
+      if (!event.target.closest(`.${styles.chatbox}`)) {
+        setOpenSvg(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className={styles.chatbox}>
       <div className={styles.details}>
@@ -26,6 +57,8 @@ export default function Chat() {
           <span>Website visitor</span>
         </div>
         <svg
+          onClick={handleMenu}
+          className={styles.toggle}
           width='2'
           height='13'
           viewBox='0 0 2 13'
@@ -45,6 +78,62 @@ export default function Chat() {
             fill='black'
           />
         </svg>
+
+        {openSvg && (
+          <div className={styles.menu}>
+            <p onClick={handleCloseChat}>
+              <svg
+                width='20'
+                height='20'
+                viewBox='0 0 24 24'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path
+                  d='M6.75806 17.2428L12.0011 11.9998L17.2441 17.2428M17.2441 6.75684L12.0001 11.9998L6.75806 6.75684'
+                  stroke='#1D2E2E'
+                  strokeWidth='1.5'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                />
+              </svg>
+              Close Chat
+            </p>
+            {closeChat && (
+              <CloseChat
+                onClose={() => {
+                  setReassignAgent(false);
+                  setOpenSvg(false);
+                }}
+              />
+            )}
+            <p onClick={handleReassign}>
+              <svg
+                width='17'
+                height='17'
+                viewBox='0 0 17 17'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path
+                  d='M8.33334 0C6.68516 0 5.07399 0.488742 3.70358 1.40442C2.33318 2.3201 1.26507 3.62159 0.634341 5.1443C0.0036107 6.66702 -0.161417 8.34258 0.160126 9.95909C0.48167 11.5756 1.27534 13.0605 2.44078 14.2259C3.60622 15.3913 5.09108 16.185 6.70758 16.5065C8.32409 16.8281 9.99965 16.6631 11.5224 16.0323C13.0451 15.4016 14.3466 14.3335 15.2622 12.9631C16.1779 11.5927 16.6667 9.98151 16.6667 8.33333C16.6667 7.23898 16.4511 6.15535 16.0323 5.1443C15.6135 4.13326 14.9997 3.2146 14.2259 2.44078C13.4521 1.66696 12.5334 1.05313 11.5224 0.634337C10.5113 0.215548 9.42769 0 8.33334 0ZM8.33334 15C6.56523 15 4.86953 14.2976 3.61929 13.0474C2.36905 11.7971 1.66667 10.1014 1.66667 8.33333C1.66483 6.85279 2.16085 5.41462 3.075 4.25L12.4167 13.5917C11.252 14.5058 9.81388 15.0018 8.33334 15ZM13.5917 12.4167L4.25 3.075C5.41462 2.16085 6.85279 1.66483 8.33334 1.66667C10.1014 1.66667 11.7971 2.36905 13.0474 3.61929C14.2976 4.86953 15 6.56522 15 8.33333C15.0018 9.81388 14.5058 11.252 13.5917 12.4167Z'
+                  fill='#2B2B2B'
+                  fillOpacity='0.8'
+                />
+              </svg>
+              Reassign
+            </p>
+
+            {reassignAgent && (
+              <Reassign
+                onClose={() => {
+                  setReassignAgent(false);
+                  setOpenSvg(false);
+                }}
+              />
+            )}
+          </div>
+        )}
       </div>
       <div className={styles.messages}></div>
     </div>

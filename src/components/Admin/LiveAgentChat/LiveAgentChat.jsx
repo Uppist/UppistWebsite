@@ -28,8 +28,8 @@ export default function LiveAgentChat({ onClose }) {
         <div className={styles.div1}>
           <img src={profile} alt='' />
           <div className={styles.name}>
-            <p>Sarah Collins</p>
-            <span>sarahcollins@gmail.com</span>
+            <p>Adebayo Adekunle</p>
+            <span>adebayoadekunle@gmail.com</span>
           </div>
         </div>
         <div className={styles.name}>
