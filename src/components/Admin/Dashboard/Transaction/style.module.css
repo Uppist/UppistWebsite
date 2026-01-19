@@ -26,6 +26,15 @@
 .div {
   display: flex;
   gap: 24px;
+  flex-wrap: wrap;
+  justify-content: end;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
 }
 
 .time {
@@ -41,6 +50,8 @@
   align-items: center;
   gap: 8px;
   cursor: pointer;
+  position: relative;
+  text-transform: capitalize;
 }
 .csv {
   background-color: hsla(34, 94%, 54%, 1);
@@ -55,6 +66,7 @@
   align-items: center;
   gap: 8px;
   cursor: pointer;
+  width: fit-content;
 }
 
 .tableRow {
@@ -87,6 +99,20 @@
   font-size: 16px;
   font-weight: 600;
   color: hsla(0, 0%, 26%, 1);
+}
+
+.userInfo div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.userInfo div p {
+  margin: 0;
+  text-transform: capitalize;
+  font-size: 8px;
+  font-weight: 300;
+  color: rgba(43, 43, 43, 0.8);
 }
 
 .userInfo2 span {
@@ -144,6 +170,13 @@
   gap: 16px;
 }
 
+.span2 {
+  font-family: "Inter";
+  font-size: 16px;
+  font-weight: 600;
+  color: hsla(0, 0%, 26%, 1);
+}
+
 .logs::-webkit-scrollbar {
   display: none;
 }
@@ -169,19 +202,17 @@
 }
 
 .dropdownTime {
-  position: absolute;
-  top: -56%;
-  left: 50%;
-  right: 190px;
+  position: fixed;
+  top: 0%;
+  left: 0;
+  right: 0;
   bottom: 0;
   display: flex;
-  align-items: center;
-  justify-content: center;
   z-index: 1000;
 }
 
 .overlay {
-  position: fixed;
+  position: absolute;
   top: 0px;
   left: 0px;
   right: 0;
@@ -190,10 +221,10 @@
   transition: opacity 1.3s;
 }
 
-.copy {
+.copy,
+.copy2 {
   position: absolute;
-  /* top: 120%; Appears just below the icon */
-  right: 0;
+  right: 210px;
   background-color: white;
   padding: 12px 16px;
   border-radius: 8px;
@@ -202,9 +233,18 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin-top: 119px;
 }
 
-.copy span {
+.copy2 {
+  right: 360px;
+  padding: 24px 16px;
+  gap: 32px;
+  width: 165px;
+}
+
+.copy span,
+.copy2 span {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -213,6 +253,7 @@
   color: hsla(180, 23%, 15%, 0.8);
   font-family: "Inter";
   cursor: pointer;
+  text-transform: capitalize;
 }
 
 /*Buttons*/
@@ -358,6 +399,11 @@
   .transaction {
     left: 0;
     background-color: white;
+    margin-top: 60px;
+  }
+
+  .div {
+    justify-content: flex-start;
   }
 
   .time {
@@ -392,10 +438,21 @@
 
   .dropdownTime {
     top: -30%;
-    right: 285px;
+    right: 0;
     left: 0;
   }
 
+  .copy,
+  .copy2 {
+    margin-top: 480px;
+    right: 45px;
+  }
+
+  .copy2 {
+    right: 120px;
+    padding: 16px;
+    gap: 24px;
+  }
   .table {
     display: flex;
     flex-direction: column;

@@ -18,6 +18,7 @@ import Dashboard from "./components/Admin/Dashboard/Dashboard";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import useIsMobile from "./hooks/useIsMobile";
 import styles from "./App.module.css"; // Import the CSS module
+import Content from "./components/Admin/Dashboard/Content";
 
 function AppContent() {
   const location = useLocation();
@@ -42,12 +43,16 @@ function AppContent() {
             <Route path='/blogs/:id' element={<BlogDetail />} />
             <Route path='/services/creative' element={<Creative />} />
             {/* <Route path='/admin' element={<Admin />} /> */}
-            <Route path='/login' element={<Login />} />
-            <Route path='/dashboard' element={<Dashboard />} />
+
             <Route path='/services/technology' element={<Technology />} />
           </Routes>
         </main>
         {!adminRoutes.includes(location.pathname) && <Footer />}
+        {/*Admin Login and other routes */}
+        <Routes>
+          <Route path='/login' element={<Login />} />
+          <Route path='/dashboard' element={<Dashboard />} />
+        </Routes>
       </div>
     </>
   );

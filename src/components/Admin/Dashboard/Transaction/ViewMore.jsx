@@ -70,6 +70,19 @@ export default function ViewMore({ selectedLog, onClose, isActive }) {
             </div>
           </div>
         )}
+        {isActive == "social" && (
+          <div className={styles.viewmore}>
+            <div className={styles.more}>
+              <span>Name:</span>
+              <h2>{selectedLog[0].username}</h2>
+            </div>
+
+            {/* <div className={styles.more}>
+              <span>Email Address:</span>
+              <h2>{selectedLog[0].email}</h2>
+            </div> */}
+          </div>
+        )}
         <hr />{" "}
         <ol>
           {selectedLog.map((data, index) => (
@@ -96,7 +109,7 @@ export default function ViewMore({ selectedLog, onClose, isActive }) {
                   <ContentCopyIcon
                     onClick={() => {
                       navigator.clipboard.writeText(
-                        `User_prompt:${data.prompt}, AI_response: ${data.response}, date:${data.timestamp}`
+                        `User_prompt:${data.prompt}, AI_response: ${data.response}, date:${data.timestamp}`,
                       );
                       toast.success("copied");
                     }}
@@ -111,7 +124,7 @@ export default function ViewMore({ selectedLog, onClose, isActive }) {
                   <span
                     onClick={() => {
                       navigator.clipboard.writeText(
-                        `User_prompt:${data.prompt}, AI_response: ${data.response}, date:${data.timestamp}`
+                        `User_prompt:${data.prompt}, AI_response: ${data.response}, date:${data.timestamp}`,
                       );
                       toast.success("copied");
                     }}

@@ -219,3 +219,88 @@
 .delete {
   color: #d31717 !important;
 }
+
+@media only screen and (max-width: 768px) {
+  .settings {
+    left: 0;
+    top: 97px;
+    background-color: white;
+  }
+  .settings > span {
+    font-size: 20px;
+    font-weight: 600;
+    color: rgba(43, 43, 43, 0.8);
+  }
+
+  .svg2 {
+    border: none;
+  }
+
+  .mobileSettings {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .header {
+    width: -webkit-fill-available;
+    border: 1px solid rgba(225, 231, 231, 1);
+    border-radius: 8px;
+  }
+
+  .header > button {
+    border: none;
+    border-top: 1px solid rgba(225, 231, 231, 1);
+    padding: 16px 112px;
+    width: -webkit-fill-available;
+    background-color: transparent;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(248, 154, 28, 1);
+    font-family: "Inter";
+    cursor: pointer;
+  }
+
+  .user {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 16px 30px 16px;
+  }
+
+  .userDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .detail {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 16px;
+    border-bottom: 1px solid rgba(225, 231, 231, 1);
+  }
+
+  .detail:nth-child(1) {
+    border-top: 1px solid rgba(225, 231, 231, 1);
+  }
+
+  .detail p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(43, 43, 43, 1);
+  }
+
+  .detail span {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(43, 43, 43, 1);
+  }
+
+  .user > span {
+    font-size: 16px;
+    color: rgba(67, 67, 67, 1);
+    font-weight: 600;
+  }
+}

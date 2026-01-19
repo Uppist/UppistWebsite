@@ -53,23 +53,23 @@ export default function Dashboard() {
   const whatsappVisitors = new Set(
     logs
       .filter((item) => item.platform === "whatsapp")
-      .map((item) => item.phone_number)
+      .map((item) => item.phone_number),
   ).size;
 
   const total_web_prompt_query = logs.filter(
-    (item) => item.platform === "web" && item.prompt
+    (item) => item.platform === "web" && item.prompt,
   ).length;
 
   const total_whatsapp_prompt_query = logs.filter(
-    (item) => item.platform === "whatsapp" && item.prompt
+    (item) => item.platform === "whatsapp" && item.prompt,
   ).length;
 
   const total_web_ai_responses = logs.filter(
-    (item) => item.platform === "web" && item.response
+    (item) => item.platform === "web" && item.response,
   ).length;
 
   const total_whatsapp_ai_responses = logs.filter(
-    (item) => item.platform === "whatsapp" && item.response
+    (item) => item.platform === "whatsapp" && item.response,
   ).length;
 
   const totalVisitors = visitors + whatsappVisitors;

@@ -165,3 +165,43 @@
   color: white;
   opacity: 1;
 }
+
+@media only screen and (max-width: 768px) {
+  .adduser > svg {
+    display: none;
+  }
+
+  .adduser {
+    padding: 24px;
+    width: 312px;
+    align-items: center;
+  }
+
+  .email {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .container h3 {
+    font-size: 16px;
+  }
+
+  .container > span {
+    color: rgba(51, 47, 50, 1);
+    width: 81%;
+    font-size: 14px;
+  }
+
+  .container button {
+    width: 80%;
+  }
+
+  .addrole {
+    margin-left: 0;
+    width: 80%;
+  }
+
+  .div1 {
+    gap: 16px;
+  }
+}

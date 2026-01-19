@@ -29,14 +29,14 @@ export default function Navbar({
             {isActive === "log"
               ? "Website Logs"
               : isActive === "whatsapp"
-              ? "Whatsapp Logs"
-              : isActive === "social"
-              ? "Social Media Logs"
-              : isActive === "agent"
-              ? "Live Agents"
-              : isActive === "setting"
-              ? "Settings"
-              : "Dashboard"}
+                ? "Whatsapp Logs"
+                : isActive === "social"
+                  ? "Social Media Logs"
+                  : isActive === "agent"
+                    ? "Live Agents"
+                    : isActive === "setting"
+                      ? "Settings"
+                      : "Dashboard"}
           </nav>
         )}
         <img src={Uppist} alt='UppistLogo' />
