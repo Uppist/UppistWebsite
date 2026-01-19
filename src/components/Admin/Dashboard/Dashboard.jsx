@@ -15,6 +15,7 @@ import img6 from "../../../assets/Dashboard/Content/img6.png";
 import img7 from "../../../assets/Dashboard/Content/img7.png";
 import img8 from "../../../assets/Dashboard/Content/img8.png";
 import Information from "./Transaction/Information";
+import Loader from "../Loader";
 
 export default function Dashboard() {
   const [transactionLog, setTransactionLog] = useState(false);
@@ -47,6 +48,13 @@ export default function Dashboard() {
 
     fetchLogs();
   }, []);
+  const [pageLoading, setPageLoading] = useState(false);
+
+  useEffect(() => {
+    setPageLoading(true);
+    const t = setTimeout(() => setPageLoading(false), 1500);
+    return () => clearTimeout(t);
+  }, [transactionLog, isActive]);
 
   const visitors = new Set(logs.map((item) => item.email)).size;
   const validEmailCount = new Set(logs.map((item) => item.email));
@@ -122,12 +130,16 @@ export default function Dashboard() {
   return (
     <>
       <div className={styles.dashboard}>
-        <Navbar
-          resetDashboard={resetDashboard}
-          isActive={isActive}
-          setIsActive={setIsActive}
-          handlechatBot={handlechatBot}
-        />
+        {pageLoading ? (
+          <Loader />
+        ) : (
+          <Navbar
+            resetDashboard={resetDashboard}
+            isActive={isActive}
+            setIsActive={setIsActive}
+            handlechatBot={handlechatBot}
+          />
+        )}
         <SideBar
           setIsActive={setIsActive}
           isActive={isActive}
@@ -136,10 +148,13 @@ export default function Dashboard() {
           handlechatBot={handlechatBot}
         />
 
-        {transactionLog ? (
+        {pageLoading ? (
+          <Loader />
+        ) : transactionLog ? (
           <Information
             logs={logs}
             loading={loading}
+            pageLoading={pageLoading}
             view={view}
             setView={setView}
             isActive={isActive}

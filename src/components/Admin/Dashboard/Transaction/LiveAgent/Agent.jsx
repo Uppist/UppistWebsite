@@ -7,6 +7,7 @@ import right from "../../../../../assets/Dashboard/Icon.svg";
 import settingStyle from "../Settings/style.module.css";
 import DeleteUser from "./DeleteUser";
 import LiveAgentChat from "../../../LiveAgentChat/LiveAgentChat";
+import Loader from "../../../Loader";
 
 export default function Agent() {
   const [isTime, setIsTime] = useState(false);
@@ -16,9 +17,16 @@ export default function Agent() {
   const [viewUser, setViewUser] = useState(false);
 
   const [isDelete, setIsDelete] = useState(false);
+  const [viewLoading, setViewLoading] = useState(false);
 
   function handleView() {
-    setViewUser(true);
+    setViewLoading(true);
+
+    setTimeout(() => {
+      setViewUser(true);
+      // setView(true);
+      setViewLoading(false);
+    }, 1500); // loader duration
   }
 
   function handleDelete(e) {
@@ -60,6 +68,7 @@ export default function Agent() {
 
   return (
     <div className={styles.agent}>
+      {viewLoading && <Loader />}
       {viewUser ? (
         <LiveAgentChat
           onClose={() => {

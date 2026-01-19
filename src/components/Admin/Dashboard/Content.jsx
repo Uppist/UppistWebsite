@@ -48,27 +48,31 @@ export default function Content({ Programme, totalVisitors, logs }) {
       switch (selectedTime) {
         case "Today":
           return logDate.toDateString() === now.toDateString();
-        case "Yesterday":
+        case "Yesterday": {
           const yest = new Date();
           yest.setDate(now.getDate() - 1);
           return logDate.toDateString() === yest.toDateString();
-        case "This week":
+        }
+        case "This week": {
           const firstDay = new Date(now);
           firstDay.setDate(now.getDate() - now.getDay());
           return logDate >= firstDay;
-        case "Last 7 days":
+        }
+        case "Last 7 days": {
           const last7 = new Date();
           last7.setDate(now.getDate() - 6);
           return logDate >= last7;
+        }
         case "This month":
           return (
             logDate.getMonth() === now.getMonth() &&
             logDate.getFullYear() === now.getFullYear()
           );
-        case "Last 30 days":
+        case "Last 30 days": {
           const last30 = new Date();
           last30.setDate(now.getDate() - 29);
           return logDate >= last30;
+        }
         default:
           return true;
       }
@@ -108,7 +112,7 @@ export default function Content({ Programme, totalVisitors, logs }) {
 
         const webLogs = dayLogs.filter((log) => log.platform === "web");
         const whatsappLogs = dayLogs.filter(
-          (log) => log.platform === "whatsapp"
+          (log) => log.platform === "whatsapp",
         );
 
         last7Days.push({
@@ -291,7 +295,7 @@ export default function Content({ Programme, totalVisitors, logs }) {
                     <span>{log.user_name || "Unknown User"}</span>
                     <p>
                       {dayjs(log.timestamp, "YYYY-MM-DD / hh:mm A").format(
-                        "DD MMMM, YYYY"
+                        "DD MMMM, YYYY",
                       )}
                     </p>
                   </div>

@@ -10,6 +10,7 @@ import Buttons from "./Buttons";
 import ViewMore from "./ViewMore";
 import Settings from "./Settings/Settings";
 import Agent from "./LiveAgent/Agent";
+import Loader from "../../Loader";
 
 export default function Information({
   logs = [],
@@ -26,14 +27,20 @@ export default function Information({
   const [selectedTime, setSelectedTime] = useState("All Time");
 
   const [selectedLog, setSelectedLog] = useState(null);
+  const [viewLoading, setViewLoading] = useState(false);
 
   console.log("Valid Email Count in Transaction:", validEmailCount);
 
   function toggleView(data) {
-    setSelectedLog(data);
-    setView(!view);
-    // navigate("/view");
+    setViewLoading(true);
+
+    setTimeout(() => {
+      setSelectedLog(data);
+      setView(true);
+      setViewLoading(false);
+    }, 1500);
   }
+
   const itemsPerPage = 15;
 
   const Time = [
@@ -225,6 +232,7 @@ export default function Information({
 
   return (
     <>
+      {viewLoading && <Loader />}
       {view ? (
         <ViewMore
           selectedLog={selectedLog}
