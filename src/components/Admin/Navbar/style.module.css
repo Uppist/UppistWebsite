@@ -12,9 +12,29 @@
   font-family: "Inter";
 }
 
-.logo img,
-.logo svg {
+.logo > img,
+.logo > svg {
   display: none;
+}
+
+.navbar {
+  display: flex;
+  width: -webkit-fill-available;
+  justify-content: space-between;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-right: 60px;
+}
+
+.dropdown {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
 }
 
 .mobilenav {
