@@ -1,11 +1,12 @@
 /** @format */
 
-import React, { useState } from "react";
+import React from "react";
 import styles from "./style.module.css";
 import { useLocation } from "react-router-dom";
 import MobileNav from "./MobileNav";
 import Uppist from "../../../assets/uppist.png";
 import dom from "../../../assets/Dashboard/dom.svg";
+import ProfileDropdown from "./ProfileDropdown";
 
 export default function Navbar({
   resetDashboard,
@@ -13,12 +14,18 @@ export default function Navbar({
   isActive,
   setIsActive,
 }) {
-  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+  const [isSidebarVisible, setIsSidebarVisible] = React.useState(false);
   function sideBar() {
     setIsSidebarVisible(true);
   }
   function onClose() {
     setIsSidebarVisible(false);
+  }
+
+  const [profileDropdown, setProfileDropdown] = React.useState(false);
+
+  function handleDropdown() {
+    setProfileDropdown(true);
   }
 
   const location = useLocation();
@@ -56,7 +63,7 @@ export default function Navbar({
                 />
               </svg>
 
-              <div className={styles.dropdown}>
+              <div className={styles.dropdown} onClick={handleDropdown}>
                 <img src={dom} alt='profile_picture' />
                 <svg
                   width='14'
@@ -72,9 +79,14 @@ export default function Navbar({
                   />
                 </svg>
               </div>
+
+              {profileDropdown && (
+                <ProfileDropdown onClose={() => setProfileDropdown(false)} />
+              )}
             </div>
           </div>
         )}
+
         <img src={Uppist} alt='UppistLogo' />
         {location.pathname === "/dashboard" &&
           location.pathname !== "/login" && (

@@ -18,7 +18,40 @@
 .div {
   display: flex;
   gap: 24px;
-  justify-content: end;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  color: #667185;
+  font-weight: 500;
+  font-family: "Inter";
+}
+
+.span {
+  padding-bottom: 6px;
+  border-bottom: 1.5px solid #ccd2db;
+  cursor: pointer;
+  width: 81px;
+  text-align: center;
+}
+
+.active {
+  color: #f89a1c;
+  padding-bottom: 6px;
+  border-bottom: 1.5px solid #f89a1c;
+  cursor: pointer;
+  width: 81px;
+  text-align: center;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  gap: 24px;
 }
 
 .time {
