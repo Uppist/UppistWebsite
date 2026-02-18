@@ -26,7 +26,11 @@ export default function SideBar({
           className={
             isActive === "dashboard" ? styles.active : styles.notactive
           }
-          onClick={() => setIsActive("dashboard")}
+          onClick={() => {
+            setIsActive("dashboard");
+            onClose;
+            onClose && onClose();
+          }}
         >
           <svg
             width='24'

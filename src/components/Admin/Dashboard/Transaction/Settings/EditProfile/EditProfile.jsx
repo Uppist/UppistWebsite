@@ -6,9 +6,20 @@ import dom from "../../../../../../assets/Dashboard/dom.svg";
 import styles from "./styles.module.css";
 import Edit from "./Edit";
 import ChangePassword from "./ChangePassword";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function EditProfile() {
   const [edit, setEdit] = React.useState(false);
+  const [image, setImage] = React.useState(null);
+
+  function handleImage(e) {
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      setImage(selectedFile);
+      console.log("Selected file:", selectedFile);
+      toast.success("Image uploaded successfully!");
+    }
+  }
 
   function handleEdit() {
     setEdit(true);
@@ -27,8 +38,16 @@ export default function EditProfile() {
         <div className={styles.edit}>
           <div className={styles.profile}>
             <div className={styles.image}>
-              <img src={dom} alt='' />
-              <div>
+              {image ? (
+                <img src={URL.createObjectURL(image)} alt='' />
+              ) : (
+                <>
+                  {" "}
+                  <img src={dom} alt='' />
+                </>
+              )}
+
+              <label htmlFor='img_upload'>
                 <svg
                   width='12'
                   height='12'
@@ -41,9 +60,18 @@ export default function EditProfile() {
                     fill='white'
                   />
                 </svg>
-              </div>
+                <input
+                  type='file'
+                  name=''
+                  onChange={handleImage}
+                  id='img_upload'
+                  accept='image/png, image/jpeg, image/img'
+                />
+              </label>
             </div>
+
             <p>Accepted file types: img, png, jpeg. Max size: 5mb</p>
+
             <button onClick={handleEdit}>
               {" "}
               <img src={editimg} alt='' />
@@ -72,8 +100,9 @@ export default function EditProfile() {
               <button onClick={handlePassword}>
                 Change password{" "}
                 <svg
-                  width='20'
-                  height='20'
+                  className={styles.svg}
+                  width='32'
+                  height='32'
                   viewBox='0 0 20 20'
                   fill='none'
                   xmlns='http://www.w3.org/2000/svg'
@@ -88,9 +117,12 @@ export default function EditProfile() {
                 </svg>
               </button>
 
-              {password && <ChangePassword />}
+              {password && (
+                <ChangePassword onClose={() => setPassword(false)} />
+              )}
             </div>
           </div>
+          <ToastContainer className={styles.toast} />
         </div>
       )}
     </>

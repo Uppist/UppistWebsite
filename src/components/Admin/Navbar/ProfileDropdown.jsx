@@ -4,7 +4,12 @@ import React from "react";
 import styles from "./style.module.css";
 import dom from "../../../assets/Dashboard/dom.svg";
 
-export default function ProfileDropdown({ onClose }) {
+export default function ProfileDropdown({ onClose, setIsActive, setView }) {
+  function handleEdit() {
+    setIsActive("setting");
+    setView(true);
+    onClose();
+  }
   return (
     <div className={styles.profiledropdown}>
       <div className={styles.overlaydropdown} onClick={onClose}></div>
@@ -16,7 +21,7 @@ export default function ProfileDropdown({ onClose }) {
               <span className={styles.ronaldname}>Sarah Ossai</span>
               <span className={styles.email}>sarahossai@gmail.com</span>
             </div>
-            <button>Edit Profile</button>
+            <button onClick={handleEdit}>Edit Profile</button>
           </div>
           <hr className={styles.linehr} />
         </div>

@@ -16,6 +16,7 @@ import img7 from "../../../assets/Dashboard/Content/img7.png";
 import img8 from "../../../assets/Dashboard/Content/img8.png";
 import Information from "./Transaction/Information";
 import Loader from "../Loader";
+import Settings from "./Transaction/Settings/Settings";
 
 export default function Dashboard() {
   const [transactionLog, setTransactionLog] = useState(false);
@@ -138,6 +139,7 @@ export default function Dashboard() {
             isActive={isActive}
             setIsActive={setIsActive}
             handlechatBot={handlechatBot}
+            setView={setView}
           />
         )}
         <SideBar
@@ -150,6 +152,8 @@ export default function Dashboard() {
 
         {pageLoading ? (
           <Loader />
+        ) : view && isActive === "setting" ? (
+          <Settings onClose={() => setView(false)} />
         ) : transactionLog ? (
           <Information
             logs={logs}

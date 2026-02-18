@@ -51,10 +51,11 @@
 .image img {
   width: 120px;
   height: 120px;
+  border-radius: 100px;
   /* position: absolute; */
 }
 
-.image div {
+.image label {
   width: 35px;
   height: 35px;
   border-radius: 100px;
@@ -67,6 +68,15 @@
   margin-top: -35px;
   position: relative;
   /* position: absolute; */
+}
+
+.image label svg {
+  cursor: pointer;
+}
+
+.image label input {
+  opacity: 0;
+  position: absolute;
 }
 
 .info {
@@ -107,7 +117,7 @@
   font-weight: 500;
 }
 
-.password button {
+.password > button {
   background-color: transparent;
   color: #f89a1c;
   font-size: 14px;
@@ -121,7 +131,7 @@
   position: relative;
 }
 
-.password svg {
+.svg {
   rotate: 180deg;
 }
 
@@ -242,17 +252,19 @@
 
 /**Change password*/
 
-.profiledropdown {
+.dropdown {
   position: fixed;
-  top: 0;
-  left: 0px;
+  top: 0%;
+  left: 0;
   right: 0;
   bottom: 0;
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 1000;
 }
 
-.overlaydropdown {
+.overlay {
   position: absolute;
   top: 0px;
   left: 0px;
@@ -260,4 +272,99 @@
   bottom: 0;
   background: rgba(0, 0, 0, 0.1);
   transition: opacity 1.3s;
+}
+
+.password_label {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 90px;
+  background-color: white;
+  border-radius: 8px;
+  padding: 59px 100px;
+  align-items: end;
+}
+
+.password_label svg {
+  cursor: pointer;
+  display: flex;
+  align-items: end;
+}
+
+.password_input {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 470px;
+}
+
+.password_input > label {
+  font-size: 20px;
+  font-weight: 600;
+  color: #f89a1c;
+  font-family: "Inter";
+  text-align: center;
+}
+
+.password_div {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.password_div div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: "Inter";
+}
+
+.password_div div label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #2b2b2b;
+}
+
+.password_div div input {
+  padding: 16px;
+  border: 1px solid #d0d5dd;
+  font-size: 14px;
+  font-weight: 500;
+  color: #101928;
+  border-radius: 6px;
+}
+
+.password_div div input:focus {
+  outline: none;
+}
+
+.password_div div span {
+  font-size: 14px;
+  font-weight: 400;
+  color: #de3730;
+  display: flex;
+  cursor: pointer;
+  justify-content: end;
+}
+
+.password_div button {
+  margin-top: 8px;
+  padding: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Inter";
+  background-color: #f89a1c;
+  color: white;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+}
+
+.password_div button:disabled {
+  background-color: #e5e5e5;
+  color: #afafaf;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Inter";
+  cursor: not-allowed;
 }

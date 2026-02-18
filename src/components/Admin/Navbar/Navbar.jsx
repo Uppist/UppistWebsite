@@ -12,6 +12,7 @@ export default function Navbar({
   resetDashboard,
   handlechatBot,
   isActive,
+  setView,
   setIsActive,
 }) {
   const [isSidebarVisible, setIsSidebarVisible] = React.useState(false);
@@ -81,7 +82,11 @@ export default function Navbar({
               </div>
 
               {profileDropdown && (
-                <ProfileDropdown onClose={() => setProfileDropdown(false)} />
+                <ProfileDropdown
+                  onClose={() => setProfileDropdown(false)}
+                  setIsActive={setIsActive}
+                  setView={setView}
+                />
               )}
             </div>
           </div>
