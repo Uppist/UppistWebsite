@@ -3,10 +3,8 @@
 import React, { useEffect, useState } from "react";
 import time from "../../../../../assets/Dashboard/time.svg";
 import right from "../../../../../assets/Dashboard/Icon.svg";
-
 import styles from "./style.module.css";
 import AddUser from "./AddUser/AddUser";
-import DeleteUser from "../LiveAgent/DeleteUser";
 import MobileSettings from "./MobileSettings";
 import Menu from "./Menu";
 

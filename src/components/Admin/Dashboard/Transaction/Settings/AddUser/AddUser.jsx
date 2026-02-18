@@ -21,7 +21,7 @@ export default function AddUser({ onClose }) {
   }
 
   function Send() {
-    toast.success("New agent added successfully");
+    toast.success("Link sent successfully");
 
     setTimeout(() => {
       onClose();

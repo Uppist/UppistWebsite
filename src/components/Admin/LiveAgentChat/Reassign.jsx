@@ -51,8 +51,7 @@ export default function Reassign({ onClose }) {
             forwarded to another agent.
           </span>
           <div className={styles.div1}>
-            <div className={styles.email}>
-              <label htmlFor=''>Role</label>
+            <div className={styles.email2}>
               <div className={styles.role} onClick={() => setAddRole(!addrole)}>
                 {selectedRole}{" "}
                 <svg
@@ -71,7 +70,7 @@ export default function Reassign({ onClose }) {
               </div>
 
               {addrole && (
-                <div className={styles.addrole}>
+                <div className={styles.addrole2}>
                   {Role.map((data, index) => (
                     <span key={index} onClick={() => handleClick(data)}>
                       {data}
