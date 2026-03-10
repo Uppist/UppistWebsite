@@ -91,7 +91,7 @@
 .role {
   padding: 14px 24px;
   border: 1px solid rgba(204, 196, 200, 1);
-  width: 230px;
+  width: -webkit-fill-available;
   font-family: "Inter";
   border-radius: 4px;
 }
@@ -198,7 +198,7 @@
 
   .adduser {
     padding: 24px;
-    width: 312px;
+    width: 62%;
     align-items: center;
   }
 
@@ -213,8 +213,8 @@
 
   .container > span {
     color: rgba(51, 47, 50, 1);
-    width: 81%;
-    font-size: 14px;
+    width: 70%;
+    font-size: 12px;
   }
 
   .container button {
@@ -228,5 +228,10 @@
 
   .div1 {
     gap: 16px;
+  }
+
+  .email input,
+  .role input {
+    width: auto;
   }
 }

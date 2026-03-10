@@ -2,7 +2,6 @@
 
 .settings {
   position: absolute;
-  left: 274px;
   width: -webkit-fill-available;
   top: 65px;
   background-color: hsla(0, 0%, 96%, 1);
@@ -20,6 +19,7 @@
   gap: 24px;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .profile {
@@ -142,7 +142,7 @@
   height: -webkit-fill-available;
   border-radius: 10px;
   border: 1px solid rgba(240, 242, 245, 1);
-  padding: 16px 100px 16px 16px;
+  padding: 16px;
   gap: 32px;
 }
 
@@ -237,8 +237,8 @@
   color: rgba(51, 47, 50, 1);
   margin-top: 35px;
   right: 0;
-  z-index: 1000;
-  width: 120px;
+  /* z-index: 1000; */
+  width: 130px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
@@ -251,6 +251,16 @@
 
 .delete {
   color: #d31717 !important;
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1200px) {
+  .role,
+  .role2 {
+    grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+  }
+  .role span {
+    font-size: 11px;
+  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -300,6 +310,10 @@
     padding: 16px 16px 30px 16px;
   }
 
+  .div2 {
+    border: none;
+  }
+
   .userDetails {
     display: flex;
     flex-direction: column;
@@ -335,5 +349,8 @@
     font-size: 16px;
     color: rgba(67, 67, 67, 1);
     font-weight: 600;
+  }
+  .csv {
+    padding: 8px 24px;
   }
 }

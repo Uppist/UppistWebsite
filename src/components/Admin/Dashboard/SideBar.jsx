@@ -9,11 +9,8 @@ export default function SideBar({
   resetDashboard,
   handlechatBot,
   isActive,
-  setIsActive,
-  onClose,
+  handleClick,
 }) {
-  console.log(handlechatBot);
-
   return (
     <div className={styles.sidebar}>
       <img src={Uppist2} alt='UppistLogo' />
@@ -27,9 +24,7 @@ export default function SideBar({
             isActive === "dashboard" ? styles.active : styles.notactive
           }
           onClick={() => {
-            setIsActive("dashboard");
-            onClose;
-            onClose && onClose();
+            handleClick("dashboard");
           }}
         >
           <svg
@@ -62,11 +57,16 @@ export default function SideBar({
 
         {/* Website Log */}
         <div
-          className={isActive === "log" ? styles.active : styles.notactive}
+          className={
+            isActive === "website_logs" ? styles.active : styles.notactive
+          }
+          // onClick={() => {
+          //   setIsActive("log");
+          //   onClose;
+          //   onClose && onClose();
+          // }}
           onClick={() => {
-            setIsActive("log");
-            onClose;
-            onClose && onClose();
+            handleClick("website_logs");
           }}
         >
           <svg
@@ -105,11 +105,11 @@ export default function SideBar({
 
         {/* Whatsapp Chatbot Log */}
         <div
-          className={isActive === "whatsapp" ? styles.active : styles.notactive}
+          className={
+            isActive === "whatsapp_logs" ? styles.active : styles.notactive
+          }
           onClick={() => {
-            setIsActive("whatsapp");
-            onClose;
-            onClose && onClose();
+            handleClick("whatsapp_logs");
           }}
         >
           <svg
@@ -137,11 +137,11 @@ export default function SideBar({
 
         {/* Social Media Log */}
         <div
-          className={isActive === "social" ? styles.active : styles.notactive}
+          className={
+            isActive === "social_media_logs" ? styles.active : styles.notactive
+          }
           onClick={() => {
-            setIsActive("social");
-            onClose;
-            onClose && onClose();
+            handleClick("social_media_logs");
           }}
         >
           <svg
@@ -162,11 +162,11 @@ export default function SideBar({
 
         {/* Live Agents */}
         <div
-          className={isActive === "agent" ? styles.active : styles.notactive}
+          className={
+            isActive === "live_agents" ? styles.active : styles.notactive
+          }
           onClick={() => {
-            setIsActive("agent");
-            onClose;
-            onClose && onClose();
+            handleClick("live_agents");
           }}
         >
           <svg
@@ -220,11 +220,9 @@ export default function SideBar({
 
         {/* Settings*/}
         <div
-          className={isActive === "setting" ? styles.active : styles.notactive}
+          className={isActive === "settings" ? styles.active : styles.notactive}
           onClick={() => {
-            setIsActive("setting");
-            onClose;
-            onClose && onClose();
+            handleClick("settings");
           }}
         >
           <svg

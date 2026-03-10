@@ -4,7 +4,7 @@ import React from "react";
 import styles from "./style.module.css";
 import DeleteUser from "../LiveAgent/DeleteUser";
 
-export default function Menu({ menu, handleClick, setMenu }) {
+export default function Menu({ menu, handleClick, setMenu, active }) {
   const [isDelete, setIsDelete] = React.useState(false);
 
   function handleDelete(e) {
@@ -52,7 +52,7 @@ export default function Menu({ menu, handleClick, setMenu }) {
                 fill-opacity='0.8'
               />
             </svg>
-            Suspend User
+            Suspend Agent
           </span>
           <span className={styles.delete} onClick={handleDelete}>
             {" "}
@@ -69,7 +69,7 @@ export default function Menu({ menu, handleClick, setMenu }) {
                 fill-opacity='0.8'
               />
             </svg>
-            Delete User
+            Delete Agent
           </span>
 
           {isDelete && (
@@ -77,6 +77,7 @@ export default function Menu({ menu, handleClick, setMenu }) {
               onClose={() => {
                 setIsDelete(false);
                 setMenu(false);
+                active = { active };
               }}
             />
           )}

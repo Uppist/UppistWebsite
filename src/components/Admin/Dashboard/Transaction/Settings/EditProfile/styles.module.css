@@ -368,3 +368,45 @@
   font-family: "Inter";
   cursor: not-allowed;
 }
+
+@media only screen and (min-width: 769px) and (max-width: 1200px) {
+}
+@media only screen and (max-width: 768px) {
+  .name {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .edit {
+    margin-top: 0;
+    margin-bottom: 0;
+    gap: 24px;
+  }
+
+  .password > button {
+    gap: 0;
+  }
+
+  .info {
+    margin-top: 60px;
+  }
+
+  .input_field {
+    width: -webkit-fill-available;
+  }
+
+  .profile p {
+    width: 50%;
+  }
+
+  .password_label {
+    padding: 24px;
+    gap: 35px;
+    width: 50%;
+  }
+
+  .password_input {
+    width: 100%;
+  }
+}

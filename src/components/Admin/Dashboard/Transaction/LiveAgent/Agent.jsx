@@ -69,6 +69,7 @@ export default function Agent() {
 
   return (
     <div className={styles.agent}>
+      {mobileView && <span>Live Agent</span>}
       {viewLoading && <Loader />}
       {viewUser ? (
         <LiveAgentChat
@@ -76,6 +77,7 @@ export default function Agent() {
             setViewUser(false);
             setMenu(false);
           }}
+          viewLoading={viewLoading}
         />
       ) : (
         <>
@@ -125,7 +127,16 @@ export default function Agent() {
               <input type='Search' name='' placeholder='Search here...' id='' />
             </div>
             {mobileView ? (
-              <MobileAgent />
+              <MobileAgent
+                menu={menu}
+                handleDelete={handleDelete}
+                menuRef={menuRef}
+                handleView={handleView}
+                isDelete={isDelete}
+                setIsDelete={setIsDelete}
+                setMenu={setMenu}
+                handleClick={handleClick}
+              />
             ) : (
               <div className={settingStyle.div3}>
                 <div className={settingStyle.role}>

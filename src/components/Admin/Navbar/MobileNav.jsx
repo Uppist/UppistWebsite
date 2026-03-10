@@ -12,6 +12,7 @@ export default function MobileNav({
   handlechatBot,
   isActive,
   setIsActive,
+  handleClick,
 }) {
   // const [isActive, setIsActive] = useState(null);
   return (
@@ -59,8 +60,7 @@ export default function MobileNav({
             isActive === "dashboard" ? styles.active : styles.notactive
           }
           onClick={() => {
-            setIsActive("dashboard");
-            onClose();
+            handleClick("dashboard");
           }}
         >
           <svg
@@ -93,11 +93,11 @@ export default function MobileNav({
 
         {/* Website Log */}
         <div
-          className={isActive === "log" ? styles.active : styles.notactive}
+          className={
+            isActive === "website_logs" ? styles.active : styles.notactive
+          }
           onClick={() => {
-            setIsActive("log");
-            onClose();
-            onClose && onClose();
+            handleClick("website_logs");
           }}
         >
           <svg
@@ -136,11 +136,11 @@ export default function MobileNav({
 
         {/* Whatsapp Chatbot Log */}
         <div
-          className={isActive === "whatsapp" ? styles.active : styles.notactive}
+          className={
+            isActive === "whatsapp_logs" ? styles.active : styles.notactive
+          }
           onClick={() => {
-            setIsActive("whatsapp");
-            onClose();
-            onClose && onClose();
+            handleClick("whatsapp_logs");
           }}
         >
           <svg
@@ -168,11 +168,11 @@ export default function MobileNav({
 
         {/* Social Media Log */}
         <div
-          className={isActive === "social" ? styles.active : styles.notactive}
+          className={
+            isActive === "social_media_logs" ? styles.active : styles.notactive
+          }
           onClick={() => {
-            setIsActive("social");
-            onClose;
-            onClose && onClose();
+            handleClick("social_media_logs");
           }}
         >
           <svg
@@ -193,11 +193,11 @@ export default function MobileNav({
 
         {/* Live Agents */}
         <div
-          className={isActive === "agent" ? styles.active : styles.notactive}
+          className={
+            isActive === "live_agents" ? styles.active : styles.notactive
+          }
           onClick={() => {
-            setIsActive("agent");
-            onClose;
-            onClose && onClose();
+            handleClick("live_agents");
           }}
         >
           <svg
@@ -251,11 +251,9 @@ export default function MobileNav({
 
         {/* Settings*/}
         <div
-          className={isActive === "setting" ? styles.active : styles.notactive}
+          className={isActive === "settings" ? styles.active : styles.notactive}
           onClick={() => {
-            setIsActive("setting");
-            onClose;
-            onClose && onClose();
+            handleClick("settings");
           }}
         >
           <svg

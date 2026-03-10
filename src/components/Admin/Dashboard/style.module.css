@@ -3,6 +3,12 @@
 .mobileDashboard {
   display: none;
 }
+
+.dash {
+  position: absolute;
+  left: 274px;
+  width: -webkit-fill-available;
+}
 .nav {
   position: absolute;
   left: 274px;
@@ -90,7 +96,6 @@ a {
 
 .content {
   position: absolute;
-  left: 274px;
   width: -webkit-fill-available;
   top: 65px;
   background-color: hsla(0, 0%, 96%, 1);
@@ -98,7 +103,7 @@ a {
 
   display: flex;
   flex-direction: column;
-  gap: 49px;
+  gap: 25px;
 }
 
 .dropdown {
@@ -211,9 +216,9 @@ a {
 
 .programmeRevenue {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(268px, 1fr));
-  padding: 24px 0;
-  gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  /* padding: 24px 0; */
+  gap: 16px;
 }
 
 .visitors {
@@ -245,20 +250,15 @@ a {
   display: flex;
   cursor: pointer;
   flex-direction: column;
-  gap: 10px;
+  gap: 46px;
   background-color: hsla(0, 0%, 100%, 0.5);
   padding: 24px;
   border-radius: 14px;
   border: 1px solid hsla(218, 17%, 91%, 1);
+  justify-content: space-between;
 }
 
-.text img,
-.visitors img {
-  width: 46px;
-  margin-bottom: 20px;
-}
-
-.text span {
+.text div span {
   font-size: 14px;
   font-weight: 300;
   color: hsla(218, 38%, 60%, 1);
@@ -269,12 +269,13 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-direction: row-reverse;
 }
 
-.text div span {
-  font-size: 28px;
+.text span {
+  font-size: 21px;
   font-weight: 600;
-  color: hsla(0, 0%, 26%, 1);
+  color: #434343;
   font-family: "Inter";
 }
 
@@ -294,7 +295,8 @@ a {
 .chartSection {
   display: flex;
   align-items: center;
-  gap: 100px;
+  gap: 50px;
+  margin-top: 37px;
 }
 
 .chartHeader {
@@ -374,10 +376,36 @@ a {
   color: hsla(0, 0%, 17%, 1);
 }
 
+@media only screen and (min-width: 769px) and (max-width: 1200px) {
+  .chartSection {
+    flex-direction: column;
+  }
+
+  .recentVisitors {
+    width: -webkit-fill-available;
+  }
+
+  .sidebar {
+    width: 250px;
+  }
+
+  .content {
+    left: 243px;
+  }
+
+  .dash {
+    left: 10px;
+  }
+}
+
 @media only screen and (max-width: 768px) {
   /* .dashboard {
     display: none;
   } */
+
+  .dash {
+    left: 0;
+  }
 
   .mobileDashboard {
     display: block;
@@ -427,7 +455,4 @@ a {
   .recentVisitors label {
     font-size: 20px;
   }
-}
-
-@media only screen and (min-width: 769px) and (max-width: 1200px) {
 }

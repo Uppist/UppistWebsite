@@ -4,24 +4,13 @@ import React, { useEffect, useState } from "react";
 import styles from "./style.module.css";
 import time from "../../../assets/Dashboard/time.svg";
 import right from "../../../assets/Dashboard/Icon.svg";
+// import img1 from "../../../assets/Dashboard/Content/img1.png";
+import Chart from "./Chart";
 import dayjs from "dayjs";
-import img1 from "../../../assets/Dashboard/Content/img1.png";
-import customParseFormat from "dayjs/plugin/customParseFormat";
-import {
-  BarChart,
-  Bar,
-  ResponsiveContainer,
-  XAxis,
-  YAxis,
-  Tooltip,
-  CartesianGrid,
-  Legend,
-} from "recharts";
 
-import img from "../../../assets/Dashboard/Content/img2.png";
-dayjs.extend(customParseFormat);
+// import img from "../../../assets/Dashboard/Content/img2.png";
 
-export default function Content({ Programme, totalVisitors, logs }) {
+export default function Content({ Programme, logs }) {
   const [selectedTime, setSelectedTime] = useState("All time");
   const [isTime, setIsTime] = useState(false);
   const [chartData, setChartData] = useState([]);
@@ -114,11 +103,19 @@ export default function Content({ Programme, totalVisitors, logs }) {
         const whatsappLogs = dayLogs.filter(
           (log) => log.platform === "whatsapp",
         );
+        const socialLogs = dayLogs.filter(
+          (log) =>
+            log.platform === "instagram" ||
+            log.platform === "facebook" ||
+            log.platform === "x",
+        );
+
+        const totalActivity =
+          webLogs.length + whatsappLogs.length + socialLogs.length;
 
         last7Days.push({
           day: date.format("ddd"),
-          web: webLogs.length,
-          whatsapp: whatsappLogs.length,
+          activity: totalActivity,
         });
       }
 
@@ -135,9 +132,33 @@ export default function Content({ Programme, totalVisitors, logs }) {
         const dateB = dayjs(b.timestamp, "YYYY-MM-DD / hh:mm A");
         return dateB - dateA;
       })
-      .slice(0, 5);
+      .slice(0, 2);
 
-    setRecentWebLogs(recentWeb);
+    const recentWhatsApp = filteredLogs
+      .filter((log) => log.platform === "whatsapp")
+      .sort((a, b) => {
+        const dateA = dayjs(a.timestamp, "YYYY-MM-DD / hh:mm A");
+        const dateB = dayjs(b.timestamp, "YYYY-MM-DD / hh:mm A");
+        return dateB - dateA;
+      })
+      .slice(0, 1);
+
+    const recentSocial = filteredLogs
+      .filter(
+        (log) =>
+          log.platform === "instagram" ||
+          log.platform === "facebook" ||
+          log.platform === "x",
+      )
+      .sort((a, b) => {
+        const dateA = dayjs(a.timestamp, "YYYY-MM-DD / hh:mm A");
+        const dateB = dayjs(b.timestamp, "YYYY-MM-DD / hh:mm A");
+        return dateB - dateA;
+      })
+      .slice(0, 1);
+
+    const combinedRecent = [...recentWeb, ...recentWhatsApp, ...recentSocial];
+    setRecentWebLogs(combinedRecent);
   }, [logs, selectedTime]);
 
   const closeTime = () => setIsTime(false);
@@ -169,17 +190,6 @@ export default function Content({ Programme, totalVisitors, logs }) {
       </div>
 
       <div className={styles.programmeRevenue}>
-        <div
-          className={isActive === "Visitors" ? styles.visitors : styles.text}
-          onClick={() => setIsActive("Visitors")}
-        >
-          <img src={img1} alt='' />
-          <span>Absolute Total Visitors</span>
-          <div>
-            <span>{totalVisitors}</span>
-          </div>
-        </div>
-
         {Programme.map((data, index) => (
           <div
             className={
@@ -188,123 +198,16 @@ export default function Content({ Programme, totalVisitors, logs }) {
             onClick={() => setIsActive(`Programme${index}`)}
             key={index}
           >
-            <img src={data.img} alt='' />
-            <span>{data.title}</span>
             <div>
-              <span>{data.amount}</span>
+              <img src={data.img} alt='' />
+              <span>{data.title}</span>
             </div>
+
+            <span>{data.amount}</span>
           </div>
         ))}
       </div>
-
-      <div className={styles.chartSection}>
-        <div className={styles.chartHeader}>
-          <label htmlFor=''>Weekely Activity</label>{" "}
-          <div
-            style={{
-              backgroundColor: "white",
-              borderRadius: "24px",
-              // padding: "10px",
-            }}
-          >
-            <ResponsiveContainer width='100%' height='100%'>
-              <BarChart
-                width={500}
-                height={300}
-                data={chartData}
-                margin={{ top: 20, right: 30, left: 0, bottom: 5 }}
-                barGap={12}
-                style={{ border: "none", outline: "none" }}
-                barCategoryGap='25%'
-                backgroundColor='white'
-                borderRadius='24px'
-                className={styles.bar}
-              >
-                <CartesianGrid
-                  strokeDasharray='0'
-                  stroke='#E0E0E0'
-                  vertical={false}
-                />
-                <XAxis
-                  dataKey='day'
-                  stroke={false}
-                  tick={{ fill: "#718EBF", fontSize: 13, fontWeight: 400 }}
-                  fontFamily='Inter'
-                  axisLine={false}
-                />
-                <Legend
-                  verticalAlign='top'
-                  align='right'
-                  wrapperStyle={{
-                    textTransform: "capitalize",
-                    borderRadius: "8px",
-                    fontSize: "12px",
-                    marginTop: "-17px",
-                  }}
-                />
-
-                <YAxis
-                  stroke={false}
-                  tick={{ fill: "#999", fontSize: 12 }}
-                  axisLine={false}
-                  fontFamily='Inter'
-                />
-
-                <Tooltip
-                  contentStyle={{
-                    backgroundColor: "#fff",
-                    border: "1px solid #ddd",
-                    borderRadius: "8px",
-                    padding: "10px",
-                    fontFamily: "Inter",
-                    fontSize: "14px",
-                  }}
-                  cursor={{ fill: "rgba(136, 132, 200, 0.1)" }}
-                  wrapperStyle={{ cursor: "pointer" }}
-                />
-
-                <Bar
-                  dataKey='web'
-                  fill='#F89A1C'
-                  radius={[8, 8, 8, 8]}
-                  maxBarSize={50}
-                />
-
-                <Bar
-                  dataKey='whatsapp'
-                  fill='#16DBCC'
-                  radius={[8, 8, 8, 8]}
-                  maxBarSize={50}
-                />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-          {/* </ResponsiveContainer> */}
-        </div>
-
-        <div className={styles.recentVisitors}>
-          <label>Recent Website Visitors</label>
-          {recentWebLogs.length === 0 ? (
-            <p>No recent website visitors</p>
-          ) : (
-            <div className={styles.recentWebsite}>
-              {recentWebLogs.map((log, index) => (
-                <div key={index} className={styles.visitorItem}>
-                  <img src={img} alt='' />
-                  <div>
-                    <span>{log.user_name || "Unknown User"}</span>
-                    <p>
-                      {dayjs(log.timestamp, "YYYY-MM-DD / hh:mm A").format(
-                        "DD MMMM, YYYY",
-                      )}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      </div>
+      <Chart chartData={chartData} recentWebLogs={recentWebLogs} />
     </div>
   );
 }

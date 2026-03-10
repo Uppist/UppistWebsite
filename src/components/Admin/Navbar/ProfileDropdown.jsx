@@ -3,11 +3,13 @@
 import React from "react";
 import styles from "./style.module.css";
 import dom from "../../../assets/Dashboard/dom.svg";
+import { useNavigate } from "react-router-dom";
 
-export default function ProfileDropdown({ onClose, setIsActive, setView }) {
+export default function ProfileDropdown({ onClose, setIsActive }) {
+  const navigate = useNavigate();
   function handleEdit() {
-    setIsActive("setting");
-    setView(true);
+    setIsActive("settings");
+    navigate("/dashboard/settings");
     onClose();
   }
   return (

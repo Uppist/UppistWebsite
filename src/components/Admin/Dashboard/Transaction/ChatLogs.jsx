@@ -143,9 +143,9 @@ export default function Information({
   let filteredLogs = filterByTime(logs);
   let filteredBySocial = filterBySocial(filteredLogs);
 
-  if (isActive === "whatsapp") {
+  if (isActive === "whatsapp_logs") {
     filteredLogs = filteredLogs.filter((l) => l.platform === "whatsapp");
-  } else if (isActive === "log") {
+  } else if (isActive === "website_logs") {
     filteredLogs = filteredLogs.filter((l) => l.platform === "web");
   } else {
     filteredLogs = filteredBySocial;
@@ -164,12 +164,12 @@ export default function Information({
     return acc;
   }, {});
 
-  console.log("Grouped Logs:", groupedLogs);
+  // console.log("Grouped Logs:", groupedLogs);
 
   // CSV Export
   const downloadCSV = () => {
-    const isWhatsApp = isActive === "whatsapp";
-    const isSocials = isActive === "social";
+    const isWhatsApp = isActive === "whatsapp_logs";
+    const isSocials = isActive === "social_media_logs";
 
     const headers = isWhatsApp
       ? ["Phone Number", "Prompt", "Response", "Date/Time"]
@@ -239,15 +239,11 @@ export default function Information({
           onClose={() => setView(false)}
           isActive={isActive}
         />
-      ) : isActive === "agent" ? (
-        <Agent />
-      ) : isActive === "setting" ? (
-        <Settings />
       ) : (
         <div className={styles.transaction}>
           <div className={styles.div}>
             <div className={styles.filters}>
-              {isActive === "social" && (
+              {isActive === "social_media_logs" && (
                 <button
                   className={styles.time}
                   onClick={() => setAllSocials(!allSocials)}
@@ -310,7 +306,7 @@ export default function Information({
                     const firstLog = userLogs[0];
                     return (
                       <div className={styles.name} key={index}>
-                        {isActive === "log" && (
+                        {isActive === "website_logs" && (
                           <>
                             <div className={styles.userInfo}>
                               <span>{firstLog.user_name}</span>
@@ -343,7 +339,7 @@ export default function Information({
                           </>
                         )}
 
-                        {isActive === "whatsapp" && (
+                        {isActive === "whatsapp_logs" && (
                           <>
                             <div className={styles.userInfo}>
                               <span>
@@ -378,7 +374,7 @@ export default function Information({
                           </>
                         )}
 
-                        {isActive === "social" && (
+                        {isActive === "social_media_logs" && (
                           <>
                             <div className={styles.userInfo}>
                               <div>

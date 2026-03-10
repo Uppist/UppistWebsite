@@ -12,7 +12,7 @@ export default function Navbar({
   resetDashboard,
   handlechatBot,
   isActive,
-  setView,
+  handleClick,
   setIsActive,
 }) {
   const [isSidebarVisible, setIsSidebarVisible] = React.useState(false);
@@ -36,13 +36,13 @@ export default function Navbar({
         {location.pathname !== "/login" && (
           <div className={styles.navbar}>
             <nav className={styles.nav}>
-              {isActive === "log"
+              {isActive === "website_logs"
                 ? "Website Logs"
-                : isActive === "whatsapp"
+                : isActive === "whatsapp_logs"
                   ? "Whatsapp Logs"
-                  : isActive === "social"
+                  : isActive === "social_media_logs"
                     ? "Social Media Logs"
-                    : isActive === "agent"
+                    : isActive === "live_agents"
                       ? "Live Agents"
                       : isActive === "setting"
                         ? "Settings"
@@ -85,7 +85,6 @@ export default function Navbar({
                 <ProfileDropdown
                   onClose={() => setProfileDropdown(false)}
                   setIsActive={setIsActive}
-                  setView={setView}
                 />
               )}
             </div>
@@ -93,7 +92,7 @@ export default function Navbar({
         )}
 
         <img src={Uppist} alt='UppistLogo' />
-        {location.pathname === "/dashboard" &&
+        {location.pathname.includes("/dashboard") &&
           location.pathname !== "/login" && (
             <svg
               onClick={sideBar}
@@ -133,6 +132,7 @@ export default function Navbar({
           handlechatBot={handlechatBot}
           isActive={isActive}
           setIsActive={setIsActive}
+          handleClick={handleClick}
         />
       </div>
     </>

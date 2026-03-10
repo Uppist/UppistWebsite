@@ -5,8 +5,10 @@ import styles from "./style.module.css";
 import profile from "../../../assets/profile.svg";
 import Email from "./Email";
 import Chat from "./Chat";
+import Loader from "../Loader";
 
 export default function LiveAgentChat({ onClose }) {
+  const mobileView = window.innerWidth <= 768;
   return (
     <div className={styles.chat}>
       <button className={styles.back} onClick={onClose}>
@@ -32,14 +34,16 @@ export default function LiveAgentChat({ onClose }) {
             <span>adebayoadekunle@gmail.com</span>
           </div>
         </div>
-        <div className={styles.name}>
-          <p>5</p>
-          <span>Active Chats</span>
-        </div>
-        <div className={styles.name}>
-          {" "}
-          <p>3</p>
-          <span>Closed Chats</span>
+        <div className={styles.activeChat}>
+          <div className={styles.name1}>
+            <p>5</p>
+            <span>Active Chats{mobileView && ":"}</span>
+          </div>
+          <div className={styles.name1}>
+            {" "}
+            <p>3</p>
+            <span>Closed Chats{mobileView && ":"} </span>
+          </div>
         </div>
       </div>
 

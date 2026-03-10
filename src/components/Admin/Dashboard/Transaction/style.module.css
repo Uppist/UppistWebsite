@@ -2,7 +2,6 @@
 
 .transaction {
   position: absolute;
-  left: 274px;
   width: -webkit-fill-available;
   top: 65px;
   background-color: hsla(0, 0%, 96%, 1);
@@ -403,11 +402,13 @@
   }
 
   .div {
-    justify-content: flex-start;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
   }
 
   .time {
     position: relative;
+    box-shadow: 0px 5px 7px rgba(0, 0, 0, 0.02);
   }
 
   .mobiletransaction {
@@ -444,14 +445,16 @@
 
   .copy,
   .copy2 {
-    margin-top: 480px;
-    right: 45px;
+    margin-top: 436px;
+    right: 85px;
   }
 
   .copy2 {
-    right: 120px;
-    padding: 16px;
-    gap: 24px;
+    right: 205px;
+    padding: 14px;
+    gap: 18px;
+    margin-top: 439px;
+    width: 140px;
   }
   .table {
     display: flex;

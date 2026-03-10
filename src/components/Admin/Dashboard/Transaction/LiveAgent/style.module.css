@@ -2,7 +2,6 @@
 
 .agent {
   position: absolute;
-  left: 274px;
   width: -webkit-fill-available;
   top: 65px;
   background-color: hsla(0, 0%, 96%, 1);
@@ -11,6 +10,12 @@
   flex-direction: column;
   gap: 24px;
   font-family: "Inter";
+}
+
+.agent > span {
+  font-size: 20px;
+  color: rgba(43, 43, 43, 0.8);
+  font-weight: 600;
 }
 
 .dropdown {
@@ -57,6 +62,14 @@
   color: rgba(43, 43, 43, 1);
 }
 
+.delete .user {
+  color: rgba(43, 43, 43, 1);
+}
+
+.delete .agent2 {
+  color: rgba(248, 154, 28, 1);
+}
+
 .container {
   display: flex;
   align-items: center;
@@ -67,6 +80,18 @@
   padding: 14px 70px;
   border-radius: 4px;
   background-color: rgba(177, 44, 26, 1);
+  color: white;
+  border: none;
+  font-family: "Inter";
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.button11 {
+  background-color: rgba(248, 154, 28, 1);
+  padding: 14px 70px;
+  border-radius: 4px;
   color: white;
   border: none;
   font-family: "Inter";
@@ -130,11 +155,18 @@
   opacity: 1;
 }
 
+@media only screen and (min-width: 769px) and (max-width: 1090px) {
+  .agent {
+    left: 250px;
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .agent {
     left: 0;
     top: 97px;
     padding: 16px;
+    /* background-color: white; */
   }
 
   .delete {
@@ -147,5 +179,9 @@
 
   .container {
     flex-direction: column;
+  }
+
+  .chat {
+    gap: 12px;
   }
 }

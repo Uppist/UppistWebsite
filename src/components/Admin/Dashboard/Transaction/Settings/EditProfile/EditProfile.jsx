@@ -23,6 +23,7 @@ export default function EditProfile() {
 
   function handleEdit() {
     setEdit(true);
+    // setActive("edit");
   }
 
   const [password, setPassword] = React.useState(false);
@@ -101,8 +102,8 @@ export default function EditProfile() {
                 Change password{" "}
                 <svg
                   className={styles.svg}
-                  width='32'
-                  height='32'
+                  width='24'
+                  height='24'
                   viewBox='0 0 20 20'
                   fill='none'
                   xmlns='http://www.w3.org/2000/svg'

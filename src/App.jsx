@@ -13,24 +13,25 @@ import Technology from "./components/Service/Technology/Technology";
 import Footer from "./components/Footer/Footer";
 import Logo from "./components/AIChatbot/Logo";
 import Login from "./components/Admin/Login/Login";
-import Dashboard from "./components/Admin/Dashboard/Dashboard";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import useIsMobile from "./hooks/useIsMobile";
 import styles from "./App.module.css"; // Import the CSS module
+import { DashboardRoute } from "./Routes/DashboardRoutes";
 
 function AppContent() {
   const location = useLocation();
-  const adminRoutes = ["/admin", "/login", "/dashboard"];
+  const adminRoutes =
+    location.pathname.startsWith("/dashboard") ||
+    location.pathname === "/login";
   const isMobile = useIsMobile();
 
   return (
     <>
-      {!adminRoutes.includes(location.pathname) && <Logo />}
+      {!adminRoutes && <Logo />}
       <div id='app-scroll' className={styles.app}>
         {" "}
         {/* Apply the class */}
-        {!adminRoutes.includes(location.pathname) &&
-          (isMobile ? <HeaderMobile /> : <Header />)}
+        {!adminRoutes && (isMobile ? <HeaderMobile /> : <Header />)}
         <main>
           <Routes>
             <Route path='/' element={<Home />} />
@@ -44,11 +45,11 @@ function AppContent() {
             <Route path='/services/technology' element={<Technology />} />
           </Routes>
         </main>
-        {!adminRoutes.includes(location.pathname) && <Footer />}
+        {!adminRoutes && <Footer />}
         {/*Admin Login and other routes */}
         <Routes>
           <Route path='/login' element={<Login />} />
-          <Route path='/dashboard' element={<Dashboard />} />
+          {DashboardRoute}
         </Routes>
       </div>
     </>
