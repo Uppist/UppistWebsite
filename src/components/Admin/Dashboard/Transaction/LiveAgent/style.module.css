@@ -1,7 +1,10 @@
 /** @format */
 
 .agent {
-  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  /* position: absolute;
   width: -webkit-fill-available;
   top: 65px;
   background-color: hsla(0, 0%, 96%, 1);
@@ -9,13 +12,14 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-  font-family: "Inter";
+  font-family: "Inter"; */
 }
 
 .agent > span {
   font-size: 20px;
   color: rgba(43, 43, 43, 0.8);
   font-weight: 600;
+  font-family: "Inter";
 }
 
 .dropdown {
@@ -100,6 +104,10 @@
   cursor: pointer;
 }
 
+.button11:hover {
+  opacity: 0.5;
+}
+
 .button2 {
   padding: 14px 70px;
   border-radius: 4px;
@@ -155,6 +163,14 @@
   opacity: 1;
 }
 
+.div {
+  display: flex;
+  gap: 24px;
+  justify-content: end;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 @media only screen and (min-width: 769px) and (max-width: 1090px) {
   .agent {
     left: 250px;
@@ -164,9 +180,15 @@
 @media only screen and (max-width: 768px) {
   .agent {
     left: 0;
-    top: 97px;
-    padding: 16px;
+    margin-top: 115px;
+    padding: 35px 10px;
+    background-color: white;
+    height: 100vh;
     /* background-color: white; */
+  }
+
+  .agent > span {
+    margin-bottom: -65px;
   }
 
   .delete {
@@ -179,6 +201,11 @@
 
   .container {
     flex-direction: column;
+  }
+
+  .div {
+    position: relative;
+    top: 75px;
   }
 
   .chat {

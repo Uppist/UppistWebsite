@@ -3,13 +3,14 @@
 import React, { useState } from "react";
 import styles from "./style.module.css";
 import { toast, ToastContainer } from "react-toastify";
+import axios from "axios";
 
 export default function AddUser({ onClose }) {
   const [addrole, setAddRole] = useState(false);
   const [selectedRole, setSelectedRole] = useState("Add role");
   const [email, setEmail] = useState("");
 
-  const Role = ["Super Admin", "Manager", "Live Agent"];
+  const Role = ["Super Admin", "Admin", "Live Agent"];
 
   function handleClick(item) {
     setSelectedRole(item);
@@ -21,11 +22,55 @@ export default function AddUser({ onClose }) {
   }
 
   function Send() {
-    toast.success("Link sent successfully");
+    const token = localStorage.getItem("Token");
+    const data = { email: email, role: selectedRole };
 
-    setTimeout(() => {
-      onClose();
-    }, 1000);
+    if (token) {
+      axios
+        .post("http://139.162.173.87:2005/api/users", data, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          console.log(res.data);
+          alert(
+            `Email: ${res.data.user.email}\nPassword: ${res.data.initial_password}`,
+          );
+          toast.success(res.data.message);
+
+          setTimeout(() => {
+            onClose();
+          }, 2500);
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error(err.response.data.error);
+        });
+    }
+
+    // if (data.role === "Admin" && token) {
+    //   console.log(token);
+    //   // axios
+    //   //   .post("http://139.162.173.87:2005/api/superadmin/create-admin", data)
+    //   //   .then((res) => {
+    //   //     toast.success("Link sent successfully");
+    //   //     console.log(res.data);
+    //   //   })
+    //   //   .catch((err) => {
+    //   //     console.log(err);
+    //   //   });
+
+    //   // setTimeout(() => {
+    //   //   onClose();
+    //   // }, 1000);
+    // } else if (data.role === "Live Agent" && token) {
+    //
+
+    //   setTimeout(() => {
+    //     onClose();
+    //   }, 1000);
+    // }
   }
 
   const disabledLink = email.trim() !== "" && selectedRole !== "Add role";

@@ -1,10 +1,25 @@
 /** @format */
 
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./style.module.css";
 import profile from "../../../assets/profile2.svg";
+import { NavLink } from "react-router-dom";
+import useIsMobile from "../../../hooks/useIsMobile";
+import { UserDataContext } from "../UserDataContext";
+import dayjs from "dayjs";
 
-export default function Email() {
+export default function Email({ handleEmailClick, adminConversations }) {
+  const mobileView = useIsMobile();
+
+  const { userData, conversations } = useContext(UserDataContext);
+  console.log("Conversations in Email component:", adminConversations);
+
+  const userRole = userData?.user?.role;
+
+  const displayConversations =
+    userRole === "Live Agent" ? conversations : (adminConversations ?? []);
+
+  console.log(displayConversations);
   return (
     <div className={styles.email}>
       <div className={styles.search}>
@@ -28,19 +43,77 @@ export default function Email() {
       </div>
 
       <div>
-        <div className={styles.div1}>
-          <img src={profile} alt='' />
-          <div className={styles.name2}>
-            <div className={styles.name2span}>
-              <span>sarahcollins@gmail.com</span>
-              <p>10:30 am</p>
-            </div>
-            <div className={styles.name2p}>
-              <span>Hi, are you Available Tomorrow?</span>
-              <p>1</p>
-            </div>
+        {displayConversations.length === 0 ? (
+          <p>No conversations found</p>
+        ) : (
+          <div className={styles.div1}>
+            {!mobileView &&
+              displayConversations.map((email) => (
+                <>
+                  <div
+                    className={styles.name2}
+                    onClick={() => handleEmailClick(email)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    {" "}
+                    <img src={profile} alt='' />
+                    <div>
+                      <div className={styles.name2span}>
+                        <span>
+                          {email.user_email || email.user_name || email.id}
+                        </span>
+                        <p>
+                          {email.started_at
+                            ? dayjs(
+                                email.last_message_at,
+                                "YYYY-MM-DD HH:mm:ss",
+                              ).format("hh:mm A")
+                            : ""}
+                        </p>{" "}
+                      </div>
+                      <div className={styles.name2p}>
+                        <span>{email.summary.slice(0, 20)}...</span>
+                        <p>{email.unread}</p>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              ))}
+
+            {mobileView &&
+              displayConversations.map((email) => (
+                <>
+                  <div
+                    className={styles.name2}
+                    onClick={() => handleEmailClick(email)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    {" "}
+                    <img src={profile} alt='' />
+                    <div>
+                      <div className={styles.name2span}>
+                        <span>
+                          {email.user_email || email.user_name || email.id}
+                        </span>
+                        <p>
+                          {email.started_at
+                            ? dayjs(
+                                email.last_message_at,
+                                "YYYY-MM-DD HH:mm:ss",
+                              ).format("hh:mm A")
+                            : ""}
+                        </p>{" "}
+                      </div>
+                      <div className={styles.name2p}>
+                        <span>{email.summary.slice(0, 20)}...</span>
+                        <p>{email.unread}</p>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              ))}
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

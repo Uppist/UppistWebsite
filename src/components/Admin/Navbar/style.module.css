@@ -239,7 +239,7 @@
 
   .logo img,
   .logo svg {
-    display: block;
+    display: block !important;
   }
 
   .nav {
@@ -275,6 +275,7 @@
     font-weight: 500;
     font-family: "Inter";
     color: hsla(0, 0%, 17%, 0.8);
+    text-decoration: none;
   }
 
   .notactive span {
@@ -295,6 +296,7 @@
     font-family: "Inter";
     color: hsla(0, 0%, 17%, 0.8);
     cursor: pointer;
+    text-decoration: none;
   }
 
   .active svg {

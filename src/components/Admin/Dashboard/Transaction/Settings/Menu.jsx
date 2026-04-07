@@ -4,7 +4,14 @@ import React from "react";
 import styles from "./style.module.css";
 import DeleteUser from "../LiveAgent/DeleteUser";
 
-export default function Menu({ menu, handleClick, setMenu, active }) {
+export default function Menu({
+  menu,
+  handleClick,
+  id,
+  users,
+  setMenu,
+  active,
+}) {
   const [isDelete, setIsDelete] = React.useState(false);
 
   function handleDelete(e) {
@@ -13,7 +20,7 @@ export default function Menu({ menu, handleClick, setMenu, active }) {
   }
   return (
     <div className={styles.svg}>
-      <div className={styles.svg2} onClick={handleClick}>
+      <div className={styles.svg2} onClick={() => handleClick(id)}>
         <svg
           width='2'
           height='13'
@@ -36,7 +43,7 @@ export default function Menu({ menu, handleClick, setMenu, active }) {
         </svg>
       </div>
 
-      {menu && (
+      {menu === id && (
         <div className={styles.list}>
           <span>
             <svg
@@ -78,6 +85,7 @@ export default function Menu({ menu, handleClick, setMenu, active }) {
                 setIsDelete(false);
                 setMenu(false);
                 active = { active };
+                users = { users };
               }}
             />
           )}

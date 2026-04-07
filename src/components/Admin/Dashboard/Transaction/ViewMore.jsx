@@ -5,7 +5,9 @@ import styles from "./style.module.css";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-export default function ViewMore({ selectedLog, onClose, isActive }) {
+import { useParams } from "react-router-dom";
+export default function ViewMore({ selectedLog, onClose }) {
+  const { type } = useParams();
   if (!selectedLog) return null;
 
   const formatPhoneNumber = (num) => {
@@ -25,6 +27,7 @@ export default function ViewMore({ selectedLog, onClose, isActive }) {
     return num;
   };
 
+  console.log(type);
   console.log("Selected Log:", selectedLog);
   return (
     <div className={styles.transaction}>
@@ -49,7 +52,7 @@ export default function ViewMore({ selectedLog, onClose, isActive }) {
       </div>
 
       <div className={styles.container2}>
-        {isActive == "log" && (
+        {type === "website" && (
           <div className={styles.viewmore}>
             <div className={styles.more}>
               <span>Name:</span>
@@ -62,7 +65,7 @@ export default function ViewMore({ selectedLog, onClose, isActive }) {
             </div>
           </div>
         )}
-        {isActive === "whatsapp" && (
+        {type === "whatsapp" && (
           <div className={styles.viewmore}>
             <div className={styles.more}>
               <span>Phone Number:</span>
@@ -70,7 +73,7 @@ export default function ViewMore({ selectedLog, onClose, isActive }) {
             </div>
           </div>
         )}
-        {isActive == "social" && (
+        {type === "social_media" && (
           <div className={styles.viewmore}>
             <div className={styles.more}>
               <span>Name:</span>

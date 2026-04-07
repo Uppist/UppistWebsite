@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import SideBar from "./SideBar";
 import Content from "./Content";
@@ -13,12 +13,20 @@ import ChatLogs from "./Transaction/ChatLogs";
 import Loader from "../Loader";
 import styles from "./style.module.css";
 import Settings from "./Transaction/Settings/Settings";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Agent from "./Transaction/LiveAgent/Agent";
+import { UserDataContext } from "../UserDataContext";
 
 export default function Dashboard() {
-  // const [transactionLog, setTransactionLog] = useState(false);
-  const [isActive, setIsActive] = useState("dashboard");
+  const navigate = useNavigate();
+  const { userData } = useContext(UserDataContext);
+
+  useEffect(() => {
+    if (userData && userData.user?.role === null) {
+      navigate("/login");
+    }
+  }, [userData, navigate]);
+
   const [logs, setLogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [view, setView] = useState(false);
@@ -41,11 +49,17 @@ export default function Dashboard() {
   }, []);
   const [pageLoading, setPageLoading] = useState(false);
 
+  const location = useLocation();
+
   useEffect(() => {
     setPageLoading(true);
-    const t = setTimeout(() => setPageLoading(false), 1500);
+
+    const t = setTimeout(() => {
+      setPageLoading(false);
+    }, 1500);
+
     return () => clearTimeout(t);
-  }, [isActive]);
+  }, [location.pathname]);
 
   const visitors = new Set(logs.map((item) => item.email)).size;
   const validEmailCount = new Set(logs.map((item) => item.email));
@@ -119,35 +133,14 @@ export default function Dashboard() {
       title: "Total Visitors",
       amount: totalVisitors,
     },
-    // {
-    //   img: img2,
-    //   title: "Total Website Visitors",
-    //   amount: visitors,
-    // },
-    // {
-    //   img: img3,
 
-    //   title: "Total WhatsApp Visitors",
-    //   amount: whatsappVisitors,
-    // },
     {
       img: img4,
 
       title: "Total Prompt Queries",
       amount: total_prompt_query,
     },
-    // {
-    //   img: img5,
 
-    //   title: "Total WhatsApp AI Responses",
-    //   amount: total_whatsapp_ai_responses,
-    // },
-    // {
-    //   img: img6,
-
-    //   title: "Total Website Prompt Queries",
-    //   amount: total_web_prompt_query,
-    // },
     {
       img: img7,
 
@@ -162,14 +155,7 @@ export default function Dashboard() {
     },
   ];
 
-  const navigate = useNavigate();
-
-  function handleClick(tab) {
-    setIsActive(tab);
-    navigate(`/dashboard/${tab === "dashboard" ? "" : tab}`);
-
-    console.log(tab);
-  }
+  const mobileView = window.innerWidth <= 768;
 
   return (
     <div>
@@ -177,38 +163,43 @@ export default function Dashboard() {
         <Loader />
       ) : (
         <>
-          <SideBar isActive={isActive} handleClick={handleClick} />
+          <SideBar userData={userData} />
           <div className={styles.dash}>
-            <Navbar
-              isActive={isActive}
-              setIsActive={setIsActive}
-              handleClick={handleClick}
-            />
-            {isActive === "dashboard" && (
-              <Content
-                Programme={Programme}
-                logs={logs}
-                visitors={visitors}
-                totalVisitors={totalVisitors}
-              />
-            )}
-            {(isActive === "website_logs" ||
-              isActive === "whatsapp_logs" ||
-              isActive === "social_media_logs") && (
-              <ChatLogs
-                logs={logs}
-                loading={loading}
-                pageLoading={pageLoading}
-                view={view}
-                setView={setView}
-                isActive={isActive}
-                setIsActive={setIsActive}
-                validEmailCount={validEmailCount}
-              />
-            )}
+            <Navbar />
 
-            {isActive === "live_agents" && <Agent />}
-            {isActive === "settings" && <Settings />}
+            <div
+              style={
+                mobileView
+                  ? {
+                      backgroundColor: "hsla(0, 0%, 96%, 1)",
+                    }
+                  : {
+                      position: "absolute",
+                      width: "-webkit-fill-available",
+                      top: "65px",
+                      backgroundColor: "hsla(0, 0%, 96%, 1)",
+                      padding: "24px",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "24px",
+                      fontFamily: "Inter",
+                    }
+              }
+            >
+              <Outlet
+                context={{
+                  Programme,
+                  logs,
+                  visitors,
+                  totalVisitors,
+                  loading,
+                  pageLoading,
+                  view,
+                  setView,
+                  validEmailCount,
+                }}
+              />
+            </div>
           </div>
         </>
       )}

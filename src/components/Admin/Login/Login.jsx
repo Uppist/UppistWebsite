@@ -2,14 +2,14 @@
 
 import React, { useState } from "react";
 import styles from "./style.module.css";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+
 import Navbar from "../../Admin/Navbar/Navbar";
-import { toast } from "react-toastify";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import CircularProgress from "@mui/material/CircularProgress";
 import image from "../../../assets/Dashboard/login.png";
 import uppist from "../../../assets/uppist2.png";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Login() {
   const [logindetail, setLogindetail] = useState({
@@ -17,6 +17,7 @@ export default function Login() {
     password: "",
   });
   const [loading, setLoading] = useState(false);
+  // const [userData, setUserData] = useState([]);
 
   const data = {
     email: logindetail.email,
@@ -38,11 +39,15 @@ export default function Login() {
     setLoading(true);
 
     axios
-      .post("https://api.luround.com/v1/auth/login", data)
-      .then(() => {
+      .post("http://139.162.173.87:2005/api/auth/login", data)
+      .then((res) => {
         toast.success("Login successful");
+        localStorage.setItem("Token", res.data.token);
+
         setTimeout(() => {
+          // setUserData(res.data);
           navigate("/dashboard");
+          console.log(res.data);
         }, 2500);
         // window.location.reload();
       })
@@ -92,7 +97,7 @@ export default function Login() {
               {loading ? (
                 <CircularProgress size={24} color='inherit' />
               ) : (
-                "Login"
+                "Log in"
               )}
             </button>
           </form>

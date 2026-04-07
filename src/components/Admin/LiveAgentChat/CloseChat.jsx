@@ -4,14 +4,28 @@ import React from "react";
 import styles from "../Dashboard/Transaction/Settings/AddUser/style.module.css";
 import styles2 from "../Dashboard/Transaction/LiveAgent/style.module.css";
 import { toast, ToastContainer } from "react-toastify";
+import axios from "axios";
 
-export default function CloseChat({ onClose }) {
+export default function CloseChat({ onClose, conversation_id, onChatClosed }) {
   function Close() {
     toast.success("Chat closed successfully");
 
-    setTimeout(() => {
-      onClose();
-    }, 1500);
+    axios
+      .post(`http://139.162.173.87:2005/api/chat/close/${conversation_id}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("Token")}` },
+      })
+      .then((res) => {
+        console.log("Chat closed:", res.data);
+
+        setTimeout(() => {
+          onClose();
+          onChatClosed();
+        }, 1500);
+      })
+      .catch((err) => {
+        console.log("Error closing chat:", err);
+        toast.error("Failed to close chat. Please try again.");
+      });
   }
   return (
     <div className={styles.dropdown}>

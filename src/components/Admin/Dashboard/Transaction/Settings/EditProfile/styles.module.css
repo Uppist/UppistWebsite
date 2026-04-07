@@ -250,6 +250,27 @@
   opacity: 1;
 }
 
+.status {
+  position: relative;
+  background-color: white;
+  box-shadow: 0px 7px 5px hsla(0, 0%, 0%, 0.02);
+  padding: 8px 16px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+.option span {
+  cursor: pointer;
+}
+
 /**Change password*/
 
 .dropdown {

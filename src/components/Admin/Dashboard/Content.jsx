@@ -4,17 +4,22 @@ import React, { useEffect, useState } from "react";
 import styles from "./style.module.css";
 import time from "../../../assets/Dashboard/time.svg";
 import right from "../../../assets/Dashboard/Icon.svg";
-// import img1 from "../../../assets/Dashboard/Content/img1.png";
 import Chart from "./Chart";
 import dayjs from "dayjs";
+import { useOutletContext } from "react-router-dom";
+import useIsMobile from "../../../hooks/useIsMobile";
 
-// import img from "../../../assets/Dashboard/Content/img2.png";
-
-export default function Content({ Programme, logs }) {
+export default function Content() {
+  const { Programme, logs } = useOutletContext();
   const [selectedTime, setSelectedTime] = useState("All time");
+  const [selectedPlatform, setSelectedPlatform] = useState("All Platform");
+  const [isPlatform, setIsPlatform] = useState(false);
   const [isTime, setIsTime] = useState(false);
   const [chartData, setChartData] = useState([]);
   const [recentWebLogs, setRecentWebLogs] = useState([]);
+  const closeTime = () => setIsTime(false);
+  const closePlatform = () => setIsPlatform(false);
+  const mobileView = useIsMobile();
 
   const parseDate = (ts) => {
     if (!ts) return null;
@@ -68,6 +73,12 @@ export default function Content({ Programme, logs }) {
     });
   }
 
+  // function filterByPlatform(logs) {
+  //   if (selectedPlatform === "All Platform") return logs;
+  //   const platformKey = selectedPlatform.toLowerCase();
+  //   return logs.filter((log) => log.platform === platformKey);
+  // }
+
   const Time = [
     "Today",
     "Yesterday",
@@ -78,10 +89,24 @@ export default function Content({ Programme, logs }) {
     "All time",
   ];
 
-  const handleTime = (item) => {
+  const Platform = [
+    "Website",
+    "Whatsapp",
+    "Facebook",
+    "Instagram",
+    "X",
+    "All Platform",
+  ];
+
+  function handleTime(item) {
     setSelectedTime(item);
     setIsTime(false);
-  };
+  }
+
+  function handlePlatform(item) {
+    setSelectedPlatform(item);
+    setIsPlatform(false);
+  }
 
   useEffect(() => {
     if (!logs || logs.length === 0) return;
@@ -161,43 +186,56 @@ export default function Content({ Programme, logs }) {
     setRecentWebLogs(combinedRecent);
   }, [logs, selectedTime]);
 
-  const closeTime = () => setIsTime(false);
-
-  const [isActive, setIsActive] = useState("Visitors");
-
   return (
     <div className={styles.content}>
       <div className={styles.overview}>
-        <span>Overview</span>
+        <span>{mobileView ? "Dashboard" : "Overview"}</span>
 
-        <button className={styles.time} onClick={() => setIsTime(!isTime)}>
-          <img src={time} alt='' />
-          {selectedTime}
-          <img src={right} alt='' />
-        </button>
-        {isTime && (
-          <div className={styles.dropdownTime}>
-            <div className={styles.overlay} onClick={closeTime}></div>
-            <div className={styles.copy}>
-              {Time.map((item, index) => (
-                <span key={index} onClick={() => handleTime(item)}>
-                  {item}
-                </span>
-              ))}
+        <div style={{ display: "flex", alignItems: "center", gap: "19px" }}>
+          <button
+            className={styles.time}
+            onClick={() => setIsPlatform(!isPlatform)}
+          >
+            {selectedPlatform}
+            <img src={right} alt='' style={{ width: "15px" }} />
+          </button>
+
+          {isPlatform && (
+            <div className={styles.dropdownTime}>
+              <div className={styles.overlay} onClick={closePlatform}></div>
+              <div className={styles.copy2}>
+                {Platform.map((item, index) => (
+                  <span key={index} onClick={() => handlePlatform(item)}>
+                    {item}
+                  </span>
+                ))}
+              </div>
             </div>
-          </div>
-        )}
+          )}
+
+          <button className={styles.time} onClick={() => setIsTime(!isTime)}>
+            <img src={time} alt='' style={{ width: "15px" }} />
+            {selectedTime}
+            <img src={right} alt='' style={{ width: "15px" }} />
+          </button>
+          {isTime && (
+            <div className={styles.dropdownTime}>
+              <div className={styles.overlay} onClick={closeTime}></div>
+              <div className={styles.copy}>
+                {Time.map((item, index) => (
+                  <span key={index} onClick={() => handleTime(item)}>
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
 
       <div className={styles.programmeRevenue}>
         {Programme.map((data, index) => (
-          <div
-            className={
-              isActive === `Programme${index}` ? styles.visitors : styles.text
-            }
-            onClick={() => setIsActive(`Programme${index}`)}
-            key={index}
-          >
+          <div className={styles.text} key={index}>
             <div>
               <img src={data.img} alt='' />
               <span>{data.title}</span>

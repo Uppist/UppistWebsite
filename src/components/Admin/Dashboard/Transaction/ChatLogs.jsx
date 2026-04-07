@@ -11,14 +11,10 @@ import ViewMore from "./ViewMore";
 import Settings from "./Settings/Settings";
 import Agent from "./LiveAgent/Agent";
 import Loader from "../../Loader";
+import { useOutletContext, useParams } from "react-router-dom";
 
-export default function Information({
-  logs = [],
-  isActive,
-  view,
-  setView,
-  validEmailCount,
-}) {
+export default function Information() {
+  const { logs, view, setView } = useOutletContext();
   const [currentPage, setCurrentPage] = useState(1);
   const [isTime, setIsTime] = useState(false);
   const [allSocials, setAllSocials] = useState(false);
@@ -29,7 +25,7 @@ export default function Information({
   const [selectedLog, setSelectedLog] = useState(null);
   const [viewLoading, setViewLoading] = useState(false);
 
-  console.log("Valid Email Count in Transaction:", validEmailCount);
+  const { type } = useParams();
 
   function toggleView(data) {
     setViewLoading(true);
@@ -57,7 +53,7 @@ export default function Information({
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [logs, selectedTime, isActive]);
+  }, [logs, selectedTime, type]);
 
   const handleTime = (item) => {
     setSelectedTime(item);
@@ -143,14 +139,13 @@ export default function Information({
   let filteredLogs = filterByTime(logs);
   let filteredBySocial = filterBySocial(filteredLogs);
 
-  if (isActive === "whatsapp_logs") {
+  if (type === "whatsapp") {
     filteredLogs = filteredLogs.filter((l) => l.platform === "whatsapp");
-  } else if (isActive === "website_logs") {
+  } else if (type === "website") {
     filteredLogs = filteredLogs.filter((l) => l.platform === "web");
-  } else {
+  } else if (type === "social_media") {
     filteredLogs = filteredBySocial;
   }
-
   // Sort newest → oldest
   filteredLogs = filteredLogs || [];
   filteredLogs.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
@@ -168,8 +163,8 @@ export default function Information({
 
   // CSV Export
   const downloadCSV = () => {
-    const isWhatsApp = isActive === "whatsapp_logs";
-    const isSocials = isActive === "social_media_logs";
+    const isWhatsApp = type === "whatsapp";
+    const isSocials = type === "social_media";
 
     const headers = isWhatsApp
       ? ["Phone Number", "Prompt", "Response", "Date/Time"]
@@ -237,13 +232,20 @@ export default function Information({
         <ViewMore
           selectedLog={selectedLog}
           onClose={() => setView(false)}
-          isActive={isActive}
+          // location.pathname={location.pathname}
         />
       ) : (
         <div className={styles.transaction}>
+          <span className={styles.type}>
+            {type === "website"
+              ? "Website Log"
+              : type === "whatsapp"
+                ? "Whatsapp Log"
+                : "Social Media Log"}
+          </span>
           <div className={styles.div}>
             <div className={styles.filters}>
-              {isActive === "social_media_logs" && (
+              {type === "social_media" && (
                 <button
                   className={styles.time}
                   onClick={() => setAllSocials(!allSocials)}
@@ -306,7 +308,7 @@ export default function Information({
                     const firstLog = userLogs[0];
                     return (
                       <div className={styles.name} key={index}>
-                        {isActive === "website_logs" && (
+                        {type === "website" && (
                           <>
                             <div className={styles.userInfo}>
                               <span>{firstLog.user_name}</span>
@@ -339,7 +341,7 @@ export default function Information({
                           </>
                         )}
 
-                        {isActive === "whatsapp_logs" && (
+                        {type === "whatsapp" && (
                           <>
                             <div className={styles.userInfo}>
                               <span>
@@ -374,7 +376,7 @@ export default function Information({
                           </>
                         )}
 
-                        {isActive === "social_media_logs" && (
+                        {type === "social_media" && (
                           <>
                             <div className={styles.userInfo}>
                               <div>

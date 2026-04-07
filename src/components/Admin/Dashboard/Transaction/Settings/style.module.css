@@ -1,7 +1,7 @@
 /** @format */
 
 .settings {
-  position: absolute;
+  /* position: absolute;
   width: -webkit-fill-available;
   top: 65px;
   background-color: hsla(0, 0%, 96%, 1);
@@ -10,7 +10,11 @@
   flex-direction: column;
   gap: 24px;
   font-family: "Inter";
+  display: flex; */
   display: flex;
+  flex-direction: column;
+  gap: 24px;
+  font-family: "Inter";
   /* align-items: end; */
 }
 
@@ -90,9 +94,9 @@
 
 .dropdownTime {
   position: absolute;
-  top: -56%;
-  left: 50%;
-  right: 190px;
+  top: 0;
+  left: 0;
+  right: 0;
   bottom: 0;
   display: flex;
   align-items: center;
@@ -112,7 +116,7 @@
 
 .copy {
   position: absolute;
-  right: 0;
+  right: 210px;
   background-color: white;
   padding: 12px 16px;
   border-radius: 8px;
@@ -121,7 +125,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-top: 150px;
+  margin-top: 40px;
 }
 
 .copy span {
@@ -193,11 +197,12 @@
   color: rgba(74, 69, 73, 1);
 }
 
-.role2 span {
+.role2 > span {
   font-size: 12px;
   font-weight: 400;
   color: rgba(51, 47, 50, 1);
   overflow-wrap: anywhere;
+  text-transform: capitalize;
 }
 
 .menu {
@@ -237,7 +242,7 @@
   color: rgba(51, 47, 50, 1);
   margin-top: 35px;
   right: 0;
-  /* z-index: 1000; */
+  z-index: 1000;
   width: 130px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -266,7 +271,8 @@
 @media only screen and (max-width: 768px) {
   .settings {
     left: 0;
-    top: 97px;
+    margin-top: 115px;
+    padding: 35px 10px;
     background-color: white;
   }
   .settings > span {
@@ -279,6 +285,12 @@
     border: none;
   }
 
+  .copy {
+    right: 0;
+    width: 110px;
+    left: 12px;
+    top: 300px;
+  }
   .mobileSettings {
     display: flex;
     flex-direction: column;
@@ -288,6 +300,7 @@
     width: -webkit-fill-available;
     border: 1px solid rgba(225, 231, 231, 1);
     border-radius: 8px;
+    font-family: "Inter";
   }
 
   .header > button {
@@ -352,5 +365,15 @@
   }
   .csv {
     padding: 8px 24px;
+  }
+
+  .input {
+    max-width: 50%;
+  }
+
+  .div {
+    flex-direction: column;
+    gap: 40px;
+    align-items: baseline;
   }
 }

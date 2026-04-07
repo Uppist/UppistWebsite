@@ -1,16 +1,25 @@
 /** @format */
 
-import React from "react";
+import React, { useContext, useState } from "react";
 import editimg from "../../../../../../assets/Dashboard/Edit.svg";
 import dom from "../../../../../../assets/Dashboard/dom.svg";
 import styles from "./styles.module.css";
 import Edit from "./Edit";
 import ChangePassword from "./ChangePassword";
 import { toast, ToastContainer } from "react-toastify";
+import { UserDataContext } from "../../../../UserDataContext";
+import green from "../../../../../../assets/circle.svg";
+import red from "../../../../../../assets/offline.svg";
+import offline from "../../../../../../assets/busy.svg";
+import axios from "axios";
 
 export default function EditProfile() {
+  const { userData } = useContext(UserDataContext);
+
   const [edit, setEdit] = React.useState(false);
   const [image, setImage] = React.useState(null);
+  const [selectDropdown, setSelectDropdown] = useState(false);
+  const [selectedLabel, setSelectedLabel] = useState("Offline");
 
   function handleImage(e) {
     const selectedFile = e.target.files[0];
@@ -30,6 +39,47 @@ export default function EditProfile() {
 
   function handlePassword() {
     setPassword(true);
+  }
+
+  console.log(userData);
+
+  const roleMap = {
+    superadmin: "Super Admin",
+    admin: "Admin",
+    user: "User",
+    liveagent: "Live Agent",
+  };
+
+  function SplitNameFromEmail(email) {
+    const username = email?.split("@")[0];
+
+    return username;
+  }
+
+  const status = [
+    { label: "Online", value: "online", img: green },
+    { label: "Busy", value: "busy", img: offline },
+    { label: "Offline", value: "offline", img: red },
+  ];
+
+  function handleStatusChange(label) {
+    setSelectedLabel(label);
+    setSelectDropdown(false);
+    console.log("Selected status:", label);
+
+    const data = {
+      is_online: label === "Online",
+      is_busy: label === "Busy",
+      is_offline: label === "Offline",
+    };
+
+    axios
+      .put("http://139.162.173.87:2005/api/agent/status", data, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("Token")}` },
+      })
+      .then((res) => {
+        console.log("Status updated successfully:", res.data);
+      });
   }
   return (
     <>
@@ -83,18 +133,74 @@ export default function EditProfile() {
           <div className={styles.info}>
             <div className={styles.name}>
               <label htmlFor=''>Full Name</label>
-              <span>Sarah Ossai</span>
+              <span>{SplitNameFromEmail(userData?.user?.email)}</span>
             </div>
 
             <div className={styles.name}>
               <label htmlFor=''>Email</label>
-              <span>sarahossai@gmail.com</span>
+              <span>{userData?.user?.email}</span>
             </div>
 
             <div className={styles.name}>
               <label htmlFor=''>Role</label>
-              <span>Super Admin</span>
+              <span>
+                {roleMap[userData?.user?.role] || userData?.user?.role}
+              </span>{" "}
             </div>
+            {userData?.user?.role === "Live Agent" && (
+              <div className={styles.name} style={{ position: "relative" }}>
+                <label htmlFor=''>Status</label>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => setSelectDropdown(!selectDropdown)}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "8px",
+                    }}
+                  >
+                    {selectedLabel === "Online" && <img src={green} alt='' />}
+                    {selectedLabel === "Busy" && <img src={offline} alt='' />}
+                    {selectedLabel === "Offline" && <img src={red} alt='' />}
+                    <span>{selectedLabel || "Online"}</span>
+                  </div>
+                  <svg
+                    width='20'
+                    height='20'
+                    viewBox='0 0 20 20'
+                    fill='none'
+                    xmlns='http://www.w3.org/2000/svg'
+                  >
+                    <path
+                      d='M2.34521 7.27367L8.8574 13.4028C9.49915 14.0068 10.5002 14.0068 11.142 13.4028L17.6541 7.27367C17.9893 6.95824 18.0053 6.43084 17.6898 6.0957C17.3744 5.76055 16.847 5.74457 16.5119 6.06L9.99968 12.1891L3.48748 6.06C3.15234 5.74457 2.62494 5.76055 2.30951 6.09569C1.99408 6.43084 2.01006 6.95823 2.34521 7.27367Z'
+                      fill='#2B2B2B'
+                      fill-opacity='0.8'
+                    />
+                  </svg>
+                </div>
+              </div>
+            )}
+            {selectDropdown && (
+              <div className={styles.status}>
+                {status.map((option) => (
+                  <div
+                    key={option.value}
+                    className={styles.option}
+                    onClick={() => handleStatusChange(option.label)}
+                  >
+                    <img src={option.img} alt='' />
+                    <span>{option.label}</span>
+                  </div>
+                ))}
+              </div>
+            )}
 
             <div className={styles.password}>
               <label htmlFor='password'>Password</label>

@@ -1,10 +1,23 @@
 /** @format */
 
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./style.module.css";
 import Menu from "./Menu";
+import { UserDataContext } from "../../../UserDataContext";
 
 export default function UserDetails({ menu, handleClick, setMenu }) {
+  const { liveAgents, SetLiveAgents, getAdmin } = useContext(UserDataContext);
+  console.log(liveAgents);
+
+  const users = [...(liveAgents?.agents || []), ...(getAdmin?.admins || [])];
+
+  console.log(users);
+
+  function SplitNameFromEmail(email) {
+    const username = email.split("@")[0];
+
+    return username;
+  }
   return (
     <>
       <div className={styles.input}>
@@ -26,6 +39,7 @@ export default function UserDetails({ menu, handleClick, setMenu }) {
 
         <input type='Search' name='' placeholder='Search here...' id='' />
       </div>
+
       <div className={styles.div3}>
         <div className={styles.role}>
           <span>Name</span>
@@ -34,13 +48,29 @@ export default function UserDetails({ menu, handleClick, setMenu }) {
           <span>Role</span>
           <span className={styles.menu}>Menu</span>
         </div>
-        <div className={styles.role2}>
-          <span>Sarah Osasai</span>
-          <span>Sarah</span>
-          <span>sarahosasai@gmail.com</span>
-          <span>Super Admin</span>
-          <Menu menu={menu} handleClick={handleClick} setMenu={setMenu} />
-        </div>
+        {!users.length === 0 ? (
+          <span style={{ fontFamily: "Inter", fontSize: "12px" }}>
+            No users added yet
+          </span>
+        ) : (
+          users.map((agent, id) => (
+            <div className={styles.role2} key={agent.id}>
+              <span>{SplitNameFromEmail(agent.email)}</span>
+              <span>{SplitNameFromEmail(agent.email)}</span>
+              <span>{agent.email}</span>
+              <span>{agent.role}</span>
+
+              <Menu
+                menu={menu}
+                handleClick={handleClick}
+                setMenu={setMenu}
+                agent={agent}
+                id={id}
+                users={users}
+              />
+            </div>
+          ))
+        )}
       </div>
     </>
   );

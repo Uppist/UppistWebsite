@@ -1,13 +1,18 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
-import { HashRouter as Router } from 'react-router-dom'
+/** @format */
 
-createRoot(document.getElementById('root')).render(
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App.jsx";
+import { HashRouter as Router } from "react-router-dom";
+import Context from "./components/Admin/Context.jsx";
+
+createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Router>
-      <App />
+      <Context>
+        <App />
+      </Context>
     </Router>
   </StrictMode>,
-)
+);

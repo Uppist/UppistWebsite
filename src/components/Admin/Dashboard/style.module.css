@@ -24,10 +24,10 @@
   gap: 16px;
 }
 
-a {
+/* a {
   text-decoration: currentColor;
   color: currentColor;
-}
+} */
 .sidebar {
   width: 272px;
   padding: 25px 0;
@@ -59,6 +59,26 @@ a {
   margin-left: 12px;
 }
 
+.active {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Inter";
+  color: white;
+  text-decoration: none;
+}
+
+.active span {
+  cursor: pointer;
+}
+
+.active svg {
+  color: hsla(34, 94%, 54%, 1);
+}
+
 .notactive {
   display: flex;
   align-items: center;
@@ -68,6 +88,7 @@ a {
   font-weight: 400;
   font-family: "Inter";
   color: hsla(0, 0%, 76%, 1);
+  text-decoration: none;
 }
 
 .notactive span {
@@ -78,29 +99,7 @@ a {
   fill: currentColor;
 }
 
-.active {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px;
-  font-size: 16px;
-  font-weight: 500;
-  font-family: "Inter";
-  color: hsla(0, 0%, 90%, 1);
-  cursor: pointer;
-}
-
-.active svg {
-  color: hsla(34, 94%, 54%, 1);
-}
-
 .content {
-  position: absolute;
-  width: -webkit-fill-available;
-  top: 65px;
-  background-color: hsla(0, 0%, 96%, 1);
-  padding: 32px 24px;
-
   display: flex;
   flex-direction: column;
   gap: 25px;
@@ -150,7 +149,7 @@ a {
   color: hsla(0, 0%, 17%, 0.8);
   font-family: "Inter";
   display: flex;
-  align-items: center;
+  align-items: end;
   gap: 8px;
   cursor: pointer;
 }
@@ -169,7 +168,22 @@ a {
   gap: 24px;
 }
 
-.copy span {
+.copy2 {
+  position: absolute;
+  top: 80px;
+  right: 145px;
+  background-color: white;
+  padding: 12px 64px 12px 12px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.copy span,
+.copy2 span {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -221,7 +235,7 @@ a {
   gap: 16px;
 }
 
-.visitors {
+/* .visitors {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -244,7 +258,7 @@ a {
   font-weight: 600;
   color: white;
   font-family: "Inter";
-}
+} */
 
 .text {
   display: flex;
@@ -412,10 +426,20 @@ a {
   }
 
   /*Content.jsx*/
+  .overview {
+    flex-direction: column;
+    gap: 16px;
+    align-items: baseline;
+  }
+
+  .overview > span {
+    content: "Dashboard" !important;
+  }
 
   .content {
     left: 0;
-    padding: 50px 24px;
+    margin-top: 115px;
+    padding: 35px 10px;
     display: flex;
     flex-direction: column;
     gap: 24px;

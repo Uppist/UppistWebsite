@@ -1,16 +1,29 @@
 /** @format */
 
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./style.module.css";
 import dom from "../../../assets/Dashboard/dom.svg";
 import { useNavigate } from "react-router-dom";
+import { UserDataContext } from "../UserDataContext";
 
-export default function ProfileDropdown({ onClose, setIsActive }) {
+export default function ProfileDropdown({ onClose }) {
   const navigate = useNavigate();
   function handleEdit() {
-    setIsActive("settings");
-    navigate("/dashboard/settings");
+    // setIsActive("settings");
+    navigate("/settings");
     onClose();
+  }
+
+  function LogOut() {
+    localStorage.removeItem("Token");
+    navigate("/login");
+  }
+
+  const { userData } = useContext(UserDataContext);
+  function SplitNameFromEmail(email) {
+    const username = email?.split("@")[0];
+
+    return username;
   }
   return (
     <div className={styles.profiledropdown}>
@@ -20,15 +33,17 @@ export default function ProfileDropdown({ onClose, setIsActive }) {
           <img src={dom} alt='Profile Picture' />
           <div className={styles.namebutton}>
             <div className={styles.spanname}>
-              <span className={styles.ronaldname}>Sarah Ossai</span>
-              <span className={styles.email}>sarahossai@gmail.com</span>
+              <span className={styles.ronaldname}>
+                {SplitNameFromEmail(userData?.user?.email)}
+              </span>
+              <span className={styles.email}>{userData?.user?.email}</span>
             </div>
             <button onClick={handleEdit}>Edit Profile</button>
           </div>
           <hr className={styles.linehr} />
         </div>
 
-        <button>
+        <button onClick={LogOut}>
           {" "}
           <svg
             width='24'

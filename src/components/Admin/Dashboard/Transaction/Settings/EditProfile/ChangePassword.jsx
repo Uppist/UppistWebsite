@@ -1,9 +1,11 @@
 /** @format */
 
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./styles.module.css";
 import { toast, ToastContainer } from "react-toastify";
 import CircularProgress from "@mui/material/CircularProgress";
+import axios from "axios";
+import { UserDataContext } from "../../../../UserDataContext";
 
 export default function ChangePassword({ onClose }) {
   const [loading, setLoading] = React.useState(false);
@@ -26,12 +28,79 @@ export default function ChangePassword({ onClose }) {
     passwords.new_password &&
     passwords.confirm_password;
 
+  const { userData } = useContext(UserDataContext);
+  const data = {
+    old_password: passwords.current_password,
+    new_password: passwords.new_password,
+  };
   function handleSubmit() {
-    toast.success("Password updated successfully");
-    setLoading(true);
-    setTimeout(() => {
-      onClose();
-    }, 3000);
+    const token = localStorage.getItem("Token");
+
+    if (
+      passwords.new_password &&
+      passwords.confirm_password &&
+      userData?.user?.role === "superadmin"
+    ) {
+      axios
+        .put(
+          "http://139.162.173.87:2005/api/superadmin/change-password",
+          data,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          },
+        )
+        .then((res) => {
+          toast.success("Password updated successfully");
+          console.log(res.data);
+          setLoading(true);
+          setTimeout(() => {
+            onClose();
+          }, 3000);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (
+      passwords.new_password &&
+      passwords.confirm_password &&
+      userData?.user?.role === "admin"
+    ) {
+      axios
+        .put("http://139.162.173.87:2005/api/admin/change-password", data, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          toast.success("Password updated successfully");
+          console.log(res.data);
+          setLoading(true);
+          setTimeout(() => {
+            onClose();
+          }, 3000);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (
+      passwords.new_password &&
+      passwords.confirm_password &&
+      userData?.user?.role === "Live Agent"
+    ) {
+      axios
+        .put("http://139.162.173.87:2005//api/agent/change-password", data, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => {
+          toast.success("Password updated successfully");
+          console.log(res.data);
+          setLoading(true);
+          setTimeout(() => {
+            onClose();
+          }, 3000);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }
   return (
     <div className={styles.dropdown}>

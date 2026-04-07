@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import time from "../../../../../assets/Dashboard/time.svg";
 import right from "../../../../../assets/Dashboard/Icon.svg";
 import styles from "./style.module.css";
@@ -8,9 +8,10 @@ import AddUser from "./AddUser/AddUser";
 import MobileSettings from "./MobileSettings";
 import UserDetails from "./UserDetails";
 import EditProfile from "./EditProfile/EditProfile";
-import Edit from "./EditProfile/Edit";
+import { UserDataContext } from "../../../UserDataContext";
 
 export default function Settings() {
+  const { userData } = useContext(UserDataContext);
   const [isTime, setIsTime] = useState(false);
   const [selectedTime, setSelectedTime] = useState("All time");
   const [menu, setMenu] = useState(false);
@@ -31,8 +32,8 @@ export default function Settings() {
     setIsTime(false);
   };
 
-  function handleClick() {
-    setMenu((prev) => !prev);
+  function handleClick(id) {
+    setMenu((prev) => (prev === id ? null : id));
     // alert("hello");
   }
 
@@ -69,20 +70,22 @@ export default function Settings() {
         {mobileView && <span>Settings</span>}
 
         <div className={styles.div}>
-          <div className={styles.profile}>
-            <span
-              className={active === "profile" ? styles.active : styles.span}
-              onClick={() => setActive("profile")}
-            >
-              Profile
-            </span>
-            <span
-              className={active === "users" ? styles.active : styles.span}
-              onClick={() => setActive("users")}
-            >
-              Users
-            </span>
-          </div>
+          {userData?.user?.role === "superadmin" && (
+            <div className={styles.profile}>
+              <span
+                className={active === "profile" ? styles.active : styles.span}
+                onClick={() => setActive("profile")}
+              >
+                Profile
+              </span>
+              <span
+                className={active === "users" ? styles.active : styles.span}
+                onClick={() => setActive("users")}
+              >
+                Users
+              </span>
+            </div>
+          )}
 
           {active === "users" && (
             <div className={styles.button}>
@@ -143,10 +146,11 @@ export default function Settings() {
             setMenu={setMenu}
             active={active}
             setActive={setActive}
+            userData={userData}
           />
         ) : (
           <div className={styles.div2}>
-            {active === "profile" && <EditProfile setActive={setActive} />}
+            {active === "profile" && <EditProfile />}
             {active === "users" && (
               <UserDetails
                 menu={menu}

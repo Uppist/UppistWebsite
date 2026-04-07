@@ -1,20 +1,27 @@
 /** @format */
 
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./style.module.css";
-import { Link } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import Uppist from "../../../assets/uppist2.png";
+import { UserDataContext } from "../UserDataContext";
 
 export default function MobileNav({
-  resetDashboard,
   isSidebarVisible,
   onClose,
   handlechatBot,
   isActive,
-  setIsActive,
-  handleClick,
 }) {
-  // const [isActive, setIsActive] = useState(null);
+  const { userData } = useContext(UserDataContext);
+
+  const navigate = useNavigate();
+
+  function LogOut() {
+    localStorage.removeItem("Token");
+    navigate("/login");
+  }
+
+  const role = userData?.user.role;
   return (
     <div
       className={`${styles.mobilenav} ${
@@ -55,206 +62,263 @@ export default function MobileNav({
 
       {/* Navigation Links */}
       <div className={styles.div}>
-        <div
-          className={
-            isActive === "dashboard" ? styles.active : styles.notactive
-          }
-          onClick={() => {
-            handleClick("dashboard");
-          }}
-        >
-          <svg
-            width='24'
-            height='24'
-            viewBox='0 0 24 24'
-            fill='none'
-            xmlns='http://www.w3.org/2000/svg'
+        {role === "superadmin" && (
+          <NavLink
+            to='/dashboard'
+            className={({ isActive }) =>
+              isActive ? styles.active : styles.notactive
+            }
           >
-            <path
-              d='M7.24 2H5.34C3.15 2 2 3.15 2 5.33V7.23C2 9.41 3.15 10.56 5.33 10.56H7.23C9.41 10.56 10.56 9.41 10.56 7.23V5.33C10.57 3.15 9.42 2 7.24 2Z'
-              fill='currentColor'
-            />
-            <path
-              d='M18.6699 2H16.7699C14.5899 2 13.4399 3.15 13.4399 5.33V7.23C13.4399 9.41 14.5899 10.56 16.7699 10.56H18.6699C20.8499 10.56 21.9999 9.41 21.9999 7.23V5.33C21.9999 3.15 20.8499 2 18.6699 2Z'
-              fill='currentColor'
-            />
-            <path
-              d='M18.6699 13.4302H16.7699C14.5899 13.4302 13.4399 14.5802 13.4399 16.7602V18.6602C13.4399 20.8402 14.5899 21.9902 16.7699 21.9902H18.6699C20.8499 21.9902 21.9999 20.8402 21.9999 18.6602V16.7602C21.9999 14.5802 20.8499 13.4302 18.6699 13.4302Z'
-              fill='currentColor'
-            />
-            <path
-              d='M7.24 13.4302H5.34C3.15 13.4302 2 14.5802 2 16.7602V18.6602C2 20.8502 3.15 22.0002 5.33 22.0002H7.23C9.41 22.0002 10.56 20.8502 10.56 18.6702V16.7702C10.57 14.5802 9.42 13.4302 7.24 13.4302Z'
-              fill='currentColor'
-            />
-          </svg>
+            <svg
+              width='24'
+              height='24'
+              viewBox='0 0 24 24'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path
+                d='M7.24 2H5.34C3.15 2 2 3.15 2 5.33V7.23C2 9.41 3.15 10.56 5.33 10.56H7.23C9.41 10.56 10.56 9.41 10.56 7.23V5.33C10.57 3.15 9.42 2 7.24 2Z'
+                fill='currentColor'
+              />
+              <path
+                d='M18.6699 2H16.7699C14.5899 2 13.4399 3.15 13.4399 5.33V7.23C13.4399 9.41 14.5899 10.56 16.7699 10.56H18.6699C20.8499 10.56 21.9999 9.41 21.9999 7.23V5.33C21.9999 3.15 20.8499 2 18.6699 2Z'
+                fill='currentColor'
+              />
+              <path
+                d='M18.6699 13.4302H16.7699C14.5899 13.4302 13.4399 14.5802 13.4399 16.7602V18.6602C13.4399 20.8402 14.5899 21.9902 16.7699 21.9902H18.6699C20.8499 21.9902 21.9999 20.8402 21.9999 18.6602V16.7602C21.9999 14.5802 20.8499 13.4302 18.6699 13.4302Z'
+                fill='currentColor'
+              />
+              <path
+                d='M7.24 13.4302H5.34C3.15 13.4302 2 14.5802 2 16.7602V18.6602C2 20.8502 3.15 22.0002 5.33 22.0002H7.23C9.41 22.0002 10.56 20.8502 10.56 18.6702V16.7702C10.57 14.5802 9.42 13.4302 7.24 13.4302Z'
+                fill='currentColor'
+              />
+            </svg>
 
-          <span onClick={resetDashboard}>Dashboard</span>
-        </div>
+            <span onClick={onClose}>Dashboard</span>
+          </NavLink>
+        )}
 
         {/* Website Log */}
-        <div
-          className={
-            isActive === "website_logs" ? styles.active : styles.notactive
-          }
-          onClick={() => {
-            handleClick("website_logs");
-          }}
-        >
-          <svg
-            width='22'
-            height='22'
-            viewBox='0 0 22 22'
-            fill='none'
-            xmlns='http://www.w3.org/2000/svg'
+        {role === "superadmin" && (
+          <NavLink
+            to='/logs/website'
+            className={({ isActive }) =>
+              isActive ? styles.active : styles.notactive
+            }
           >
-            <circle
-              cx='10.75'
-              cy='10.75'
-              r='10'
-              stroke='currentColor'
-              stroke-width='1.5'
-            />
-            <ellipse
-              cx='10.75'
-              cy='10.75'
-              rx='4'
-              ry='10'
-              stroke='currentColor'
-              stroke-width='1.5'
-            />
-            <path
-              d='M0.75 10.75H20.75'
-              stroke='currentColor'
-              stroke-width='1.5'
-              stroke-linecap='round'
-              stroke-linejoin='round'
-            />
-          </svg>
+            <svg
+              width='22'
+              height='22'
+              viewBox='0 0 22 22'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <circle
+                cx='10.75'
+                cy='10.75'
+                r='10'
+                stroke='currentColor'
+                stroke-width='1.5'
+              />
+              <ellipse
+                cx='10.75'
+                cy='10.75'
+                rx='4'
+                ry='10'
+                stroke='currentColor'
+                stroke-width='1.5'
+              />
+              <path
+                d='M0.75 10.75H20.75'
+                stroke='currentColor'
+                stroke-width='1.5'
+                stroke-linecap='round'
+                stroke-linejoin='round'
+              />
+            </svg>
 
-          <span onClick={handlechatBot}>Website Logs</span>
-        </div>
+            <span onClick={onClose}>Website Logs</span>
+          </NavLink>
+        )}
 
         {/* Whatsapp Chatbot Log */}
-        <div
-          className={
-            isActive === "whatsapp_logs" ? styles.active : styles.notactive
-          }
-          onClick={() => {
-            handleClick("whatsapp_logs");
-          }}
-        >
-          <svg
-            width='24'
-            height='24'
-            viewBox='0 0 24 24'
-            fill='none'
-            xmlns='http://www.w3.org/2000/svg'
+        {role === "superadmin" && (
+          <NavLink
+            to='/logs/whatsapp'
+            className={({ isActive }) =>
+              isActive ? styles.active : styles.notactive
+            }
           >
-            <path
-              d='M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 13.3789 2.27907 14.6926 2.78382 15.8877C3.06278 16.5481 3.20226 16.8784 3.21953 17.128C3.2368 17.3776 3.16334 17.6521 3.01642 18.2012L2 22L5.79877 20.9836C6.34788 20.8367 6.62244 20.7632 6.87202 20.7805C7.12161 20.7977 7.45185 20.9372 8.11235 21.2162C9.30745 21.7209 10.6211 22 12 22Z'
-              stroke='currentColor'
-              stroke-width='1.5'
-              stroke-linejoin='round'
-            />
-            <path
-              d='M8.58815 12.3773L9.45909 11.2956C9.82616 10.8397 10.2799 10.4153 10.3155 9.80826C10.3244 9.65494 10.2166 8.96657 10.0008 7.58986C9.91601 7.04881 9.41086 7 8.97332 7C8.40314 7 8.11805 7 7.83495 7.12931C7.47714 7.29275 7.10979 7.75231 7.02917 8.13733C6.96539 8.44196 7.01279 8.65187 7.10759 9.07169C7.51023 10.8548 8.45481 12.6158 9.91948 14.0805C11.3842 15.5452 13.1452 16.4898 14.9283 16.8924C15.3481 16.9872 15.558 17.0346 15.8627 16.9708C16.2477 16.8902 16.7072 16.5229 16.8707 16.165C17 15.8819 17 15.5969 17 15.0267C17 14.5891 16.9512 14.084 16.4101 13.9992C15.0334 13.7834 14.3451 13.6756 14.1917 13.6845C13.5847 13.7201 13.1603 14.1738 12.7044 14.5409L11.6227 15.4118'
-              stroke='currentColor'
-              stroke-width='1.5'
-            />
-          </svg>
+            <svg
+              width='24'
+              height='24'
+              viewBox='0 0 24 24'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path
+                d='M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 13.3789 2.27907 14.6926 2.78382 15.8877C3.06278 16.5481 3.20226 16.8784 3.21953 17.128C3.2368 17.3776 3.16334 17.6521 3.01642 18.2012L2 22L5.79877 20.9836C6.34788 20.8367 6.62244 20.7632 6.87202 20.7805C7.12161 20.7977 7.45185 20.9372 8.11235 21.2162C9.30745 21.7209 10.6211 22 12 22Z'
+                stroke='currentColor'
+                stroke-width='1.5'
+                stroke-linejoin='round'
+              />
+              <path
+                d='M8.58815 12.3773L9.45909 11.2956C9.82616 10.8397 10.2799 10.4153 10.3155 9.80826C10.3244 9.65494 10.2166 8.96657 10.0008 7.58986C9.91601 7.04881 9.41086 7 8.97332 7C8.40314 7 8.11805 7 7.83495 7.12931C7.47714 7.29275 7.10979 7.75231 7.02917 8.13733C6.96539 8.44196 7.01279 8.65187 7.10759 9.07169C7.51023 10.8548 8.45481 12.6158 9.91948 14.0805C11.3842 15.5452 13.1452 16.4898 14.9283 16.8924C15.3481 16.9872 15.558 17.0346 15.8627 16.9708C16.2477 16.8902 16.7072 16.5229 16.8707 16.165C17 15.8819 17 15.5969 17 15.0267C17 14.5891 16.9512 14.084 16.4101 13.9992C15.0334 13.7834 14.3451 13.6756 14.1917 13.6845C13.5847 13.7201 13.1603 14.1738 12.7044 14.5409L11.6227 15.4118'
+                stroke='currentColor'
+                stroke-width='1.5'
+              />
+            </svg>
 
-          <span onClick={handlechatBot}>WhatsApp Log</span>
-        </div>
+            <span onClick={onClose}>WhatsApp Log</span>
+          </NavLink>
+        )}
 
         {/* Social Media Log */}
-        <div
-          className={
-            isActive === "social_media_logs" ? styles.active : styles.notactive
+        {role === "superadmin" && (
+          <NavLink
+            to='/logs/social_media'
+            className={({ isActive }) =>
+              isActive ? styles.active : styles.notactive
+            }
+          >
+            <svg
+              width='24'
+              height='24'
+              viewBox='0 0 24 24'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path
+                d='M15.8972 6.80531C15.2184 5.21621 14.0118 3.91023 12.4812 3.10816C10.9506 2.3061 9.19006 2.05715 7.49712 2.40341C5.80418 2.74967 4.28274 3.6699 3.19001 5.00851C2.09727 6.34713 1.5003 8.02201 1.5 9.75V15.9375C1.5 16.2856 1.63828 16.6194 1.88442 16.8656C2.13056 17.1117 2.4644 17.25 2.8125 17.25H8.12531C8.71058 18.5865 9.67231 19.7238 10.8931 20.5229C12.1139 21.322 13.5409 21.7484 15 21.75H21.1875C21.5356 21.75 21.8694 21.6117 22.1156 21.3656C22.3617 21.1194 22.5 20.7856 22.5 20.4375V14.25C22.4996 12.4165 21.8277 10.6466 20.6111 9.27491C19.3945 7.90319 17.7175 7.02464 15.8972 6.80531ZM3 9.75C3 8.56331 3.35189 7.40327 4.01118 6.41658C4.67047 5.42988 5.60754 4.66085 6.7039 4.20672C7.80026 3.7526 9.00666 3.63378 10.1705 3.86529C11.3344 4.0968 12.4035 4.66824 13.2426 5.50736C14.0818 6.34647 14.6532 7.41557 14.8847 8.57946C15.1162 9.74334 14.9974 10.9497 14.5433 12.0461C14.0892 13.1425 13.3201 14.0795 12.3334 14.7388C11.3467 15.3981 10.1867 15.75 9 15.75H3V9.75ZM21 20.25H15C13.939 20.2488 12.8973 19.9669 11.9805 19.4329C11.0637 18.8989 10.3045 18.1319 9.78 17.2097C10.8072 17.1031 11.8013 16.7853 12.6999 16.2763C13.5985 15.7673 14.3822 15.078 15.0018 14.2517C15.6213 13.4255 16.0634 12.48 16.3003 11.4748C16.5371 10.4696 16.5636 9.42627 16.3781 8.41031C17.6937 8.72078 18.8659 9.46638 19.7048 10.5263C20.5436 11.5862 21 12.8983 21 14.25V20.25Z'
+                fill='currentColor'
+              />
+            </svg>
+
+            <span onClick={onClose}>Social Media Log</span>
+          </NavLink>
+        )}
+
+        {/* Live Agents */}
+        {role !== "Live Agent" && (
+          <NavLink
+            to='/live_agents'
+            className={({ isActive }) =>
+              isActive ? styles.active : styles.notactive
+            }
+          >
+            <svg
+              width='24'
+              height='24'
+              viewBox='0 0 24 24'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <g clip-path='url(#clip0_3459_2264)'>
+                <path
+                  d='M17.7195 11.05C17.7195 7.88541 15.1564 5.32 11.9945 5.32C8.8327 5.32 6.26953 7.88541 6.26953 11.05V14.86C6.26953 18.0246 8.8327 20.59 11.9945 20.59C15.1564 20.59 17.7195 18.0246 17.7195 14.86V11.05Z'
+                  stroke='currentColor'
+                  stroke-width='1.5'
+                  stroke-miterlimit='10'
+                />
+                <path
+                  d='M17.7305 9.14H19.6405C20.399 9.14 21.1264 9.44132 21.6628 9.97768C22.1991 10.514 22.5005 11.2415 22.5005 12V13.91C22.5005 14.6685 22.1991 15.396 21.6628 15.9323C21.1264 16.4687 20.399 16.77 19.6405 16.77H17.7305V9.14Z'
+                  stroke='currentColor'
+                  stroke-width='1.5'
+                  stroke-miterlimit='10'
+                />
+                <path
+                  d='M6.26953 16.77H4.35953C3.60101 16.77 2.87356 16.4687 2.33721 15.9323C1.80085 15.396 1.49953 14.6685 1.49953 13.91L1.49953 12C1.49953 11.6244 1.57351 11.2525 1.71724 10.9055C1.86096 10.5585 2.07163 10.2433 2.33721 9.97768C2.60278 9.7121 2.91807 9.50143 3.26506 9.35771C3.61205 9.21398 3.98395 9.14 4.35953 9.14H6.26953L6.26953 16.77Z'
+                  stroke='currentColor'
+                  stroke-width='1.5'
+                  stroke-miterlimit='10'
+                />
+                <path
+                  d='M4.36035 9.14C4.36035 7.11375 5.16528 5.17048 6.59806 3.7377C8.03083 2.30493 9.9741 1.5 12.0004 1.5C14.0266 1.5 15.9699 2.30493 17.4026 3.7377C18.8354 5.17048 19.6404 7.11375 19.6404 9.14'
+                  stroke='currentColor'
+                  stroke-width='1.5'
+                  stroke-miterlimit='10'
+                />
+                <path
+                  d='M19.6404 16.77V17.77C19.6377 19.036 19.1329 20.2492 18.2368 21.1435C17.3407 22.0378 16.1264 22.54 14.8604 22.54'
+                  stroke='currentColor'
+                  stroke-width='1.5'
+                  stroke-miterlimit='10'
+                />
+              </g>
+              <defs>
+                <clipPath id='clip0_3459_2264'>
+                  <rect width='24' height='24' fill='white' />
+                </clipPath>
+              </defs>
+            </svg>
+
+            <span onClick={handlechatBot}>Live Agents</span>
+          </NavLink>
+        )}
+        {/*Chat Messages */}
+        {role === "Live Agent" && (
+          <NavLink
+            to='/messages'
+            className={({ isActive }) =>
+              isActive ? styles.active : styles.notactive
+            }
+          >
+            <svg
+              width='24'
+              height='24'
+              viewBox='0 0 24 24'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path
+                d='M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 13.5997 2.37562 15.1116 3.04346 16.4525C3.22094 16.8088 3.28001 17.2161 3.17712 17.6006L2.58151 19.8267C2.32295 20.793 3.20701 21.677 4.17335 21.4185L6.39939 20.8229C6.78393 20.72 7.19121 20.7791 7.54753 20.9565C8.88837 21.6244 10.4003 22 12 22Z'
+                stroke='currentColor'
+                stroke-width='2'
+              />
+              <path
+                opacity='0.5'
+                d='M8 12H8.009M11.991 12H12M15.991 12H16'
+                stroke='currentColor'
+                stroke-width='2'
+                stroke-linecap='round'
+                stroke-linejoin='round'
+              />
+            </svg>
+
+            <span onClick={onClose}>Live Chats</span>
+          </NavLink>
+        )}
+
+        {/*Notification */}
+        <NavLink
+          to='/notification'
+          className={({ isActive }) =>
+            isActive ? styles.active : styles.notactive
           }
-          onClick={() => {
-            handleClick("social_media_logs");
-          }}
         >
           <svg
-            width='24'
-            height='24'
-            viewBox='0 0 24 24'
-            fill='none'
+            width='26'
+            height='29'
+            viewBox='0 0 26 29'
+            fill='currentColor'
             xmlns='http://www.w3.org/2000/svg'
           >
             <path
-              d='M15.8972 6.80531C15.2184 5.21621 14.0118 3.91023 12.4812 3.10816C10.9506 2.3061 9.19006 2.05715 7.49712 2.40341C5.80418 2.74967 4.28274 3.6699 3.19001 5.00851C2.09727 6.34713 1.5003 8.02201 1.5 9.75V15.9375C1.5 16.2856 1.63828 16.6194 1.88442 16.8656C2.13056 17.1117 2.4644 17.25 2.8125 17.25H8.12531C8.71058 18.5865 9.67231 19.7238 10.8931 20.5229C12.1139 21.322 13.5409 21.7484 15 21.75H21.1875C21.5356 21.75 21.8694 21.6117 22.1156 21.3656C22.3617 21.1194 22.5 20.7856 22.5 20.4375V14.25C22.4996 12.4165 21.8277 10.6466 20.6111 9.27491C19.3945 7.90319 17.7175 7.02464 15.8972 6.80531ZM3 9.75C3 8.56331 3.35189 7.40327 4.01118 6.41658C4.67047 5.42988 5.60754 4.66085 6.7039 4.20672C7.80026 3.7526 9.00666 3.63378 10.1705 3.86529C11.3344 4.0968 12.4035 4.66824 13.2426 5.50736C14.0818 6.34647 14.6532 7.41557 14.8847 8.57946C15.1162 9.74334 14.9974 10.9497 14.5433 12.0461C14.0892 13.1425 13.3201 14.0795 12.3334 14.7388C11.3467 15.3981 10.1867 15.75 9 15.75H3V9.75ZM21 20.25H15C13.939 20.2488 12.8973 19.9669 11.9805 19.4329C11.0637 18.8989 10.3045 18.1319 9.78 17.2097C10.8072 17.1031 11.8013 16.7853 12.6999 16.2763C13.5985 15.7673 14.3822 15.078 15.0018 14.2517C15.6213 13.4255 16.0634 12.48 16.3003 11.4748C16.5371 10.4696 16.5636 9.42627 16.3781 8.41031C17.6937 8.72078 18.8659 9.46638 19.7048 10.5263C20.5436 11.5862 21 12.8983 21 14.25V20.25Z'
+              d='M25.707 18.293L23 15.586V12C22.9969 9.52184 22.075 7.13285 20.4126 5.29498C18.7502 3.45712 16.4654 2.30093 14 2.05V0H12V2.05C9.53457 2.30093 7.24976 3.45712 5.58737 5.29498C3.92498 7.13285 3.0031 9.52184 3 12V15.586L0.293 18.293C0.105451 18.4805 5.66374e-05 18.7348 0 19V22C0 22.2652 0.105357 22.5196 0.292893 22.7071C0.48043 22.8946 0.734784 23 1 23H8V23.777C7.97825 25.0456 8.4254 26.2777 9.25578 27.237C10.0862 28.1964 11.2414 28.8156 12.5 28.976C13.1952 29.0449 13.8971 28.9676 14.5606 28.749C15.2241 28.5304 15.8345 28.1753 16.3525 27.7066C16.8706 27.2379 17.2848 26.666 17.5685 26.0277C17.8522 25.3893 17.9992 24.6986 18 24V23H25C25.2652 23 25.5196 22.8946 25.7071 22.7071C25.8946 22.5196 26 22.2652 26 22V19C25.9999 18.7348 25.8946 18.4805 25.707 18.293ZM16 24C16 24.7956 15.6839 25.5587 15.1213 26.1213C14.5587 26.6839 13.7956 27 13 27C12.2044 27 11.4413 26.6839 10.8787 26.1213C10.3161 25.5587 10 24.7956 10 24V23H16V24ZM24 21H2V19.414L4.707 16.707C4.89455 16.5195 4.99994 16.2652 5 16V12C5 9.87827 5.84285 7.84344 7.34315 6.34315C8.84344 4.84285 10.8783 4 13 4C15.1217 4 17.1566 4.84285 18.6569 6.34315C20.1571 7.84344 21 9.87827 21 12V16C21.0001 16.2652 21.1054 16.5195 21.293 16.707L24 19.414V21Z'
               fill='currentColor'
+              fill-opacity='0.8'
             />
           </svg>
 
-          <span onClick={handlechatBot}>Social Media Log</span>
-        </div>
-
-        {/* Live Agents */}
-        <div
-          className={
-            isActive === "live_agents" ? styles.active : styles.notactive
-          }
-          onClick={() => {
-            handleClick("live_agents");
-          }}
-        >
-          <svg
-            width='24'
-            height='24'
-            viewBox='0 0 24 24'
-            fill='none'
-            xmlns='http://www.w3.org/2000/svg'
-          >
-            <g clip-path='url(#clip0_3459_2264)'>
-              <path
-                d='M17.7195 11.05C17.7195 7.88541 15.1564 5.32 11.9945 5.32C8.8327 5.32 6.26953 7.88541 6.26953 11.05V14.86C6.26953 18.0246 8.8327 20.59 11.9945 20.59C15.1564 20.59 17.7195 18.0246 17.7195 14.86V11.05Z'
-                stroke='currentColor'
-                stroke-width='1.5'
-                stroke-miterlimit='10'
-              />
-              <path
-                d='M17.7305 9.14H19.6405C20.399 9.14 21.1264 9.44132 21.6628 9.97768C22.1991 10.514 22.5005 11.2415 22.5005 12V13.91C22.5005 14.6685 22.1991 15.396 21.6628 15.9323C21.1264 16.4687 20.399 16.77 19.6405 16.77H17.7305V9.14Z'
-                stroke='currentColor'
-                stroke-width='1.5'
-                stroke-miterlimit='10'
-              />
-              <path
-                d='M6.26953 16.77H4.35953C3.60101 16.77 2.87356 16.4687 2.33721 15.9323C1.80085 15.396 1.49953 14.6685 1.49953 13.91L1.49953 12C1.49953 11.6244 1.57351 11.2525 1.71724 10.9055C1.86096 10.5585 2.07163 10.2433 2.33721 9.97768C2.60278 9.7121 2.91807 9.50143 3.26506 9.35771C3.61205 9.21398 3.98395 9.14 4.35953 9.14H6.26953L6.26953 16.77Z'
-                stroke='currentColor'
-                stroke-width='1.5'
-                stroke-miterlimit='10'
-              />
-              <path
-                d='M4.36035 9.14C4.36035 7.11375 5.16528 5.17048 6.59806 3.7377C8.03083 2.30493 9.9741 1.5 12.0004 1.5C14.0266 1.5 15.9699 2.30493 17.4026 3.7377C18.8354 5.17048 19.6404 7.11375 19.6404 9.14'
-                stroke='currentColor'
-                stroke-width='1.5'
-                stroke-miterlimit='10'
-              />
-              <path
-                d='M19.6404 16.77V17.77C19.6377 19.036 19.1329 20.2492 18.2368 21.1435C17.3407 22.0378 16.1264 22.54 14.8604 22.54'
-                stroke='currentColor'
-                stroke-width='1.5'
-                stroke-miterlimit='10'
-              />
-            </g>
-            <defs>
-              <clipPath id='clip0_3459_2264'>
-                <rect width='24' height='24' fill='white' />
-              </clipPath>
-            </defs>
-          </svg>
-
-          <span onClick={handlechatBot}>Live Agents</span>
-        </div>
+          <span onClick={onClose}>Notifications</span>
+        </NavLink>
 
         {/* Settings*/}
-        <div
-          className={isActive === "settings" ? styles.active : styles.notactive}
-          onClick={() => {
-            handleClick("settings");
-          }}
+        <NavLink
+          to='/settings'
+          className={({ isActive }) =>
+            isActive ? styles.active : styles.notactive
+          }
         >
           <svg
             width='24'
@@ -269,16 +333,13 @@ export default function MobileNav({
             />
           </svg>
 
-          <span onClick={handlechatBot}>Settings</span>
-        </div>
+          <span onClick={onClose}>Settings</span>
+        </NavLink>
 
         {/*Logout */}
         <div
           className={isActive === "logout" ? styles.active : styles.notactive}
-          onClick={() => {
-            setIsActive("logout");
-            onClose();
-          }}
+          onClick={LogOut}
         >
           <svg
             width='24'
@@ -302,9 +363,7 @@ export default function MobileNav({
             />
           </svg>
 
-          <span>
-            <Link to='/login'>Log Out</Link>
-          </span>
+          <span>Log Out</span>
         </div>
       </div>
     </div>

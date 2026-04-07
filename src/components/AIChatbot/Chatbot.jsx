@@ -8,15 +8,29 @@ import cancel from "../../assets/cancel2.svg";
 import emoji from "../../assets/emoji.svg";
 import enter from "../../assets/enter.svg";
 import chatbot from "../../assets/chatbot.svg";
+import { io } from "socket.io-client";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
+import { UserDataContext } from "../Admin/UserDataContext";
+
+const SOCKET_URL = "http://139.162.173.87:2005";
 
 export default function Chatbot({ Close, handleClose, logindetail }) {
   const [chatHistory, setChatHistory] = useState([]);
   const [isTyping, setIsTyping] = useState(false);
+  const [socket, setSocket] = useState(null);
+
+  const isHandoffRef = useRef(false);
+
   const [sessionId, setSessionId] = useState(() => {
     return localStorage.getItem("session_id") || null;
   });
+
+  const [conversation_id, setconversation_id] = useState(() => {
+    return localStorage.getItem("conversation_id") || null;
+  });
+
+  const [isHandoff, setIsHandoff] = useState(false);
 
   const inputRef = useRef(null);
   const messagesEndRef = useRef(null);
@@ -31,7 +45,7 @@ export default function Chatbot({ Close, handleClose, logindetail }) {
   const ampm = hours >= 12 ? "PM" : "AM";
 
   hours = hours % 12;
-  hours = hours ? hours : 12; // convert 0 to 12
+  hours = hours ? hours : 12;
   const formattedHour = String(hours).padStart(2, "0");
 
   const formattedTime = `${year}-${month}-${day} / ${formattedHour}:${minutes} ${ampm}`;
@@ -44,6 +58,75 @@ export default function Chatbot({ Close, handleClose, logindetail }) {
     return () => clearTimeout(timeout);
   }, [chatHistory]);
 
+  // Connect to correct server
+  useEffect(() => {
+    if (socket) return;
+    const newSocket = io(SOCKET_URL);
+
+    newSocket.on("connect", () => {
+      // console.log("✅ Customer socket connected:", newSocket.id);
+    });
+
+    newSocket.on("disconnect", () => {
+      // console.log("❌ Customer socket disconnected");
+    });
+
+    newSocket.on("connect_error", () => {
+      // console.log("❌ Customer socket connection error:", err.message);
+    });
+
+    setSocket(newSocket);
+
+    return () => newSocket.disconnect();
+  }, []);
+
+  // Join conversation room once socket + conversation_id are ready
+  useEffect(() => {
+    if (!socket || !conversation_id) return;
+    // console.log("Joined conversation room:", conversation_id);
+    socket.emit("join_conversation", { conversation_id });
+  }, [socket, conversation_id]);
+
+  // Listen for incoming messages from agent
+  useEffect(() => {
+    if (!socket) return;
+
+    const handleMessage = (newMessage) => {
+      // ignore messages sent by user
+      if (newMessage?.sender_type === "user") return;
+
+      if (newMessage?.sender_type === "bot") return;
+
+      setChatHistory((prev) => [
+        ...prev,
+        {
+          role: "model",
+          text: newMessage?.message_text || newMessage?.message,
+        },
+      ]);
+    };
+
+    // Listen for agent joining notification
+    const handleAgentJoined = (data) => {
+      console.log("Agent joined:", data);
+      setChatHistory((prev) => [
+        ...prev,
+        {
+          role: "system",
+          text: "An agent has joined the conversation",
+        },
+      ]);
+    };
+
+    socket.on("message", handleMessage);
+    socket.on("agent_joined", handleAgentJoined);
+
+    return () => {
+      socket.off("message", handleMessage);
+      socket.off("agent_joined", handleAgentJoined);
+    };
+  }, [socket]);
+
   // Prevent body scroll when chat is open
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -52,25 +135,69 @@ export default function Chatbot({ Close, handleClose, logindetail }) {
     };
   }, []);
 
-  function generateResponse(history) {
-    console.log("Chat History Sent:", history);
-  }
+  useEffect(() => {
+    if (!socket) return;
+
+    const handleSessionEnded = (data) => {
+      console.log("Agent session ended:", data);
+      setIsHandoff(false);
+      isHandoffRef.current = false; // AI resumes
+      setChatHistory((prev) => [
+        ...prev,
+        {
+          role: "system",
+          text: "Agent has left. You are now chatting with AI.",
+        },
+      ]);
+    };
+
+    socket.on("agent_session_ended", handleSessionEnded);
+
+    return () => socket.off("agent_session_ended", handleSessionEnded);
+  }, [socket]);
+
+  // function generateResponse(history) {
+  //   console.log("Chat History Sent:", history);
+  // }
 
   async function handleSubmit(e) {
     e.preventDefault();
+
     const userMessage = inputRef.current.value.trim();
     if (!userMessage) return;
 
     inputRef.current.value = "";
 
-    const newHistory = [
-      ...chatHistory,
+    setChatHistory((prev) => [
+      ...prev,
       { role: "user", text: userMessage },
       { role: "model", text: "..." },
-    ];
+    ]);
 
-    setChatHistory(newHistory);
     setIsTyping(true);
+
+    if (isHandoffRef.current) {
+      try {
+        await axios.post(
+          "http://139.162.173.87:2005/api/chat/send",
+          {
+            conversation_id,
+            message: userMessage,
+            sender_type: "user",
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("Token")}`,
+            },
+          },
+        );
+      } catch (error) {
+        console.error("Error sending message to agent:", error);
+      }
+      return;
+    }
+
+    let aiReply = "";
 
     try {
       const response = await axios.post(
@@ -81,50 +208,102 @@ export default function Chatbot({ Close, handleClose, logindetail }) {
           email: logindetail.email,
           session_id: sessionId,
         },
-        { headers: { "Content-Type": "application/json" } }
+        { headers: { "Content-Type": "application/json" } },
       );
 
-      const aiReply = response.data?.response?.content || "No response.";
+      aiReply = response.data?.response?.content || "No response.";
+
+      setChatHistory((prev) => [
+        ...prev.slice(0, -1),
+        { role: "model", text: aiReply },
+      ]);
+
+      setIsTyping(false);
+
       const newSessionId = response.data.session_id;
-      console.log("AI Reply:", newSessionId);
+      const newConversationId = response.data.conversation_id;
 
       if (newSessionId && !localStorage.getItem("session_id")) {
         localStorage.setItem("session_id", newSessionId);
-        setSessionId(newSessionId); // update state too
+        setSessionId(newSessionId);
       }
-      console.log("AI Response:", response.data.session_id);
-      setIsTyping(false);
 
-      const updatedHistory = [
-        ...chatHistory,
-        { role: "user", text: userMessage },
-        { role: "model", text: aiReply },
-      ];
-
-      setChatHistory(updatedHistory);
-
-      generateResponse(updatedHistory);
+      if (newConversationId && !localStorage.getItem("conversation_id")) {
+        localStorage.setItem("conversation_id", newConversationId);
+        setconversation_id(newConversationId);
+      }
     } catch (error) {
       console.error("Error getting AI response:", error);
-      setIsTyping(false);
 
-      const errorHistory = [
-        ...chatHistory,
-        { role: "user", text: userMessage },
+      setChatHistory((prev) => [
+        ...prev.slice(0, -1),
         { role: "model", text: "Error: Could not get response." },
-      ];
+      ]);
 
-      setChatHistory(errorHistory);
+      setIsTyping(false);
     }
 
-    const response_log = await axios.get("https://bot.uppist.xyz/logs", {
-      params: {
-        prompt: userMessage,
-        response: aiReply,
-        timestamp: formattedTime,
+    try {
+      await axios.get("https://bot.uppist.xyz/logs", {
+        params: {
+          prompt: userMessage,
+          response: aiReply,
+          timestamp: formattedTime,
+        },
+      });
+    } catch (err) {
+      console.error("Logging error:", err);
+    }
+  }
+  async function handleButton() {
+    const data = {
+      conversation_id: localStorage.getItem("conversation_id"),
+      user_identifier: localStorage.getItem("session_id"),
+      user_name: logindetail.name,
+      user_email: logindetail.email,
+    };
+
+    setChatHistory((prev) => [
+      ...prev,
+      {
+        role: "system",
+        text: "Connecting you to an agent...",
       },
-    });
-    console.log(response_log.data);
+    ]);
+
+    try {
+      const res = await axios.post(
+        "http://139.162.173.87:2005/api/chat/handoff",
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("Token")}`,
+          },
+        },
+      );
+
+      const response = res.data;
+      console.log(response);
+
+      setTimeout(() => {
+        setChatHistory((prev) => [
+          ...prev.slice(0, -1),
+          {
+            role: "system",
+            text:
+              response.mode === "agent_active"
+                ? "Connected you to an agent"
+                : "All agents are busy, you'll be connected shortly...",
+          },
+        ]);
+        if (response.mode === "agent_active") {
+          setIsHandoff(true);
+          isHandoffRef.current = true;
+        }
+      }, 2000);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
@@ -132,6 +311,9 @@ export default function Chatbot({ Close, handleClose, logindetail }) {
       <div className={styles.logos}>
         <img src={back} alt='' onClick={Close} />
         <img src={ai} alt='' />
+        <button type='button' onClick={handleButton}>
+          Speak to An Agent
+        </button>
         <img src={cancel} alt='' onClick={handleClose} />
       </div>
 
@@ -139,7 +321,11 @@ export default function Chatbot({ Close, handleClose, logindetail }) {
         {chatHistory.map((chat, index) => (
           <div
             className={`${
-              chat.role === "model" ? styles.bot : styles.human
+              chat.role === "model"
+                ? styles.bot
+                : chat.role === "system"
+                  ? styles.system
+                  : styles.human
             } message user-message`}
             key={index}
           >
@@ -158,6 +344,7 @@ export default function Chatbot({ Close, handleClose, logindetail }) {
             )}
           </div>
         ))}
+
         <div ref={messagesEndRef} />
       </div>
 
