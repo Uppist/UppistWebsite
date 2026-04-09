@@ -8,18 +8,21 @@ import axios from "axios";
 
 export default function CloseChat({ onClose, conversation_id, onChatClosed }) {
   function Close() {
-    toast.success("Chat closed successfully");
-
     axios
-      .post(`http://139.162.173.87:2005/api/chat/close/${conversation_id}`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("Token")}` },
-      })
+      .post(
+        `https://bot.uppist.xyz/uiagent/api/agent/end-session/${conversation_id}`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("Token")}` },
+        },
+      )
       .then((res) => {
         console.log("Chat closed:", res.data);
+        toast.success("Chat closed successfully");
 
         setTimeout(() => {
           onClose();
-          onChatClosed();
+          onChatClosed(conversation_id);
         }, 1500);
       })
       .catch((err) => {

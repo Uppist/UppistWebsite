@@ -6,7 +6,7 @@ import SideBar from "./SideBar";
 import Content from "./Content";
 import axios from "axios";
 import img1 from "../../../assets/Dashboard/Content/img1.png";
-import img4 from "../../../assets/Dashboard/Content/img4.png";
+// import img4 from "../../../assets/Dashboard/Content/img4.png";
 import img7 from "../../../assets/Dashboard/Content/img7.png";
 import img8 from "../../../assets/Dashboard/Content/img8.png";
 import ChatLogs from "./Transaction/ChatLogs";
@@ -83,21 +83,21 @@ export default function Dashboard() {
       .map((item) => item.sender_id),
   ).size;
 
-  const total_web_prompt_query = logs.filter(
-    (item) => item.platform === "web" && item.prompt,
-  ).length;
+  // const total_web_prompt_query = logs.filter(
+  //   (item) => item.platform === "web" && item.prompt,
+  // ).length;
 
-  const total_whatsapp_prompt_query = logs.filter(
-    (item) => item.platform === "whatsapp" && item.prompt,
-  ).length;
+  // const total_whatsapp_prompt_query = logs.filter(
+  //   (item) => item.platform === "whatsapp" && item.prompt,
+  // ).length;
 
-  const total_social_media_prompt_query = logs.filter(
-    (item) =>
-      (item.platform === "instagram" ||
-        item.platform === "facebook" ||
-        item.platform === "x") &&
-      item.prompt,
-  ).length;
+  // const total_social_media_prompt_query = logs.filter(
+  //   (item) =>
+  //     (item.platform === "instagram" ||
+  //       item.platform === "facebook" ||
+  //       item.platform === "x") &&
+  //     item.prompt,
+  // ).length;
 
   const total_web_ai_responses = logs.filter(
     (item) => item.platform === "web" && item.response,
@@ -121,10 +121,10 @@ export default function Dashboard() {
     total_web_ai_responses +
     total_whatsapp_ai_responses +
     total_social_media_ai_responses;
-  const total_prompt_query =
-    total_web_prompt_query +
-    total_whatsapp_prompt_query +
-    total_social_media_prompt_query;
+  // const total_prompt_query =
+  //   total_web_prompt_query +
+  //   total_whatsapp_prompt_query +
+  //   total_social_media_prompt_query;
 
   /* --- Programme Data --- */
   const Programme = [
@@ -134,17 +134,17 @@ export default function Dashboard() {
       amount: totalVisitors,
     },
 
-    {
-      img: img4,
+    // {
+    //   img: img4,
 
-      title: "Total Prompt Queries",
-      amount: total_prompt_query,
-    },
+    //   title: "Total Prompt Queries",
+    //   amount: total_prompt_query,
+    // },
 
     {
       img: img7,
 
-      title: "Total AI Responses",
+      title: "Total AI Interactions",
       amount: total_ai_responses,
     },
     {

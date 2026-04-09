@@ -13,85 +13,66 @@ import human from "../../../assets/human.svg";
 import ChatStyle from "../../../components/AIChatbot/style.module.css";
 import { UserDataContext } from "../UserDataContext";
 import ReactMarkdown from "react-markdown";
-import axios from "axios";
+// import axios from "axios";
 
-const SOCKET_URL = "http://139.162.173.87:2005";
+const SOCKET_URL = "https://bot.uppist.xyz/";
 
 export default function Chat({ message, setMessages }) {
   const [openSvg, setOpenSvg] = React.useState(false);
-  const [isTyping, setIsTyping] = useState(false);
+  const [isTyping] = useState(false);
   const messagesEndRef = useRef(null);
   const [reassignAgent, setReassignAgent] = React.useState(false);
   const [closeChat, setCloseChat] = React.useState(false);
-  const [socket, setSocket] = useState(null);
+  // const [socket, setSocket] = useState(null);
   const mobileView = useIsMobile();
 
+  const { setConversations } = useContext(UserDataContext);
+
   // connect to correct server
+  const socketRef = useRef(null);
+
   useEffect(() => {
-    const newSocket = io(SOCKET_URL);
-
-    newSocket.on("connect", () => {
-      console.log("✅ Agent socket connected:", newSocket.id);
+    socketRef.current = io(SOCKET_URL, {
+      path: "/uiagent/socket.io/",
     });
 
-    newSocket.on("disconnect", () => {
-      console.log("❌ Agent socket disconnected");
+    socketRef.current.on("connect", () => {
+      console.log("Agent socket connected:", socketRef.current.id);
     });
 
-    newSocket.on("connect_error", (err) => {
-      console.log("❌ Agent socket connection error:", err.message);
+    socketRef.current.on("disconnect", () => {
+      console.log("Agent socket disconnected");
     });
 
-    setSocket(newSocket);
+    socketRef.current.on("connect_error", (err) => {
+      console.log("Socket error:", err.message);
+    });
 
-    return () => newSocket.disconnect();
+    return () => socketRef.current.disconnect();
   }, []);
 
   useEffect(() => {
-    if (!socket || !message) return;
+    if (!socketRef.current || !message?.conversation?.id) return;
 
-    // Join the conversation room
-    socket.emit("join_conversation", {
-      conversation_id: message?.conversation?.id,
+    const conversationId = message.conversation.id;
+
+    socketRef.current.emit("join_conversation", {
+      conversation_id: conversationId,
     });
 
-    console.log("Agent joined conversation room:", message?.conversation?.id);
+    console.log("Joined conversation:", conversationId);
+  }, [message?.conversation?.id]);
 
-    // Listen for incoming messages from customer
-    const handleMessage = (newMessage) => {
-      console.log("New message received:", newMessage);
-      setMessages((prev) => ({
-        ...prev,
-        messages: [
-          ...prev.messages,
-          {
-            sender_type: newMessage.sender_type,
-            message_text:
-              newMessage.message_text || newMessage.message || newMessage,
-          },
-        ],
-      }));
-    };
+  useEffect(() => {
+    if (!socketRef.current) return;
 
-    const handleAgentJoined = (data) => {
-      console.log("Agent joined:", data);
-    };
-
-    const handleLeave = (data) => {
-      console.log("Left conversation:", data);
-    };
-
-    socket.on("message", handleMessage);
-    socket.on("agent_joined", handleAgentJoined);
-    socket.on("leave_conversation", handleLeave);
+    // Message handling is now done in Context.jsx
+    // This useEffect is kept for joining conversations only
 
     return () => {
-      socket.off("message", handleMessage);
-      socket.off("agent_joined", handleAgentJoined);
-      socket.off("leave_conversation", handleLeave);
+      // Cleanup if needed
     };
-  }, [socket, message]);
-
+  }, [message?.conversation?.id]);
   const { userData } = useContext(UserDataContext);
 
   function handleMenu() {
@@ -110,7 +91,7 @@ export default function Chat({ message, setMessages }) {
 
   const [myMessage, setMyMessage] = useState("");
 
-  React.useEffect(() => {
+  useEffect(() => {
     function handleClickOutside(event) {
       if (!event.target.closest(`.${styles.chatbox}`)) {
         setOpenSvg(false);
@@ -132,23 +113,31 @@ export default function Chat({ message, setMessages }) {
   }, [message?.messages]);
 
   function SendMessage() {
-    if (!myMessage.trim() || !socket) return;
+    if (!myMessage.trim() || !socketRef.current) return;
 
-    const newMessage = {
+    //add message to chat immediately
+    setMessages((prev) => {
+      if (!prev) return prev;
+      return {
+        ...prev,
+        messages: [
+          ...(prev.messages || []),
+          {
+            sender_type: "agent",
+            message_text: myMessage,
+          },
+        ],
+      };
+    });
+
+    socketRef.current.emit("send_message", {
       conversation_id: message?.conversation?.id,
       message: myMessage,
       sender_type: "agent",
-    };
-    axios
-      .post("http://139.162.173.87:2005/api/chat/send", newMessage, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("Token")}` },
-      })
-      .then((res) => console.log("Message sent:", res.data))
-      .catch((err) => console.log("Send message error:", err));
+    });
 
     setMyMessage("");
   }
-
   // Send on Enter key
   function handleKeyDown(e) {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -159,7 +148,7 @@ export default function Chat({ message, setMessages }) {
 
   return (
     <div className={styles.chatbox}>
-      {!message ? (
+      {!message || !message?.conversation?.id ? (
         <span
           style={{
             display: "flex",
@@ -264,8 +253,12 @@ export default function Chat({ message, setMessages }) {
                       setOpenSvg(false);
                     }}
                     conversation_id={message?.conversation?.id}
-                    onChatClosed={() => {
+                    onChatClosed={(id) => {
                       setMessages(null);
+
+                      setConversations((prev) =>
+                        prev.filter((c) => c.id !== id),
+                      );
                     }}
                   />
                 )}

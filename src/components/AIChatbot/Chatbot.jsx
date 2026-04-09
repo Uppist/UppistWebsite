@@ -11,9 +11,9 @@ import chatbot from "../../assets/chatbot.svg";
 import { io } from "socket.io-client";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
-import { UserDataContext } from "../Admin/UserDataContext";
 
-const SOCKET_URL = "http://139.162.173.87:2005";
+const SOCKET_URL = "https://bot.uppist.xyz";
+const baseUrl = "https://bot.uppist.xyz/uiagent/api";
 
 export default function Chatbot({ Close, handleClose, logindetail }) {
   const [chatHistory, setChatHistory] = useState([]);
@@ -30,7 +30,7 @@ export default function Chatbot({ Close, handleClose, logindetail }) {
     return localStorage.getItem("conversation_id") || null;
   });
 
-  const [isHandoff, setIsHandoff] = useState(false);
+  const [, setIsHandoff] = useState(false);
 
   const inputRef = useRef(null);
   const messagesEndRef = useRef(null);
@@ -61,10 +61,12 @@ export default function Chatbot({ Close, handleClose, logindetail }) {
   // Connect to correct server
   useEffect(() => {
     if (socket) return;
-    const newSocket = io(SOCKET_URL);
+    const newSocket = io(SOCKET_URL, {
+      path: "/uiagent/socket.io/",
+    });
 
     newSocket.on("connect", () => {
-      // console.log("✅ Customer socket connected:", newSocket.id);
+      console.log("customer socket connected:", newSocket.id);
     });
 
     newSocket.on("disconnect", () => {
@@ -76,15 +78,18 @@ export default function Chatbot({ Close, handleClose, logindetail }) {
     });
 
     setSocket(newSocket);
+    console.log("Socket initialized:", newSocket);
 
     return () => newSocket.disconnect();
   }, []);
 
   // Join conversation room once socket + conversation_id are ready
   useEffect(() => {
-    if (!socket || !conversation_id) return;
-    // console.log("Joined conversation room:", conversation_id);
-    socket.emit("join_conversation", { conversation_id });
+    if (socket && conversation_id) {
+      socket.emit("join_conversation", { conversation_id });
+
+      console.log("Client joined:", conversation_id);
+    }
   }, [socket, conversation_id]);
 
   // Listen for incoming messages from agent
@@ -95,15 +100,25 @@ export default function Chatbot({ Close, handleClose, logindetail }) {
       // ignore messages sent by user
       if (newMessage?.sender_type === "user") return;
 
-      if (newMessage?.sender_type === "bot") return;
+      // if (newMessage?.sender_type === "bot") return;
 
-      setChatHistory((prev) => [
-        ...prev,
-        {
-          role: "model",
-          text: newMessage?.message_text || newMessage?.message,
-        },
-      ]);
+      const messageText = newMessage?.message_text || newMessage?.message;
+
+      // Avoid duplicate messages: check if message already exists in chat history
+      setChatHistory((prev) => {
+        const isDuplicate = prev.some(
+          (msg) => msg.role === "model" && msg.text === messageText,
+        );
+        if (isDuplicate) return prev;
+
+        return [
+          ...prev,
+          {
+            role: "model",
+            text: messageText,
+          },
+        ];
+      });
     };
 
     // Listen for agent joining notification
@@ -141,7 +156,7 @@ export default function Chatbot({ Close, handleClose, logindetail }) {
     const handleSessionEnded = (data) => {
       console.log("Agent session ended:", data);
       setIsHandoff(false);
-      isHandoffRef.current = false; // AI resumes
+      isHandoffRef.current = false;
       setChatHistory((prev) => [
         ...prev,
         {
@@ -179,21 +194,21 @@ export default function Chatbot({ Close, handleClose, logindetail }) {
     if (isHandoffRef.current) {
       try {
         await axios.post(
-          "http://139.162.173.87:2005/api/chat/send",
-          {
-            conversation_id,
-            message: userMessage,
-            sender_type: "user",
-          },
+          `${baseUrl}/chat/send`,
+          { conversation_id, message: userMessage, sender_type: "user" },
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("Token")}`,
             },
           },
         );
+        // remove the "..." placeholder — agent reply will come via socket
+        setChatHistory((prev) => prev.slice(0, -1));
       } catch (error) {
         console.error("Error sending message to agent:", error);
+        setChatHistory((prev) => prev.slice(0, -1));
       }
+      setIsTyping(false);
       return;
     }
 
@@ -222,6 +237,7 @@ export default function Chatbot({ Close, handleClose, logindetail }) {
 
       const newSessionId = response.data.session_id;
       const newConversationId = response.data.conversation_id;
+      console.log("response:", response.data);
 
       if (newSessionId && !localStorage.getItem("session_id")) {
         localStorage.setItem("session_id", newSessionId);
@@ -254,6 +270,8 @@ export default function Chatbot({ Close, handleClose, logindetail }) {
     } catch (err) {
       console.error("Logging error:", err);
     }
+
+    // console.log("conversation_id", conversation_id);
   }
   async function handleButton() {
     const data = {
@@ -272,15 +290,11 @@ export default function Chatbot({ Close, handleClose, logindetail }) {
     ]);
 
     try {
-      const res = await axios.post(
-        "http://139.162.173.87:2005/api/chat/handoff",
-        data,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("Token")}`,
-          },
+      const res = await axios.post(`${baseUrl}/chat/handoff`, data, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("Token")}`,
         },
-      );
+      });
 
       const response = res.data;
       console.log(response);
@@ -311,9 +325,11 @@ export default function Chatbot({ Close, handleClose, logindetail }) {
       <div className={styles.logos}>
         <img src={back} alt='' onClick={Close} />
         <img src={ai} alt='' />
-        <button type='button' onClick={handleButton}>
-          Speak to An Agent
-        </button>
+        {conversation_id && (
+          <button type='button' onClick={handleButton}>
+            Speak to An Agent
+          </button>
+        )}
         <img src={cancel} alt='' onClick={handleClose} />
       </div>
 

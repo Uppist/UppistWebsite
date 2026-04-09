@@ -39,7 +39,7 @@ export default function Login() {
     setLoading(true);
 
     axios
-      .post("http://139.162.173.87:2005/api/auth/login", data)
+      .post("https://bot.uppist.xyz/uiagent/api/auth/login", data)
       .then((res) => {
         toast.success("Login successful");
         localStorage.setItem("Token", res.data.token);

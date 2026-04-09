@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styles from "./style.module.css";
 import profile from "../../../assets/profile2.svg";
 import { NavLink } from "react-router-dom";
@@ -11,15 +11,28 @@ import dayjs from "dayjs";
 export default function Email({ handleEmailClick, adminConversations }) {
   const mobileView = useIsMobile();
 
-  const { userData, conversations } = useContext(UserDataContext);
-  console.log("Conversations in Email component:", adminConversations);
+  const {
+    userData,
+    conversations,
+    adminConversations: contextAdminConversations,
+  } = useContext(UserDataContext);
 
   const userRole = userData?.user?.role;
 
-  const displayConversations =
-    userRole === "Live Agent" ? conversations : (adminConversations ?? []);
+  // Use appropriate conversations based on role
+  let displayConversations = [];
+  if (userRole === "Live Agent") {
+    displayConversations = conversations || [];
+  } else if (userRole === "Admin" || userRole === "Super Admin") {
+    displayConversations = contextAdminConversations || [];
+  } else {
+    displayConversations =
+      conversations || contextAdminConversations || adminConversations || [];
+  }
 
-  console.log(displayConversations);
+  // Log when component re-renders
+  useEffect(() => {}, [displayConversations]);
+
   return (
     <div className={styles.email}>
       <div className={styles.search}>
@@ -72,8 +85,12 @@ export default function Email({ handleEmailClick, adminConversations }) {
                         </p>{" "}
                       </div>
                       <div className={styles.name2p}>
-                        <span>{email.summary.slice(0, 20)}...</span>
-                        <p>{email.unread}</p>
+                        <span>
+                          {email.summary
+                            ? email.summary.slice(0, 20) + "..."
+                            : "New conversation"}
+                        </span>
+                        {/* <p>{email.unread || 0}</p> */}
                       </div>
                     </div>
                   </div>
@@ -106,7 +123,7 @@ export default function Email({ handleEmailClick, adminConversations }) {
                       </div>
                       <div className={styles.name2p}>
                         <span>{email.summary.slice(0, 20)}...</span>
-                        <p>{email.unread}</p>
+                        {/* <p>{email.unread}</p> */}
                       </div>
                     </div>
                   </div>

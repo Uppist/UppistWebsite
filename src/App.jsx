@@ -54,6 +54,8 @@ function AppContent() {
         location.pathname === "/live_agents")
     ) {
       navigate("/messages", { replace: true });
+    } else {
+      // navigate("/login", { replace: true });
     }
   }, [role, location.pathname, navigate]);
 

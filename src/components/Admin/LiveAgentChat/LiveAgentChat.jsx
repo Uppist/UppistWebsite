@@ -35,21 +35,35 @@ export default function LiveAgentChat() {
       Authorization: `Bearer ${token}`,
     };
 
-    console.log("Hello");
+    console.log("Clicking on email:", email.id);
     axios
-      .get(`http://139.162.173.87:2005/api/agent/conversations/${email.id}`, {
-        headers,
-      })
+      .get(
+        `https://bot.uppist.xyz/uiagent/api/agent/conversations/${email.id}`,
+        {
+          headers,
+        },
+      )
       .then((res) => {
         console.log("Conversation messages fetched:", res.data);
-        setMessages(res.data);
+        // Ensure consistent structure
+        const conversationData = res.data;
+        if (Array.isArray(conversationData)) {
+          // If API returns just messages array, wrap it properly
+          setMessages({
+            conversation: { id: email.id, user: email },
+            messages: conversationData,
+          });
+        } else {
+          // If API returns proper structure
+          setMessages(conversationData);
+        }
 
         if (mobileView) {
           navigate(`/messages/${email.id}`);
         }
       })
       .catch((err) => {
-        console.log("Conversation messages error:", err);
+        console.error("error fetching conversation messages:", err);
       });
 
     console.log("Email clicked:", email.id);
