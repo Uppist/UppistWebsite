@@ -9,7 +9,7 @@ export default defineConfig({
   plugins: [react()],
   base: isGitHubPages ? "/UppistWebsite/" : "./",
   esbuild: {
-    // drop: ["console", "debugger"],
+    drop: ["console", "debugger"],
   },
   server: {
     port: 5000,
