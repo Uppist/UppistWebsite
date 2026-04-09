@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { UserDataContext } from "./UserDataContext";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { io } from "socket.io-client";
@@ -26,14 +26,30 @@ export default function Context({ children }) {
   const [messages, setMessages] = useState([]);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const token = localStorage.getItem("Token");
     const baseUrl = "https://bot.uppist.xyz/uiagent/api";
 
-    //If no token, redirect once and stop execution
+    const adminPaths = [
+      "/dashboard",
+      "/settings",
+      "/live_agents",
+      "/logs",
+      "/messages",
+      "/notification",
+    ];
+    const isAdminRoute = adminPaths.some(
+      (path) =>
+        location.pathname === path || location.pathname.startsWith(`${path}/`),
+    );
+
+    // Only redirect to login when the current route is part of admin pages
     if (!token) {
-      // navigate("/login");
+      if (isAdminRoute) {
+        navigate("/login");
+      }
       return;
     }
 
