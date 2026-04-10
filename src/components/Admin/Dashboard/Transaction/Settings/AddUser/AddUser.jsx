@@ -27,7 +27,7 @@ export default function AddUser({ onClose }) {
 
     if (token) {
       axios
-        .post("http://139.162.173.87:2005/api/users", data, {
+        .post("https://bot.uppist.xyz/uiagent/api/users", data, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -48,29 +48,6 @@ export default function AddUser({ onClose }) {
           toast.error(err.response.data.error);
         });
     }
-
-    // if (data.role === "Admin" && token) {
-    //   console.log(token);
-    //   // axios
-    //   //   .post("http://139.162.173.87:2005/api/superadmin/create-admin", data)
-    //   //   .then((res) => {
-    //   //     toast.success("Link sent successfully");
-    //   //     console.log(res.data);
-    //   //   })
-    //   //   .catch((err) => {
-    //   //     console.log(err);
-    //   //   });
-
-    //   // setTimeout(() => {
-    //   //   onClose();
-    //   // }, 1000);
-    // } else if (data.role === "Live Agent" && token) {
-    //
-
-    //   setTimeout(() => {
-    //     onClose();
-    //   }, 1000);
-    // }
   }
 
   const disabledLink = email.trim() !== "" && selectedRole !== "Add role";

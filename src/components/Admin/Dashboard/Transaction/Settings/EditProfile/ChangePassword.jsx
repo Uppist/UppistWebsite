@@ -66,7 +66,7 @@ export default function ChangePassword({ onClose }) {
       userData?.user?.role === "admin"
     ) {
       axios
-        .put("http://139.162.173.87:2005/api/admin/change-password", data, {
+        .put("https://bot.uppist.xyz/uiagent/api/admin/change-password", data, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => {

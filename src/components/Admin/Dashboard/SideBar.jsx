@@ -11,11 +11,9 @@ export default function SideBar() {
   // console.log(userData?.user?.role);
 
   const [dropdown, setDropdown] = useState(false);
-  const [active, setActive] = useState("");
 
   function handleChannels() {
     setDropdown((prev) => !prev);
-    setActive("channels");
   }
   return (
     <div className={styles.sidebar}>

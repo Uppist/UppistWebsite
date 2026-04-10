@@ -96,10 +96,10 @@ export default function LiveAgentChat() {
             <div className={styles.name}>
               <p>
                 {name}{" "}
-                {agent?.is_busy === false && agent?.is_online === false && (
+                {agent?.is_online === true ? (
                   <span
                     style={{
-                      color: "#667085",
+                      color: "#00C851",
                       fontSize: "12px",
                       fontWeight: "500",
                       display: "flex",
@@ -114,12 +114,11 @@ export default function LiveAgentChat() {
                       fill='none'
                       xmlns='http://www.w3.org/2000/svg'
                     >
-                      <circle cx='4' cy='4' r='4' fill='#667085' />
+                      <circle cx='4' cy='4' r='4' fill='#00C851' />
                     </svg>
-                    Offline
+                    Online
                   </span>
-                )}
-                {agent?.is_busy === true && (
+                ) : agent.is_busy === true ? (
                   <span
                     style={{
                       color: "red",
@@ -141,11 +140,10 @@ export default function LiveAgentChat() {
                     </svg>
                     Busy
                   </span>
-                )}
-                {agent?.is_online === true && (
+                ) : (
                   <span
                     style={{
-                      color: "#00C851",
+                      color: "#667085",
                       fontSize: "12px",
                       fontWeight: "500",
                       display: "flex",
@@ -160,9 +158,9 @@ export default function LiveAgentChat() {
                       fill='none'
                       xmlns='http://www.w3.org/2000/svg'
                     >
-                      <circle cx='4' cy='4' r='4' fill='#00C851' />
+                      <circle cx='4' cy='4' r='4' fill='#667085' />
                     </svg>
-                    Online
+                    Offline
                   </span>
                 )}
               </p>
