@@ -1,10 +1,21 @@
 /** @format */
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import Header from "./components/Header/Header";
+import HeaderMobile from "./components/Header/HeaderMobile";
+import Home from "./components/Home/Home";
+import About from "./components/About/About";
+import Case from "./components/Case/Case";
+import Contact from "./components/Contact/Contact";
+import Blogs from "./components/Blogs/Blogs";
+import BlogDetail from "./components/Blogs/BlogDetail";
+import Creative from "./components/Service/Creative/Creative";
+import Technology from "./components/Service/Technology/Technology";
+import Footer from "./components/Footer/Footer";
 import Logo from "./components/AIChatbot/Logo";
 import Login from "./components/Admin/Login/Login";
-// import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
-// import useIsMobile from "./hooks/useIsMobile";
-import styles from "./App.module.css";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
+import useIsMobile from "./hooks/useIsMobile";
+import styles from "./App.module.css"; // Import the CSS module
 import ChatLogs from "./components/Admin/Dashboard/Transaction/ChatLogs";
 
 import { useContext, useEffect } from "react";
@@ -12,14 +23,12 @@ import Dashboard from "./components/Admin/Dashboard/Dashboard";
 import Content from "./components/Admin/Dashboard/Content";
 import Agent from "./components/Admin/Dashboard/Transaction/LiveAgent/Agent";
 import Settings from "./components/Admin/Dashboard/Transaction/Settings/Settings";
+import ViewMore from "./components/Admin/Dashboard/Transaction/ViewMore";
 import { UserDataContext } from "./components/Admin/UserDataContext";
 import LiveAgentChat from "./components/Admin/LiveAgentChat/LiveAgentChat";
 import Chat from "./components/Admin/LiveAgentChat/Chat";
-import Home from "./components/Website/Home/Home";
-import Navbar from "./components/Website/Navbar/Navbar";
-import Footer from "./components/Website/Footer/Footer";
 
-export default function App() {
+function AppContent() {
   const { userData } = useContext(UserDataContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -31,7 +40,7 @@ export default function App() {
     location.pathname === "/live_agents" ||
     location.pathname.startsWith("/messages") ||
     location.pathname === "/notification";
-  // const isMobile = useIsMobile();
+  const isMobile = useIsMobile();
 
   useEffect(() => {}, []);
 
@@ -53,21 +62,20 @@ export default function App() {
   return (
     <>
       {!adminRoutes && <Logo />}
-      {!adminRoutes && <Navbar />}
       <div id='app-scroll' className={styles.app}>
         {" "}
         {/* Apply the class */}
-        {/* {!adminRoutes && (isMobile ? <HeaderMobile /> : <Header />)} */}
+        {!adminRoutes && (isMobile ? <HeaderMobile /> : <Header />)}
         <main>
           <Routes>
             <Route path='/' element={<Home />} />
-            {/* <Route path='/about' element={<About />} />
+            <Route path='/about' element={<About />} />
             <Route path='/case-studies' element={<Case />} />
             <Route path='/contact' element={<Contact />} />
             <Route path='/blogs' element={<Blogs />} />
             <Route path='/blogs/:id' element={<BlogDetail />} />
             <Route path='/services/creative' element={<Creative />} />
-            <Route path='/services/technology' element={<Technology />} /> */}
+            <Route path='/services/technology' element={<Technology />} />
             {/*Admin Login and other routes */}
             <Route path='/login' element={<Login />} />
             <Route element={<Dashboard />}>
@@ -85,6 +93,15 @@ export default function App() {
         </main>{" "}
         {!adminRoutes && <Footer />}
       </div>
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <>
+      <ScrollToTop />
+      <AppContent />
     </>
   );
 }
