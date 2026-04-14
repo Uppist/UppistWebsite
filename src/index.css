@@ -1,38 +1,48 @@
 /** @format */
-/* Reset default margins and ensure full height */
+
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 html,
 body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow-x: hidden; /* Prevent horizontal scrollbar */
-  scroll-behavior: smooth; /* Enable smooth scrolling */
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 /* Hide scrollbar for all elements while allowing scrolling */
 * {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* Internet Explorer & Edge */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 *::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, and other WebKit browsers */
+  display: none;
 }
 
-/* Optional stronger safeguard */
-/* index.css or global.css */
 html,
 body {
   overflow-x: hidden;
-  width: 100%; /* prevent accidental overflow */
+  width: 100%;
 }
 
 a {
   text-decoration: none;
 }
 
+:root {
+  --background-color: hsla(34, 100%, 50%, 1);
+  --secondary-color: #4caf50;
+  --color-white: #ffffff;
+  --color-purple-low: hsla(293, 53%, 24%, 1);
+  --color-purple-high: hsla(307, 70%, 40%, 1);
+  --text-color: hsla(221, 13%, 46%, 1);
+  --text-color2: hsla(0, 0%, 17%, 1);
+  --font-family: "Lato";
+}
+
 @media only screen and (max-width: 768px) {
-  body {
+  /* body {
     background-color: rgb(245, 245, 245);
-  }
+  } */
 }

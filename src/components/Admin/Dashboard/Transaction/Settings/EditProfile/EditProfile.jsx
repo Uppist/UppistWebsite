@@ -19,7 +19,7 @@ export default function EditProfile() {
   const [edit, setEdit] = React.useState(false);
   const [image, setImage] = React.useState(null);
   const [selectDropdown, setSelectDropdown] = useState(false);
-  const [selectedLabel, setSelectedLabel] = useState("Offline");
+  const [selectedLabel, setSelectedLabel] = useState("Online");
 
   function handleImage(e) {
     const selectedFile = e.target.files[0];
@@ -74,7 +74,7 @@ export default function EditProfile() {
     };
 
     axios
-      .put("http://139.162.173.87:2005/api/agent/status", data, {
+      .put("https://bot.uppist.xyz/uiagent/api/agent/status", data, {
         headers: { Authorization: `Bearer ${localStorage.getItem("Token")}` },
       })
       .then((res) => {

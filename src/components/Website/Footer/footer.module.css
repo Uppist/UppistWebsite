@@ -1,0 +1,21 @@
+/** @format */
+
+.footer {
+  background: linear-gradient(
+    45deg,
+    var(--color-purple-low),
+    var(--color-purple-high)
+  );
+  padding: 24px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.container1 {
+  display: flex;
+}
+
+.info {
+  display: flex;
+}

@@ -118,7 +118,7 @@ export default function LiveAgentChat() {
                     </svg>
                     Online
                   </span>
-                ) : agent.is_busy === true ? (
+                ) : agent?.is_busy === true ? (
                   <span
                     style={{
                       color: "red",
