@@ -1,16 +1,7 @@
 /** @format */
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
-import Header from "./components/Header/Header";
-import HeaderMobile from "./components/Header/HeaderMobile";
-import Home from "./components/Home/Home";
-import About from "./components/About/About";
-import Case from "./components/Case/Case";
-import Contact from "./components/Contact/Contact";
-import Blogs from "./components/Blogs/Blogs";
-import BlogDetail from "./components/Blogs/BlogDetail";
-import Creative from "./components/Service/Creative/Creative";
-import Technology from "./components/Service/Technology/Technology";
-import Footer from "./components/Footer/Footer";
+// import Header from "./components/Header/Header";
+// import HeaderMobile from "./components/Header/HeaderMobile";
 import Logo from "./components/AIChatbot/Logo";
 import Login from "./components/Admin/Login/Login";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
@@ -27,7 +18,13 @@ import ViewMore from "./components/Admin/Dashboard/Transaction/ViewMore";
 import { UserDataContext } from "./components/Admin/UserDataContext";
 import LiveAgentChat from "./components/Admin/LiveAgentChat/LiveAgentChat";
 import Chat from "./components/Admin/LiveAgentChat/Chat";
-
+import Home from "./components/Website/Home/Home";
+import Footer from "./components/Website/Footer/Footer";
+import Navbar from "./components/Website/Navbar/Navbar";
+import Product from "./components/Website/Product/Product";
+import Solutions from "./components/Website/Solutions/Solutions";
+import Pricing from "./components/Website/Pricing/Pricing";
+import About from "./components/Website/About/About";
 function AppContent() {
   const { userData } = useContext(UserDataContext);
   const navigate = useNavigate();
@@ -40,7 +37,7 @@ function AppContent() {
     location.pathname === "/live_agents" ||
     location.pathname.startsWith("/messages") ||
     location.pathname === "/notification";
-  const isMobile = useIsMobile();
+  // const isMobile = useIsMobile();
 
   useEffect(() => {}, []);
 
@@ -65,17 +62,23 @@ function AppContent() {
       <div id='app-scroll' className={styles.app}>
         {" "}
         {/* Apply the class */}
-        {!adminRoutes && (isMobile ? <HeaderMobile /> : <Header />)}
+        {!adminRoutes && <Navbar />}
+        {/* <Navbar /> */}
         <main>
           <Routes>
             <Route path='/' element={<Home />} />
+            <Route path='/products' element={<Product />} />
+            <Route path='/solutions' element={<Solutions />} />
+            <Route path='/pricing' element={<Pricing />} />
             <Route path='/about' element={<About />} />
+
+            {/* <Route path='/about' element={<About />} />
             <Route path='/case-studies' element={<Case />} />
             <Route path='/contact' element={<Contact />} />
             <Route path='/blogs' element={<Blogs />} />
             <Route path='/blogs/:id' element={<BlogDetail />} />
             <Route path='/services/creative' element={<Creative />} />
-            <Route path='/services/technology' element={<Technology />} />
+            <Route path='/services/technology' element={<Technology />} /> */}
             {/*Admin Login and other routes */}
             <Route path='/login' element={<Login />} />
             <Route element={<Dashboard />}>

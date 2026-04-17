@@ -1,0 +1,82 @@
+/** @format */
+
+.flexible {
+  display: flex;
+  flex-direction: column;
+  gap: 160px;
+  padding: 50px 100px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+}
+
+.data {
+  border: 1px solid hsla(220, 13%, 91%, 1);
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.data h4 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-color2);
+}
+
+.data span {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-color);
+}
+
+.list ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+  margin-top: 10px;
+}
+
+.list ul li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-color2);
+}
+
+.data button {
+  margin-bottom: 40px;
+  margin-top: 24px;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid hsla(220, 13%, 91%, 1);
+  background-color: transparent;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--text-color2);
+}
+
+.data button:hover {
+  background-color: var(--background-color);
+  border: none;
+  color: var(--color-white);
+}
+
+@media only screen and (max-width: 768px) {
+  .flexible {
+    padding: 50px 25px;
+    gap: 70px;
+  }
+}
