@@ -5,7 +5,7 @@ import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import Logo from "./components/AIChatbot/Logo";
 import Login from "./components/Admin/Login/Login";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
-import useIsMobile from "./hooks/useIsMobile";
+// import useIsMobile from "./hooks/useIsMobile";
 import styles from "./App.module.css"; // Import the CSS module
 import ChatLogs from "./components/Admin/Dashboard/Transaction/ChatLogs";
 
@@ -25,6 +25,8 @@ import Product from "./components/Website/Product/Product";
 import Solutions from "./components/Website/Solutions/Solutions";
 import Pricing from "./components/Website/Pricing/Pricing";
 import About from "./components/Website/About/About";
+import Contact from "./components/Website/Contact/Contact";
+
 function AppContent() {
   const { userData } = useContext(UserDataContext);
   const navigate = useNavigate();
@@ -71,14 +73,8 @@ function AppContent() {
             <Route path='/solutions' element={<Solutions />} />
             <Route path='/pricing' element={<Pricing />} />
             <Route path='/about' element={<About />} />
-
-            {/* <Route path='/about' element={<About />} />
-            <Route path='/case-studies' element={<Case />} />
             <Route path='/contact' element={<Contact />} />
-            <Route path='/blogs' element={<Blogs />} />
-            <Route path='/blogs/:id' element={<BlogDetail />} />
-            <Route path='/services/creative' element={<Creative />} />
-            <Route path='/services/technology' element={<Technology />} /> */}
+            <Route path='/request-a-demo' element={<Contact />} />
             {/*Admin Login and other routes */}
             <Route path='/login' element={<Login />} />
             <Route element={<Dashboard />}>

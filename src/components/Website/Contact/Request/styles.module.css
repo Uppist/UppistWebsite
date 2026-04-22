@@ -1,0 +1,12 @@
+/** @format */
+
+.experience {
+  display: flex;
+  flex-direction: column;
+  gap: 160px;
+}
+@media only screen and (max-width: 1059px) {
+  .experience {
+    gap: 60px;
+  }
+}

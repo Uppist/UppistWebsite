@@ -67,7 +67,9 @@ export default function Navbar() {
         >
           <li>Contact</li>
         </NavLink>
-        <li className={styles.demo}>Request a Demo</li>
+        <NavLink to='/request-a-demo'>
+          <li className={styles.demo}>Request a Demo</li>
+        </NavLink>
       </ul>
 
       {/*Menu icon */}

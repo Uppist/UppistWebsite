@@ -153,6 +153,9 @@
 }
 
 @media only screen and (max-width: 768px) {
+  .story {
+    padding: 50px 25px;
+  }
   .believe {
     flex-direction: column;
     padding: 25px 25px 0;
@@ -188,5 +191,15 @@
 
   .div1 div {
     font-size: 16px;
+  }
+
+  .grid {
+    margin-top: 10px;
+    gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .about {
+    gap: 35px;
   }
 }

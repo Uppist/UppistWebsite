@@ -123,7 +123,7 @@ export default function Footer() {
               <NavLink to='/contact' className={styles.notactive}>
                 <li>Contact</li>
               </NavLink>
-              <NavLink to='/demo' className={styles.notactive}>
+              <NavLink to='/request-a-demo' className={styles.notactive}>
                 <li>Request a Demo</li>
               </NavLink>
             </div>
