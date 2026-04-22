@@ -72,7 +72,7 @@ export default function MobileNav({ handleClick }) {
             <li>Contact</li>
           </NavLink>
 
-          <NavLink to='/request-a-demo'>
+          <NavLink to='/request-a-demo' onClick={handleClick}>
             <li className={styles.demo}>Request a Demo</li>
           </NavLink>
         </ul>
