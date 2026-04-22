@@ -51,6 +51,7 @@
   .industry {
     padding: 50px 25px;
     align-items: center;
+    place-items: center;
   }
   .container1 div h4 {
     font-size: 18px;
@@ -62,6 +63,7 @@
   .container {
     gap: 24px;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    place-items: center;
   }
 
   .container1 {
