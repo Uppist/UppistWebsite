@@ -26,7 +26,7 @@ export default function Logo() {
       ) : (
         <div className={styles.logo} onClick={handleClick}>
           <span>
-            Chat with <label htmlFor=''> Uppist AI</label>
+            Chat with <label htmlFor=''> Mac</label>
           </span>
           <img src={logo} alt='' />
         </div>

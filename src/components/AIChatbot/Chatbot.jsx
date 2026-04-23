@@ -324,7 +324,11 @@ export default function Chatbot({ Close, handleClose, logindetail }) {
     <div className={styles.chatbot}>
       <div className={styles.logos}>
         <img src={back} alt='' onClick={Close} />
-        <img src={ai} alt='' />
+        <span
+          style={{ fontFamily: "Inter", fontSize: "16px", fontWeight: 600 }}
+        >
+          Mac
+        </span>
         {conversation_id && (
           <button type='button' onClick={handleButton}>
             Speak to An Agent
